@@ -49,6 +49,20 @@ class Ouvrage
      */
     private $annee;
 
+    /**
+     * @ORM\ManyToOne(targetEntity="Matiere")
+     * @ORM\JoinColumn(nullable=false)
+     */
+    private $matiere;
+
+
+    /**
+     * @var text
+     *
+     * @ORM\Column(name="commentaire", type="text",nullable=true)
+     */
+    private $commentaire;
+
 
     /**
      * Get id
@@ -154,5 +168,53 @@ class Ouvrage
     public function getAnnee()
     {
         return $this->annee;
+    }
+
+    /**
+     * Set matiere
+     *
+     * @param \AppBundle\Entity\Matiere $matiere
+     *
+     * @return Ouvrage
+     */
+    public function setMatiere(\AppBundle\Entity\Matiere $matiere)
+    {
+        $this->matiere = $matiere;
+
+        return $this;
+    }
+
+    /**
+     * Get matiere
+     *
+     * @return \AppBundle\Entity\Matiere
+     */
+    public function getMatiere()
+    {
+        return $this->matiere;
+    }
+
+    /**
+     * Set commentaire
+     *
+     * @param string $commentaire
+     *
+     * @return Ouvrage
+     */
+    public function setCommentaire($commentaire)
+    {
+        $this->commentaire = $commentaire;
+
+        return $this;
+    }
+
+    /**
+     * Get commentaire
+     *
+     * @return string
+     */
+    public function getCommentaire()
+    {
+        return $this->commentaire;
     }
 }

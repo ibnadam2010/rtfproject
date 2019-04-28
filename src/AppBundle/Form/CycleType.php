@@ -13,7 +13,7 @@ class CycleType extends AbstractType
      */
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
-        $builder->add('nomCycle')->add('dateEnreg');
+        $builder->add('commentaire')->add('nomCycle')->add('dateEnreg');
     }/**
      * {@inheritdoc}
      */

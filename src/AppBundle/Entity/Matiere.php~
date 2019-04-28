@@ -4,14 +4,17 @@ namespace AppBundle\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
 use Symfony\Component\Form\Extension\Core\Type\DateType;
+use Doctrine\Common\Collections\ArrayCollection;
+use Doctrine\Common\Collections\Collection;
+
 
 /**
- * Cycle
+ * Matiere
  *
- * @ORM\Table(name="cycle")
- * @ORM\Entity(repositoryClass="AppBundle\Repository\CycleRepository")
+ * @ORM\Table(name="matiere")
+ * @ORM\Entity(repositoryClass="AppBundle\Repository\MatiereRepository")
  */
-class Cycle
+class Matiere
 {
     /**
      * @var int
@@ -22,20 +25,12 @@ class Cycle
      */
     private $id;
 
-
-    /**
-     * @var text
-     *
-     * @ORM\Column(name="commentaire", type="text",nullable=true)
-     */
-    private $commentaire;
-
     /**
      * @var string
      *
-     * @ORM\Column(name="nom_cycle", type="string", length=255)
+     * @ORM\Column(name="nom_matiere", type="string", length=255)
      */
-    private $nomCycle;
+    private $nomMatiere;
 
     /**
      * @var string
@@ -45,6 +40,17 @@ class Cycle
      */
     private $dateEnreg;
 
+    //relation entre matiere et ouvrage
+    ///**
+   //  * @ORM\OneToMany(targetEntity="Ouvrage", mappedBy="matiere")
+   //  */
+
+    /**
+     * @var text
+     *
+     * @ORM\Column(name="commentaire", type="text",nullable=true)
+     */
+    private $commentaire;
 
 
     /**
@@ -58,35 +64,36 @@ class Cycle
     }
 
     /**
-     * Set nomCycle.
+     * Set nomMatiere.
      *
-     * @param string $nomCycle
+     * @param string $nomMatiere
      *
-     * @return Cycle
+     * @return Matiere
      */
-    public function setNomCycle($nomCycle)
+    public function setNomMatiere($nomMatiere)
     {
-        $this->nomCycle = $nomCycle;
+        $this->nomMatiere = $nomMatiere;
 
         return $this;
     }
 
     /**
-     * Get nomCycle.
+     * Get nomMatiere.
      *
      * @return string
      */
-    public function getNomCycle()
+    public function getNomMatiere()
     {
-        return $this->nomCycle;
+        return $this->nomMatiere;
     }
 
-    /**
+
+   /**
      * Set dateEnreg.
      *
      * @param string $dateEnreg
      *
-     * @return Cycle
+     * @return Matiere
      */
     public function setDateEnreg($dateEnreg)
     {
@@ -104,29 +111,5 @@ class Cycle
     {
        // return $this->dateEnreg;
         $this->dateEnreg = new \DateTime();
-    }
-
-    /**
-     * Set commentaire
-     *
-     * @param string $commentaire
-     *
-     * @return Cycle
-     */
-    public function setCommentaire($commentaire)
-    {
-        $this->commentaire = $commentaire;
-
-        return $this;
-    }
-
-    /**
-     * Get commentaire
-     *
-     * @return string
-     */
-    public function getCommentaire()
-    {
-        return $this->commentaire;
     }
 }

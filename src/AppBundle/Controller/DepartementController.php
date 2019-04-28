@@ -5,9 +5,7 @@ namespace AppBundle\Controller;
 use AppBundle\Entity\Departement;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Method;
-use Symfony\Component\HttpFoundation\JsonResponse;
-use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
-use Symfony\Component\HttpFoundation\Request;
+use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;use Symfony\Component\HttpFoundation\Request;
 
 /**
  * Departement controller.
@@ -25,7 +23,9 @@ class DepartementController extends Controller
     public function indexAction()
     {
         $em = $this->getDoctrine()->getManager();
+
         $departements = $em->getRepository('AppBundle:Departement')->findAll();
+
         return $this->render('departement/index.html.twig', array(
             'departements' => $departements,
         ));
@@ -42,54 +42,80 @@ class DepartementController extends Controller
         $departement = new Departement();
         $form = $this->createForm('AppBundle\Form\DepartementType', $departement);
         $form->handleRequest($request);
+
         if ($form->isSubmitted() && $form->isValid()) {
             $em = $this->getDoctrine()->getManager();
-            $departement->setDateEnreg(new \DateTime('now'));
             $em->persist($departement);
             $em->flush();
-            return $this->redirectToRoute('gestion_departement');
+
+            return $this->redirectToRoute('index_departement', array('id' => $departement->getId()));
         }
 
-        return $this->render('departement/index.html.twig', array(
-            'form' => $form->createView()
+        return $this->render('departement/new.html.twig', array(
+            'departement' => $departement,
+            'form' => $form->createView(),
         ));
     }
 
+    /**
+     * Finds and displays a departement entity.
+     *
+     * @Route("/{id}", name="departement_show")
+     * @Method("GET")
+     */
+    public function showAction(Departement $departement)
+    {
+        $deleteForm = $this->createDeleteForm($departement);
+
+        return $this->render('departement/show.html.twig', array(
+            'departement' => $departement,
+            'delete_form' => $deleteForm->createView(),
+        ));
+    }
 
     /**
      * Displays a form to edit an existing departement entity.
      *
-     * @Route("/departement/edit", name="update_departements")
+     * @Route("/{id}/edit", name="departement_edit")
      * @Method({"GET", "POST"})
      */
-    public function editAction(Request $request)
+    public function editAction(Request $request, Departement $departement)
     {
-        $nom = $request->get('nom');
-        $id = $request->get('id');
-        $em = $this->getDoctrine()->getManager();
-        $departement = $em->getRepository('AppBundle:Departement')->find(intval($id));
-        $departement->setNomDepartement($nom);
-        $em->persist($departement);
-        $em->flush();
-        return $this->redirectToRoute('gestion_departement');
+        $deleteForm = $this->createDeleteForm($departement);
+        $editForm = $this->createForm('AppBundle\Form\DepartementType', $departement);
+        $editForm->handleRequest($request);
+
+        if ($editForm->isSubmitted() && $editForm->isValid()) {
+            $this->getDoctrine()->getManager()->flush();
+
+            return $this->redirectToRoute('departement_edit', array('id' => $departement->getId()));
+        }
+
+        return $this->render('departement/edit.html.twig', array(
+            'departement' => $departement,
+            'edit_form' => $editForm->createView(),
+            'delete_form' => $deleteForm->createView(),
+        ));
     }
 
     /**
      * Deletes a departement entity.
      *
-     * @Route("/departement/delete/{id} ", name="departement_delete")
+     * @Route("/{id}", name="departement_delete")
      * @Method("DELETE")
      */
     public function deleteAction(Request $request, Departement $departement)
     {
-            $form = $this->createDeleteForm($departement);
-            $form->handleRequest($request);
+        $form = $this->createDeleteForm($departement);
+        $form->handleRequest($request);
+
+        if ($form->isSubmitted() && $form->isValid()) {
             $em = $this->getDoctrine()->getManager();
             $em->remove($departement);
             $em->flush();
+        }
 
-
-        return $this->redirectToRoute('gestion_departement');
+        return $this->redirectToRoute('index_departement');
     }
 
     /**

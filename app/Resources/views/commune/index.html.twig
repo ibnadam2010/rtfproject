@@ -7,12 +7,7 @@
         <thead>
             <tr>
                 <th>Id</th>
-
-                <th>Nom commune</th>
-                <th>nom Departement</th>
-
                 <th>Nomcommune</th>
-
                 <th>Dateenreg</th>
                 <th>Actions</th>
             </tr>
@@ -22,10 +17,6 @@
             <tr>
                 <td><a href="{{ path('commune_show', { 'id': commune.id }) }}">{{ commune.id }}</a></td>
                 <td>{{ commune.nomCommune }}</td>
-
-                <td>{{ commune.departement.nomDepartement }}</td>
-                
-
                 <td>{% if commune.dateEnreg %}{{ commune.dateEnreg|date('Y-m-d H:i:s') }}{% endif %}</td>
                 <td>
                     <ul>

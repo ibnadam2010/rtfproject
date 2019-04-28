@@ -101,7 +101,7 @@ class OuvrageController extends Controller
     /**
      * Deletes a ouvrage entity.
      *
-     * @Route("/delete/{id}", name="ouvrage_delete")
+     * @Route("/{id}", name="ouvrage_delete")
      * @Method("DELETE")
      */
     public function deleteAction(Request $request, Ouvrage $ouvrage)
@@ -115,7 +115,7 @@ class OuvrageController extends Controller
             $em->flush();
         }
 
-        return $this->redirectToRoute('index_ouvrage');
+        return $this->redirectToRoute('ouvrage_index');
     }
 
     /**

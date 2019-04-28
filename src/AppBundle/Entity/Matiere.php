@@ -45,19 +45,12 @@ class Matiere
    //  * @ORM\OneToMany(targetEntity="Ouvrage", mappedBy="matiere")
    //  */
 
-    //private $ouvrages;
-
-    //association 
-
     /**
-    * @ORM\ManyToMany(targetEntity="Promotion", mappedBy="matieres")
-    */
-   private $promotions;
- 
-   public function __construct()
-   {
-       $this->promotions = new ArrayCollection();
-   }
+     * @var text
+     *
+     * @ORM\Column(name="commentaire", type="text",nullable=true)
+     */
+    private $commentaire;
 
 
     /**
@@ -118,5 +111,29 @@ class Matiere
     {
        // return $this->dateEnreg;
         $this->dateEnreg = new \DateTime();
+    }
+
+    /**
+     * Set commentaire
+     *
+     * @param string $commentaire
+     *
+     * @return Matiere
+     */
+    public function setCommentaire($commentaire)
+    {
+        $this->commentaire = $commentaire;
+
+        return $this;
+    }
+
+    /**
+     * Get commentaire
+     *
+     * @return string
+     */
+    public function getCommentaire()
+    {
+        return $this->commentaire;
     }
 }

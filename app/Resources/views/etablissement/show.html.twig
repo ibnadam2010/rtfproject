@@ -18,12 +18,16 @@
                 <td>{{ etablissement.typeEtablissement }}</td>
             </tr>
             <tr>
+                <th>Commentaire</th>
+                <td>{{ etablissement.commentaire }}</td>
+            </tr>
+            <tr>
                 <th>Statutetablissement</th>
                 <td>{{ etablissement.statutEtablissement }}</td>
             </tr>
             <tr>
-                <th>Date_creation</th>
-                <td>{{ etablissement.datecreation }}</td>
+                <th>Datecreation</th>
+                <td>{{ etablissement.dateCreation }}</td>
             </tr>
             <tr>
                 <th>Adresseetablissement</th>
@@ -50,7 +54,7 @@
 
     <ul>
         <li>
-            <a href="{{ path('etablissement_index') }}">Back to the list</a>
+            <a href="{{ path('index_etablissement') }}">Back to the list</a>
         </li>
         <li>
             <a href="{{ path('etablissement_edit', { 'id': etablissement.id }) }}">Edit</a>

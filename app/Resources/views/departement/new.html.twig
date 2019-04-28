@@ -1,37 +1,16 @@
+{% extends 'adminbase.html.twig' %}
 
-    <div class="row">
-        <h1> Ajouter un Departement</h1>
-    </div>
+{% block admin %}
+    <h1>Departement creation</h1>
 
-{# appel de bootstrap au formulaire nommé : form #}
-{% form_theme form 'bootstrap_4_layout.html.twig' %}
-
-    <div class="row">
     {{ form_start(form) }}
         {{ form_widget(form) }}
-    <div class="row">
-    <div class="col-md-4">
-        <input class="btn btn-primary" type="submit" value="Ajouter" />
-    {{ form_end(form) }}
-    </div>
-        <h2><a class="col-sm-5 col-sm-offset-2 col-md-2" href="{{ path('departement_index') }}">Retour à la liste</a></h2>
-
-    </div>
-    </div>
-
-
-    <div class="row">
-     {{ form_start(form) }}
-        {{ form_widget(form) }}
-
-
-    </div>
-    <br/>
-
+        <input type="submit" value="Create" />
     {{ form_end(form) }}
 
-{# fermeture appel bootstrap #}
-{% form_theme form 'bootstrap_4_horizontal_layout.html.twig' %}
-
-
-
+    <ul>
+        <li>
+            <a href="{{ path('index_departement') }}">Back to the list</a>
+        </li>
+    </ul>
+{% endblock %}

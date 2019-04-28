@@ -43,8 +43,6 @@ class Arrondissement
      * @ORM\ManyToOne(targetEntity="Commune", inversedBy="arrondissements")
      * @ORM\JoinColumn(name="id_commune", referencedColumnName="id")
      */
-
-    
     public $commune;
 
 

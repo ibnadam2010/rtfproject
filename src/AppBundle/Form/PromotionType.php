@@ -13,7 +13,7 @@ class PromotionType extends AbstractType
      */
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
-        $builder->add('nomPromotion')->add('dateEnreg')->add('matieres');
+        $builder->add('nomPromotion')->add('dateEnreg')->add('commentaire')->add('matiere')->add('cycle');
     }/**
      * {@inheritdoc}
      */

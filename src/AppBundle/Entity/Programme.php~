@@ -6,15 +6,14 @@ use Doctrine\ORM\Mapping as ORM;
 
 /**
  * Programme
- *
- * @ORM\Table(name="programme")
+ * @ORM\Table(name="programmeassxxxx")
  * @ORM\Entity(repositoryClass="AppBundle\Repository\ProgrammeRepository")
  */
 class Programme
 {
+
     /**
      * @var int
-     *
      * @ORM\Column(name="id", type="integer")
      * @ORM\Id
      * @ORM\GeneratedValue(strategy="AUTO")
@@ -28,6 +27,21 @@ class Programme
      */
     private $coef;
 
+
+    /**
+     * @ORM\ManyToOne(targetEntity="Matiere")
+     * @ORM\JoinColumn(nullable=false)
+     */
+    private $matiere;
+
+
+    /**
+     * @ORM\ManyToOne(targetEntity="Promotion")
+     * @ORM\JoinColumn(nullable=false)
+     */
+    private $promotion;
+
+
     /**
      * @var string
      *
@@ -35,32 +49,6 @@ class Programme
      */
     private $masseHoraire;
 
-
-    //partie liaison
-
-    /**
-   * @ORM\ManyToOne(targetEntity="Matiere")
-   * @ORM\JoinColumn(nullable=false)
-   */
-  private $matiere;
-
-  /**
-   * @ORM\ManyToOne(targetEntity="Promotion")
-   * @ORM\JoinColumn(nullable=false)
-   */
-  private $promotion;
-
-
-
-    /**
-     * Get id.
-     *
-     * @return int
-     */
-    public function getId()
-    {
-        return $this->id;
-    }
 
     /**
      * Set coef.
@@ -88,9 +76,7 @@ class Programme
 
     /**
      * Set masseHoraire.
-     *
      * @param string $masseHoraire
-     *
      * @return Programme
      */
     public function setMasseHoraire($masseHoraire)
@@ -109,4 +95,7 @@ class Programme
     {
         return $this->masseHoraire;
     }
+
+
+
 }

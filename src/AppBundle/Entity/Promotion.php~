@@ -187,28 +187,4 @@ class Promotion
     {
         return $this->cycle;
     }
-
-    /**
-     * Set commentaire
-     *
-     * @param string $commentaire
-     *
-     * @return Promotion
-     */
-    public function setCommentaire($commentaire)
-    {
-        $this->commentaire = $commentaire;
-
-        return $this;
-    }
-
-    /**
-     * Get commentaire
-     *
-     * @return string
-     */
-    public function getCommentaire()
-    {
-        return $this->commentaire;
-    }
 }

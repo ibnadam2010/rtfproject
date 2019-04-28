@@ -1,6 +1,6 @@
 {% extends 'adminbase.html.twig' %}
 
-{% block body %}
+{% block admin %}
     <h1>Programme edit</h1>
 
     {{ form_start(edit_form) }}
@@ -10,7 +10,7 @@
 
     <ul>
         <li>
-            <a href="{{ path('programme_index') }}">Back to the list</a>
+            <a href="{{ path('index_programme') }}">Back to the list</a>
         </li>
         <li>
             {{ form_start(delete_form) }}

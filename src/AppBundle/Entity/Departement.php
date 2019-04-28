@@ -44,8 +44,12 @@ class Departement
     /**
      * @ORM\OneToMany(targetEntity="Commune", mappedBy="departement")
      */
-
     public $communes;
+
+    /**
+     * @ORM\OneToMany(targetEntity="Etablissement", mappedBy="departement")
+     */
+    private $etablissements;
 
     
     /**
@@ -156,4 +160,38 @@ class Departement
     return $this->getNomDepartement();
   }
 
+
+    /**
+     * Add etablissement
+     *
+     * @param \AppBundle\Entity\Etablissement $etablissement
+     *
+     * @return Departement
+     */
+    public function addEtablissement(\AppBundle\Entity\Etablissement $etablissement)
+    {
+        $this->etablissements[] = $etablissement;
+
+        return $this;
+    }
+
+    /**
+     * Remove etablissement
+     *
+     * @param \AppBundle\Entity\Etablissement $etablissement
+     */
+    public function removeEtablissement(\AppBundle\Entity\Etablissement $etablissement)
+    {
+        $this->etablissements->removeElement($etablissement);
+    }
+
+    /**
+     * Get etablissements
+     *
+     * @return \Doctrine\Common\Collections\Collection
+     */
+    public function getEtablissements()
+    {
+        return $this->etablissements;
+    }
 }

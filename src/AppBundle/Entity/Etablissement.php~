@@ -464,28 +464,4 @@ class Etablissement
     {
         return $this->commentaire;
     }
-
-    /**
-     * Set arrondissement
-     *
-     * @param \AppBundle\Entity\Arrondissement $arrondissement
-     *
-     * @return Etablissement
-     */
-    public function setArrondissement(\AppBundle\Entity\Arrondissement $arrondissement)
-    {
-        $this->arrondissement = $arrondissement;
-
-        return $this;
-    }
-
-    /**
-     * Get arrondissement
-     *
-     * @return \AppBundle\Entity\Arrondissement
-     */
-    public function getArrondissement()
-    {
-        return $this->arrondissement;
-    }
 }

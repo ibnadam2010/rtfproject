@@ -7,6 +7,7 @@
         <thead>
             <tr>
                 <th>Id</th>
+                <th>Commentaire</th>
                 <th>Nomcycle</th>
                 <th>Dateenreg</th>
                 <th>Actions</th>
@@ -16,6 +17,7 @@
         {% for cycle in cycles %}
             <tr>
                 <td><a href="{{ path('cycle_show', { 'id': cycle.id }) }}">{{ cycle.id }}</a></td>
+                <td>{{ cycle.commentaire }}</td>
                 <td>{{ cycle.nomCycle }}</td>
                 <td>{% if cycle.dateEnreg %}{{ cycle.dateEnreg|date('Y-m-d H:i:s') }}{% endif %}</td>
                 <td>

@@ -9,8 +9,9 @@
                 <th>Id</th>
                 <th>Nometablissement</th>
                 <th>Typeetablissement</th>
+                <th>Commentaire</th>
                 <th>Statutetablissement</th>
-                <th>Date_creation</th>
+                <th>Datecreation</th>
                 <th>Adresseetablissement</th>
                 <th>Teletablissement</th>
                 <th>Emailetablissement</th>
@@ -25,8 +26,9 @@
                 <td><a href="{{ path('etablissement_show', { 'id': etablissement.id }) }}">{{ etablissement.id }}</a></td>
                 <td>{{ etablissement.nomEtablissement }}</td>
                 <td>{{ etablissement.typeEtablissement }}</td>
+                <td>{{ etablissement.commentaire }}</td>
                 <td>{{ etablissement.statutEtablissement }}</td>
-                <td>{{ etablissement.datecreation }}</td>
+                <td>{{ etablissement.dateCreation }}</td>
                 <td>{{ etablissement.adresseEtablissement }}</td>
                 <td>{{ etablissement.telEtablissement }}</td>
                 <td>{{ etablissement.emailEtablissement }}</td>

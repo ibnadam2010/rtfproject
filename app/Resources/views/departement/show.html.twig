@@ -3,32 +3,34 @@
 {% block admin %}
     <h1>Departement</h1>
 
-    <div class="table-responsive">
-        <table class="table">
-            <tbody>
-                <tr>
-                    <th>Id</th>
-                    <th>Nom departement</th>
-                    
-                </tr>
-                <tr class="info">
-                    <td>{{ departement.id }}</td>
-                    <td>{{ departement.nomDepartement }}</td>
-                </tr>
-            </tbody>
-        </table>
+    <table>
+        <tbody>
+            <tr>
+                <th>Id</th>
+                <td>{{ departement.id }}</td>
+            </tr>
+            <tr>
+                <th>Nomdepartement</th>
+                <td>{{ departement.nomDepartement }}</td>
+            </tr>
+            <tr>
+                <th>Dateenreg</th>
+                <td>{% if departement.dateEnreg %}{{ departement.dateEnreg|date('Y-m-d H:i:s') }}{% endif %}</td>
+            </tr>
+        </tbody>
+    </table>
 
-        <div class="row text-center">
-    
-            <h2><a class="col-md-3" href="{{ path('departement_index') }}">Retour à la liste</a></h2>
-              
-            <h2><a class="col-md-3" href="{{ path('departement_edit', { 'id': departement.id }) }}">Modifier</a></h2>
-               
+    <ul>
+        <li>
+            <a href="{{ path('index_departement') }}">Back to the list</a>
+        </li>
+        <li>
+            <a href="{{ path('departement_edit', { 'id': departement.id }) }}">Edit</a>
+        </li>
+        <li>
             {{ form_start(delete_form) }}
-                <input class="btn btn-primary" type="submit" value="Supprimer">
+                <input type="submit" value="Delete">
             {{ form_end(delete_form) }}
-            
-        </div>
-    </div>
-    
+        </li>
+    </ul>
 {% endblock %}

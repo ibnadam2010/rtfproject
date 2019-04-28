@@ -16,6 +16,7 @@ class ArrondissementController extends Controller
 {
     /**
      * Lists all arrondissement entities.
+     *
      * @Route("/", name="index_arrondissement")
      * @Method("GET")
      */
@@ -46,8 +47,8 @@ class ArrondissementController extends Controller
             $em = $this->getDoctrine()->getManager();
             $em->persist($arrondissement);
             $em->flush();
-            return $this->redirectToRoute('index_arrondissement');
 
+            return $this->redirectToRoute('arrondissement_show', array('id' => $arrondissement->getId()));
         }
 
         return $this->render('arrondissement/new.html.twig', array(
@@ -75,24 +76,25 @@ class ArrondissementController extends Controller
     /**
      * Displays a form to edit an existing arrondissement entity.
      *
-     * @Route("/edit/{id}", name="arrondissement_edit")
+     * @Route("/{id}/edit", name="arrondissement_edit")
      * @Method({"GET", "POST"})
      */
     public function editAction(Request $request, Arrondissement $arrondissement)
     {
-
+        $deleteForm = $this->createDeleteForm($arrondissement);
         $editForm = $this->createForm('AppBundle\Form\ArrondissementType', $arrondissement);
         $editForm->handleRequest($request);
 
         if ($editForm->isSubmitted() && $editForm->isValid()) {
             $this->getDoctrine()->getManager()->flush();
 
-            return $this->redirectToRoute('index_arrondissement');
+            return $this->redirectToRoute('arrondissement_edit', array('id' => $arrondissement->getId()));
         }
 
         return $this->render('arrondissement/edit.html.twig', array(
             'arrondissement' => $arrondissement,
-            'edit_form' => $editForm->createView()
+            'edit_form' => $editForm->createView(),
+            'delete_form' => $deleteForm->createView(),
         ));
     }
 

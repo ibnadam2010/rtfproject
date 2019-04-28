@@ -1,50 +1,16 @@
+{% extends 'adminbase.html.twig' %}
 
-{% block body %}
-    <br>
-    <button type="button" class="btn" style="background:#122e48;color:white" data-toggle="modal" data-target="#exampleModal">
-        <i class="fas fa-plus"></i> Ajouter
-    </button>
+{% block admin %}
+    <h1>Arrondissement creation</h1>
 
+    {{ form_start(form) }}
+        {{ form_widget(form) }}
+        <input type="submit" value="Create" />
+    {{ form_end(form) }}
 
-    <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
-        <div class="modal-dialog" role="document">
-            <div class="modal-content">
-                <div class="modal-header">
-                    <h5 class="modal-title" id="exampleModalLabel">Arrondissement</h5>
-                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                        <span aria-hidden="true">&times;</span>
-                    </button>
-                </div>
-
-
-                {# appel de bootstrap au formulaire nommé : form #}
-                {% form_theme form 'bootstrap_4_layout.html.twig' %}
-                <div class="modal-body">
-                    {{ form_start(form,{'action': path('arrondissement_new'), 'method': 'POST'}) }}
-                    {{ form_widget(form) }}
-                </div>
-                    <div class = "modal-footer">
-                        <button type = "submit" class = "btn btn-primary"
-                                >Enregistrer</button>
-
-                        <button type = "button" class = "btn btn-default"
-                                data-dismiss = "modal" >Fermer</button>
-                        {{form_rest(form)}}
-
-                        {{ form_end(form) }}
-                    </div>
-
-
-
-                {# fermeture appel bootstrap #}
-                {% form_theme form 'bootstrap_4_horizontal_layout.html.twig' %}
-
-
-
-            </div>
-        </div>
-    </div>
-
-
-
+    <ul>
+        <li>
+            <a href="{{ path('index_arrondissement') }}">Back to the list</a>
+        </li>
+    </ul>
 {% endblock %}
