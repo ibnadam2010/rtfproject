@@ -1,0 +1,41 @@
+{% extends 'adminbase.html.twig' %}
+
+{% block admin %}
+    <h1>Matieres list</h1>
+
+    <table>
+        <thead>
+            <tr>
+                <th>Id</th>
+                <th>Nommatiere</th>
+                <th>Dateenreg</th>
+                <th>Actions</th>
+            </tr>
+        </thead>
+        <tbody>
+        {% for matiere in matieres %}
+            <tr>
+                <td><a href="{{ path('matiere_show', { 'id': matiere.id }) }}">{{ matiere.id }}</a></td>
+                <td>{{ matiere.nomMatiere }}</td>
+                <td>{% if matiere.dateEnreg %}{{ matiere.dateEnreg|date('Y-m-d H:i:s') }}{% endif %}</td>
+                <td>
+                    <ul>
+                        <li>
+                            <a href="{{ path('matiere_show', { 'id': matiere.id }) }}">show</a>
+                        </li>
+                        <li>
+                            <a href="{{ path('matiere_edit', { 'id': matiere.id }) }}">edit</a>
+                        </li>
+                    </ul>
+                </td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+
+    <ul>
+        <li>
+            <a href="{{ path('matiere_new') }}">Create a new matiere</a>
+        </li>
+    </ul>
+{% endblock %}

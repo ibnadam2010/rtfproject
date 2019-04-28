@@ -1,0 +1,39 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+    <h1>Liste des Departements</h1>
+
+    <table>
+        <thead>
+            <tr>
+                <th>xId</th>
+                <th>xNomdepartement</th>
+                <th>xActions</th>
+            </tr>
+        </thead>
+        <tbody>
+        {% for departement in departements %}
+            <tr>
+                <td><a href="{{ path('departement_show', { 'id': departement.id }) }}">{{ departement.id }}</a></td>
+                <td>{{ departement.nomDepartement }}</td>
+                <td>
+                    <ul>
+                        <li>
+                            <a href="{{ path('departement_show', { 'id': departement.id }) }}">Afficher</a>
+                        </li>
+                        <li>
+                            <a href="{{ path('departement_edit', { 'id': departement.id }) }}">Modifier</a>
+                        </li>
+                    </ul>
+                </td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+
+    <ul>
+        <li>
+            <a href="{{ path('departement_new') }}">xx Ajouter un departement</a>
+        </li>
+    </ul>
+{% endblock %}

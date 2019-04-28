@@ -1,0 +1,55 @@
+{% extends 'adminbase.html.twig' %}
+
+{% block admin %}
+    <h1>Etablissements list</h1>
+
+    <table>
+        <thead>
+            <tr>
+                <th>Id</th>
+                <th>Nometablissement</th>
+                <th>Typeetablissement</th>
+                <th>Statutetablissement</th>
+                <th>Date_creation</th>
+                <th>Adresseetablissement</th>
+                <th>Teletablissement</th>
+                <th>Emailetablissement</th>
+                <th>Sitewebetablissement</th>
+                <th>Dateenreg</th>
+                <th>Actions</th>
+            </tr>
+        </thead>
+        <tbody>
+        {% for etablissement in etablissements %}
+            <tr>
+                <td><a href="{{ path('etablissement_show', { 'id': etablissement.id }) }}">{{ etablissement.id }}</a></td>
+                <td>{{ etablissement.nomEtablissement }}</td>
+                <td>{{ etablissement.typeEtablissement }}</td>
+                <td>{{ etablissement.statutEtablissement }}</td>
+                <td>{{ etablissement.datecreation }}</td>
+                <td>{{ etablissement.adresseEtablissement }}</td>
+                <td>{{ etablissement.telEtablissement }}</td>
+                <td>{{ etablissement.emailEtablissement }}</td>
+                <td>{{ etablissement.sitewebEtablissement }}</td>
+                <td>{% if etablissement.dateEnreg %}{{ etablissement.dateEnreg|date('Y-m-d H:i:s') }}{% endif %}</td>
+                <td>
+                    <ul>
+                        <li>
+                            <a href="{{ path('etablissement_show', { 'id': etablissement.id }) }}">show</a>
+                        </li>
+                        <li>
+                            <a href="{{ path('etablissement_edit', { 'id': etablissement.id }) }}">edit</a>
+                        </li>
+                    </ul>
+                </td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+
+    <ul>
+        <li>
+            <a href="{{ path('etablissement_new') }}">Create a new etablissement</a>
+        </li>
+    </ul>
+{% endblock %}

@@ -1,0 +1,45 @@
+{% extends 'adminbase.html.twig' %}
+
+{% block admin %}
+    <h1>Ouvrages list</h1>
+
+    <table>
+        <thead>
+            <tr>
+                <th>Id</th>
+                <th>Nomouvrage</th>
+                <th>Edition</th>
+                <th>Auteur</th>
+                <th>Annee</th>
+                <th>Actions</th>
+            </tr>
+        </thead>
+        <tbody>
+        {% for ouvrage in ouvrages %}
+            <tr>
+                <td><a href="{{ path('ouvrage_show', { 'id': ouvrage.id }) }}">{{ ouvrage.id }}</a></td>
+                <td>{{ ouvrage.nomOuvrage }}</td>
+                <td>{{ ouvrage.edition }}</td>
+                <td>{{ ouvrage.auteur }}</td>
+                <td>{{ ouvrage.annee }}</td>
+                <td>
+                    <ul>
+                        <li>
+                            <a href="{{ path('ouvrage_show', { 'id': ouvrage.id }) }}">show</a>
+                        </li>
+                        <li>
+                            <a href="{{ path('ouvrage_edit', { 'id': ouvrage.id }) }}">edit</a>
+                        </li>
+                    </ul>
+                </td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+
+    <ul>
+        <li>
+            <a href="{{ path('ouvrage_new') }}">Create a new ouvrage</a>
+        </li>
+    </ul>
+{% endblock %}

@@ -1,0 +1,31 @@
+{% extends 'adminbase.html.twig' %}
+
+{% block admin %}
+    <div class="row">
+        <h1> Modifier un Departement</h1>
+    </div>
+
+{# add this at the beginning of your template #}
+{% form_theme edit_form 'bootstrap_4_layout.html.twig' %}
+    <div class="row">
+
+    {{ form_start(edit_form) }}
+        {{ form_widget(edit_form) }}
+        <div class="row">
+            <div class="col-md-2">
+            <input class="btn btn-primary" type="submit" value="Ajouter" />
+            </div>
+    {{ form_end(edit_form) }}
+    
+{# this alternative theme is also available #}
+{% form_theme edit_form 'bootstrap_4_horizontal_layout.html.twig' %}
+
+            <h2><a class="col-md-6" href="{{ path('departement_index') }}"> Liste des departements</a></h2>
+
+            {{ form_start(delete_form) }}
+                <input class="btn btn-primary" type="submit" value="Afficher">
+            {{ form_end(delete_form) }}
+    </div>
+    </div>
+
+{% endblock %}

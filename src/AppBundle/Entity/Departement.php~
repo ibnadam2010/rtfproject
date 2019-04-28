@@ -1,0 +1,73 @@
+<?php
+
+namespace AppBundle\Entity;
+
+use Doctrine\ORM\Mapping as ORM;
+
+/**
+ * Departement
+ *
+ * @ORM\Table(name="departement")
+ * @ORM\Entity(repositoryClass="AppBundle\Repository\DepartementRepository")
+ */
+class Departement
+{
+    /**
+     * @var int
+     *
+     * @ORM\Column(name="id", type="integer")
+     * @ORM\Id
+     * @ORM\GeneratedValue(strategy="AUTO")
+     */
+    private $id;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="nom_departement", type="string", length=255, unique=true)
+     */
+    private $nomDepartement;
+
+
+    /**
+     * @ORM\OneToMany(targetEntity="Commune", mappedBy="departement")
+     */
+
+    private $communes;
+
+
+
+    /**
+     * Get id.
+     *
+     * @return int
+     */
+    public function getId()
+    {
+        return $this->id;
+    }
+
+    /**
+     * Set nomDepartement.
+     *
+     * @param string $nomDepartement
+     *
+     * @return Departement
+     */
+    public function setNomDepartement($nomDepartement)
+    {
+        $this->nomDepartement = $nomDepartement;
+
+        return $this;
+    }
+
+    /**
+     * Get nomDepartement.
+     *
+     * @return string
+     */
+    public function getNomDepartement()
+    {
+        return $this->nomDepartement;
+    }
+}
