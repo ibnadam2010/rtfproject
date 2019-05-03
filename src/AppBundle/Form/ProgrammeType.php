@@ -13,7 +13,7 @@ class ProgrammeType extends AbstractType
      */
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
-        $builder->add('coef')->add('masseHoraire')->add('matiere')->add('promotion');
+        $builder->add('matiere')->add('promotion')->add('coef')->add('masseHoraire');
     }/**
      * {@inheritdoc}
      */

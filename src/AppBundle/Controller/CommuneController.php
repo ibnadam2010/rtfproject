@@ -88,7 +88,8 @@ class CommuneController extends Controller
         if ($editForm->isSubmitted() && $editForm->isValid()) {
             $this->getDoctrine()->getManager()->flush();
 
-            return $this->redirectToRoute('commune_edit', array('id' => $commune->getId()));
+            //return $this->redirectToRoute('commune_edit', array('id' => $commune->getId()));
+            return $this->redirectToRoute('index_commune');
         }
 
         return $this->render('commune/edit.html.twig', array(
@@ -101,21 +102,21 @@ class CommuneController extends Controller
     /**
      * Deletes a commune entity.
      *
-     * @Route("/{id}", name="commune_delete")
+     * @Route("delete/{id}", name="commune_delete")
      * @Method("DELETE")
      */
     public function deleteAction(Request $request, Commune $commune)
     {
-        $form = $this->createDeleteForm($commune);
-        $form->handleRequest($request);
+        //$form = $this->createDeleteForm($commune);
+        //$form->handleRequest($request);
 
-        if ($form->isSubmitted() && $form->isValid()) {
+       // if ($form->isSubmitted() && $form->isValid()) {
             $em = $this->getDoctrine()->getManager();
             $em->remove($commune);
             $em->flush();
-        }
+       // }
 
-        return $this->redirectToRoute('commune_index');
+        return $this->redirectToRoute('index_commune');
     }
 
     /**

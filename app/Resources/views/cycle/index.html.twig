@@ -1,33 +1,41 @@
 {% extends 'adminbase.html.twig' %}
 
 {% block admin %}
-    <h1>Cycles list</h1>
 
-    <table>
-        <thead>
+    <h1>Cycles list</h1>
+    
+    <ul>
+          <a href="{{ path('cycle_new') }}" role="button" class="btn btn-primary" > Ajouter</a>
+        
+    </ul>
+
+    <table border="1"; style="width:auto">
+        <thead border="1" ; bgcolor="#00FF00">
             <tr>
                 <th>Id</th>
-                <th>Commentaire</th>
-                <th>Nomcycle</th>
-                <th>Dateenreg</th>
-                <th>Actions</th>
+                
+                <th>Nom cycle</th>
+                
+                <th width="auto">Actions</th>
             </tr>
         </thead>
         <tbody>
         {% for cycle in cycles %}
             <tr>
                 <td><a href="{{ path('cycle_show', { 'id': cycle.id }) }}">{{ cycle.id }}</a></td>
-                <td>{{ cycle.commentaire }}</td>
+                
                 <td>{{ cycle.nomCycle }}</td>
-                <td>{% if cycle.dateEnreg %}{{ cycle.dateEnreg|date('Y-m-d H:i:s') }}{% endif %}</td>
+                
                 <td>
                     <ul>
-                        <li>
-                            <a href="{{ path('cycle_show', { 'id': cycle.id }) }}">show</a>
-                        </li>
-                        <li>
-                            <a href="{{ path('cycle_edit', { 'id': cycle.id }) }}">edit</a>
-                        </li>
+                        
+                            <a href="{{ path('cycle_show', { 'id': cycle.id }) }}" type="submit"  class="btn btn-primary btn-sm">show</a>&nbsp &nbsp &nbsp 
+                        
+                            <a href="{{ path('cycle_edit', { 'id': cycle.id }) }}" type="submit"  class="btn btn-primary btn-sm">edit</a>
+                            &nbsp &nbsp &nbsp 
+
+                            <a href="{{ path('cycle_delete', { 'id': cycle.id }) }}" class="btn btn-danger btn-sm">Delete</a>
+                        
                     </ul>
                 </td>
             </tr>

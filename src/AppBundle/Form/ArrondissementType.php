@@ -13,7 +13,7 @@ class ArrondissementType extends AbstractType
      */
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
-        $builder->add('nomArrondissement')->add('dateEnreg')->add('commune');
+        $builder->add('nomArrondissement')->add('commune');
     }/**
      * {@inheritdoc}
      */

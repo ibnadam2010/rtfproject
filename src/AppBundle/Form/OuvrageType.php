@@ -13,7 +13,7 @@ class OuvrageType extends AbstractType
      */
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
-        $builder->add('nomOuvrage')->add('edition')->add('auteur')->add('annee')->add('commentaire')->add('matiere');
+        $builder->add('nomOuvrage')->add('edition')->add('auteur')->add('annee')->add('matiere')->add('promotion');
     }/**
      * {@inheritdoc}
      */

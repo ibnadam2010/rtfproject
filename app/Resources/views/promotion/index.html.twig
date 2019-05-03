@@ -3,14 +3,13 @@
 {% block admin %}
     <h1>Promotions list</h1>
 
-    <table>
-        <thead>
+    <table border="1"; style="width:auto">
+        <thead border="1" ; bgcolor="#00FF00">
             <tr>
                 <th>Id</th>
-                <th>Nompromotion</th>
-                <th>Dateenreg</th>
-                <th>Commentaire</th>
-                <th>Actions</th>
+                <th>Nom promotion</th>
+                <th>Nom Cycle</th>
+                <th style="width: auto">Actions</th>
             </tr>
         </thead>
         <tbody>
@@ -18,16 +17,19 @@
             <tr>
                 <td><a href="{{ path('promotion_show', { 'id': promotion.id }) }}">{{ promotion.id }}</a></td>
                 <td>{{ promotion.nomPromotion }}</td>
-                <td>{% if promotion.dateEnreg %}{{ promotion.dateEnreg|date('Y-m-d H:i:s') }}{% endif %}</td>
-                <td>{{ promotion.commentaire }}</td>
+                <td>{{ promotion.cycle.nomCycle }}</td>
+                
                 <td>
                     <ul>
-                        <li>
-                            <a href="{{ path('promotion_show', { 'id': promotion.id }) }}">show</a>
-                        </li>
-                        <li>
-                            <a href="{{ path('promotion_edit', { 'id': promotion.id }) }}">edit</a>
-                        </li>
+                       
+                            <a href="{{ path('promotion_show', { 'id': promotion.id }) }}" type="submit"  class="btn btn-primary btn-sm">show</a>&nbsp &nbsp &nbsp
+                        
+                            <a href="{{ path('promotion_edit', { 'id': promotion.id }) }}" type="submit"  class="btn btn-primary btn-sm">edit</a>
+
+                            &nbsp &nbsp &nbsp 
+
+                            <a href="{{ path('promotion_delete', { 'id': promotion.id }) }}" class="btn btn-danger btn-sm">Delete</a>
+                        
                     </ul>
                 </td>
             </tr>

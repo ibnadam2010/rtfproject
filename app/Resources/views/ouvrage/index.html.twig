@@ -2,17 +2,20 @@
 
 {% block admin %}
     <h1>Ouvrages list</h1>
+    <ul>
+          <a href="{{ path('ouvrage_new') }}" role="button" class="btn btn-primary" > Ajouter</a>
+        
+    </ul>
 
-    <table>
-        <thead>
+    <table border="1"; style="width:auto">
+        <thead border="1" ; bgcolor="#00FF00">
             <tr>
                 <th>Id</th>
-                <th>Nomouvrage</th>
+                <th>Nom ouvrage</th>
                 <th>Edition</th>
-                <th>Auteur</th>
-                <th>Annee</th>
-                <th>Commentaire</th>
-                <th>Actions</th>
+                <th>Auteur(s)</th>
+                <th>Année</th>
+                <th width="auto">Actions</th>
             </tr>
         </thead>
         <tbody>
@@ -20,18 +23,23 @@
             <tr>
                 <td><a href="{{ path('ouvrage_show', { 'id': ouvrage.id }) }}">{{ ouvrage.id }}</a></td>
                 <td>{{ ouvrage.nomOuvrage }}</td>
+                
                 <td>{{ ouvrage.edition }}</td>
                 <td>{{ ouvrage.auteur }}</td>
                 <td>{{ ouvrage.annee }}</td>
-                <td>{{ ouvrage.commentaire }}</td>
+                
                 <td>
                     <ul>
-                        <li>
-                            <a href="{{ path('ouvrage_show', { 'id': ouvrage.id }) }}">show</a>
-                        </li>
-                        <li>
-                            <a href="{{ path('ouvrage_edit', { 'id': ouvrage.id }) }}">edit</a>
-                        </li>
+                        
+                            <a href="{{ path('ouvrage_show', { 'id': ouvrage.id }) }}" type="submit"  class="btn btn-primary btn-sm">show</a>&nbsp &nbsp &nbsp
+                        
+                        
+                            <a href="{{ path('ouvrage_edit', { 'id': ouvrage.id }) }}" type="submit"  class="btn btn-primary btn-sm">edit</a>
+
+                            &nbsp &nbsp &nbsp 
+
+                            <a href="{{ path('ouvrage_delete', { 'id': ouvrage.id }) }}" class="btn btn-danger btn-sm">Delete</a>
+                        
                     </ul>
                 </td>
             </tr>

@@ -1,20 +1,28 @@
-{% extends 'base.html.twig' %}
+{% extends 'adminbase.html.twig' %}
 
-{% block body %}
+{% block admin %}
     <h1>Arrondissement</h1>
 
-    <table>
+    <table border="1"; style="width:auto">
         <tbody>
             <tr>
                 <th>Id</th>
                 <td>{{ arrondissement.id }}</td>
             </tr>
             <tr>
-                <th>Nomarrondissement</th>
+                <th>Nom arrondissement</th>
                 <td>{{ arrondissement.nomArrondissement }}</td>
             </tr>
             <tr>
-                <th>Dateenreg</th>
+                <th> commune </th>
+                <td>{{ arrondissement.commune.nomCommune }}</td>
+            </tr>
+            <tr>
+                <th>departement</th>
+                <td>{{ arrondissement.commune.departement.nomDepartement }}</td>
+            </tr>
+            <tr>
+                <th>Date enreg</th>
                 <td>{% if arrondissement.dateEnreg %}{{ arrondissement.dateEnreg|date('Y-m-d H:i:s') }}{% endif %}</td>
             </tr>
         </tbody>

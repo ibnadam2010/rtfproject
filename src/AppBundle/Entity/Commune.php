@@ -114,8 +114,8 @@ class Commune
      */
     public function getDateEnreg()
     {
-       // return $this->dateEnreg;
-        $this->dateEnreg = new \DateTime();
+       return $this->dateEnreg;
+        //$this->dateEnreg = new \DateTime('now');
     }
 
     /**
@@ -134,6 +134,7 @@ class Commune
     {
         $this->arrondissements = new \Doctrine\Common\Collections\ArrayCollection();
         $this->etablissements = new \Doctrine\Common\Collections\ArrayCollection();
+        $this->dateEnreg = new \DateTime('now');
     }
 
     /**

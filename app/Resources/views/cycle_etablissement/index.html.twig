@@ -1,0 +1,54 @@
+{% extends 'adminbase.html.twig' %}
+
+{% block admin %}
+    <h1>Cycle_etablissements list</h1>
+    <ul>
+          <a href="{{ path('cycle_etablissement_new') }}" role="button" class="btn btn-primary" > Ajouter</a>
+        
+    </ul>
+
+    <table  border="1"; width="auto">
+        <thead border="1" ; bgcolor="#00FF00">
+            <tr>
+                <th >Id</th>
+                <th >Etablissement</th>
+                <th >Cyle</th>
+                <th width="auto">Actions</th>
+            </tr>
+        </thead>
+        <tbody>
+        {% for cycle_etablissement in cycle_etablissements %}
+            <tr>
+                <td >
+                <a href="{{ path('cycle_etablissement_show', { 'id': cycle_etablissement.id }) }}">{{ cycle_etablissement.id }}</a>
+                </td>
+                
+
+                <td>{{ cycle_etablissement.etablissement.nomEtablissement }}</td>
+                <td>{{ cycle_etablissement.cycle.nomCycle }}</td>
+                <td>
+                    <ul>
+                        
+                            <a href="{{ path('cycle_etablissement_show', { 'id': cycle_etablissement.id }) }}" type="submit"  class="btn btn-default btn-sm">show</a>&nbsp &nbsp &nbsp
+                        
+                        
+                            <a href="{{ path('cycle_etablissement_edit', { 'id': cycle_etablissement.id }) }}" type="submit"  class="btn btn-default btn-sm">edit</a>
+
+                            &nbsp &nbsp &nbsp 
+
+                            <a href="{{ path('cycle_etablissement_delete', { 'id': cycle_etablissement.id }) }}" class="btn btn-danger btn-sm">Delete</a>
+                        
+                    </ul>
+                </td>
+                </td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+
+    <ul>
+        
+            <a href="{{ path('cycle_etablissement_new') }}">Ajouter un cycle_etablissement</a>
+        
+    </ul>
+{% endblock %}

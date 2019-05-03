@@ -88,7 +88,8 @@ class PromotionController extends Controller
         if ($editForm->isSubmitted() && $editForm->isValid()) {
             $this->getDoctrine()->getManager()->flush();
 
-            return $this->redirectToRoute('promotion_edit', array('id' => $promotion->getId()));
+            //return $this->redirectToRoute('promotion_edit', array('id' => $promotion->getId()));
+            return $this->redirectToRoute('index_promotion');
         }
 
         return $this->render('promotion/edit.html.twig', array(
@@ -101,21 +102,21 @@ class PromotionController extends Controller
     /**
      * Deletes a promotion entity.
      *
-     * @Route("/{id}", name="promotion_delete")
+     * @Route("delete/{id}", name="promotion_delete")
      * @Method("DELETE")
      */
     public function deleteAction(Request $request, Promotion $promotion)
     {
-        $form = $this->createDeleteForm($promotion);
-        $form->handleRequest($request);
+        //$form = $this->createDeleteForm($promotion);
+        //$form->handleRequest($request);
 
-        if ($form->isSubmitted() && $form->isValid()) {
+       // if ($form->isSubmitted() && $form->isValid()) {
             $em = $this->getDoctrine()->getManager();
             $em->remove($promotion);
             $em->flush();
-        }
+        //}
 
-        return $this->redirectToRoute('promotion_index');
+        return $this->redirectToRoute('index_promotion');
     }
 
     /**

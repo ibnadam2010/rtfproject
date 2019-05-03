@@ -4,6 +4,7 @@ namespace AppBundle\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
 use Symfony\Component\Form\Extension\Core\Type\DateType;
+use Doctrine\Common\Collections\ArrayCollection;
 
 /**
  * Etablissement
@@ -51,10 +52,10 @@ class Etablissement
     private $statutEtablissement;
 
 
-    /**
-     * @ORM\ManyToMany(targetEntity="Promotion", cascade={"persist"})
-     */
-    private $promotion;
+   // /**
+    // * @ORM\ManyToMany(targetEntity="Promotion", cascade={"persist"})
+    // */
+   // private $promotion;
 
 
     /**
@@ -321,8 +322,8 @@ class Etablissement
      */
     public function getDateCreation()
     {
-       // return $this->dateEnreg;
-        $this->dateCreation = new \DateTime();
+        return $this->dateCreation;
+        //$this->dateCreation = new \DateTime();
     }
 
      
@@ -333,6 +334,8 @@ class Etablissement
     public function __construct()
     {
         $this->promotion = new \Doctrine\Common\Collections\ArrayCollection();
+        $this->cyle = new \Doctrine\Common\Collections\ArrayCollection();
+        $this->dateEnreg = new \DateTime('now');
     }
 
     /**
@@ -488,4 +491,9 @@ class Etablissement
     {
         return $this->arrondissement;
     }
+
+    public function __toString()
+   {
+           return $this->getNomEtablissement();
+   }
 }

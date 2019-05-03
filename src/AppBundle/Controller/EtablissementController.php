@@ -55,6 +55,7 @@ class EtablissementController extends Controller
             'etablissement' => $etablissement,
             'form' => $form->createView(),
         ));
+        return $this->redirectToRoute('index_etablissement');
     }
 
     /**
@@ -88,7 +89,8 @@ class EtablissementController extends Controller
         if ($editForm->isSubmitted() && $editForm->isValid()) {
             $this->getDoctrine()->getManager()->flush();
 
-            return $this->redirectToRoute('etablissement_edit', array('id' => $etablissement->getId()));
+           // return $this->redirectToRoute('etablissement_edit', array('id' => $etablissement->getId()));
+            return $this->redirectToRoute('index_etablissement');
         }
 
         return $this->render('etablissement/edit.html.twig', array(
@@ -101,21 +103,21 @@ class EtablissementController extends Controller
     /**
      * Deletes a etablissement entity.
      *
-     * @Route("/{id}", name="etablissement_delete")
+     * @Route("delete/{id}", name="etablissement_delete")
      * @Method("DELETE")
      */
     public function deleteAction(Request $request, Etablissement $etablissement)
     {
-        $form = $this->createDeleteForm($etablissement);
-        $form->handleRequest($request);
+       // $form = $this->createDeleteForm($etablissement);
+       // $form->handleRequest($request);
 
-        if ($form->isSubmitted() && $form->isValid()) {
+       // if ($form->isSubmitted() && $form->isValid()) {
             $em = $this->getDoctrine()->getManager();
             $em->remove($etablissement);
             $em->flush();
-        }
+       // }
 
-        return $this->redirectToRoute('etablissement_index');
+        return $this->redirectToRoute('index_etablissement');
     }
 
     /**

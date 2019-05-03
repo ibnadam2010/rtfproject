@@ -3,7 +3,7 @@
 {% block admin %}
     <h1>Ouvrage</h1>
 
-    <table>
+    <table border="1"; style="width:auto">
         <tbody>
             <tr>
                 <th>Id</th>
@@ -26,8 +26,16 @@
                 <td>{{ ouvrage.annee }}</td>
             </tr>
             <tr>
-                <th>Commentaire</th>
-                <td>{{ ouvrage.commentaire }}</td>
+                <th>Matière</th>
+                <td>{{ ouvrage.matiere.nomMatiere }}</td>
+            </tr>
+            <tr>
+                <th>Classe</th>
+                <td>{{ ouvrage.promotion.nomPromotion }}</td>
+            </tr>
+            <tr>
+                <th>Date enreg</th>
+                <td>{% if ouvrage.dateEnreg %}{{ ouvrage.dateEnreg|date('Y-m-d H:i:s') }}{% endif %}</td>
             </tr>
         </tbody>
     </table>

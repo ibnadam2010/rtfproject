@@ -48,13 +48,15 @@ class OuvrageController extends Controller
             $em->persist($ouvrage);
             $em->flush();
 
-            return $this->redirectToRoute('ouvrage_show', array('id' => $ouvrage->getId()));
+            return $this->redirectToRoute('index_ouvrage', array('id' => $ouvrage->getId()));
         }
 
         return $this->render('ouvrage/new.html.twig', array(
             'ouvrage' => $ouvrage,
             'form' => $form->createView(),
         ));
+        
+       // return $this->redirectToRoute('index_ouvrage');
     }
 
     /**
@@ -88,7 +90,8 @@ class OuvrageController extends Controller
         if ($editForm->isSubmitted() && $editForm->isValid()) {
             $this->getDoctrine()->getManager()->flush();
 
-            return $this->redirectToRoute('ouvrage_edit', array('id' => $ouvrage->getId()));
+            //return $this->redirectToRoute('ouvrage_edit', array('id' => $ouvrage->getId()));
+            return $this->redirectToRoute('index_ouvrage');
         }
 
         return $this->render('ouvrage/edit.html.twig', array(
@@ -101,21 +104,22 @@ class OuvrageController extends Controller
     /**
      * Deletes a ouvrage entity.
      *
-     * @Route("/{id}", name="ouvrage_delete")
+     * @Route("delete/{id}", name="ouvrage_delete")
      * @Method("DELETE")
      */
     public function deleteAction(Request $request, Ouvrage $ouvrage)
     {
-        $form = $this->createDeleteForm($ouvrage);
-        $form->handleRequest($request);
+        //$form = $this->createDeleteForm($ouvrage);
+        //$form->handleRequest($request);
 
-        if ($form->isSubmitted() && $form->isValid()) {
+       // if ($form->isSubmitted() && $form->isValid()) {
             $em = $this->getDoctrine()->getManager();
             $em->remove($ouvrage);
             $em->flush();
-        }
+        //}
 
-        return $this->redirectToRoute('ouvrage_index');
+        //return $this->redirectToRoute('ouvrage_index');
+        return $this->redirectToRoute('index_ouvrage');
     }
 
     /**

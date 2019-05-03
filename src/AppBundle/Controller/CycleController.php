@@ -49,12 +49,14 @@ class CycleController extends Controller
             $em->flush();
 
             return $this->redirectToRoute('cycle_show', array('id' => $cycle->getId()));
+            
         }
 
         return $this->render('cycle/new.html.twig', array(
             'cycle' => $cycle,
             'form' => $form->createView(),
         ));
+        return $this->redirectToRoute('index_cycle');
     }
 
     /**
@@ -88,34 +90,37 @@ class CycleController extends Controller
         if ($editForm->isSubmitted() && $editForm->isValid()) {
             $this->getDoctrine()->getManager()->flush();
 
-            return $this->redirectToRoute('cycle_edit', array('id' => $cycle->getId()));
+            //return $this->redirectToRoute('cycle_edit', array('id' => $cycle->getId()));
+            return $this->redirectToRoute('index_cycle');
         }
+        
 
         return $this->render('cycle/edit.html.twig', array(
             'cycle' => $cycle,
             'edit_form' => $editForm->createView(),
             'delete_form' => $deleteForm->createView(),
         ));
+        
     }
 
     /**
      * Deletes a cycle entity.
      *
-     * @Route("/{id}", name="cycle_delete")
+     * @Route("delete/{id}", name="cycle_delete")
      * @Method("DELETE")
      */
     public function deleteAction(Request $request, Cycle $cycle)
     {
-        $form = $this->createDeleteForm($cycle);
-        $form->handleRequest($request);
+        //$form = $this->createDeleteForm($cycle);
+        //$form->handleRequest($request);
 
-        if ($form->isSubmitted() && $form->isValid()) {
+        //if ($form->isSubmitted() && $form->isValid()) {
             $em = $this->getDoctrine()->getManager();
             $em->remove($cycle);
             $em->flush();
-        }
+        //}
 
-        return $this->redirectToRoute('cycle_index');
+        return $this->redirectToRoute('index_cycle');
     }
 
     /**

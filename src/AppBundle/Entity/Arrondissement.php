@@ -4,6 +4,7 @@ namespace AppBundle\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
 use Symfony\Component\Form\Extension\Core\Type\DateType;
+use Doctrine\Common\Collections\ArrayCollection;
 
 /**
  * Arrondissement
@@ -104,4 +105,9 @@ class Arrondissement
        // return $this->dateEnreg;
         $this->dateEnreg = new \DateTime();
     }
+
+    public function __toString()
+   {
+           return $this->getNomArrondissement();
+   }
 }

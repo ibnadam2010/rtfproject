@@ -2,15 +2,17 @@
 
 {% block admin %}
     <h1>Matieres list</h1>
+    <ul>
+          <a href="{{ path('matiere_new') }}" role="button" class="btn btn-primary" > Ajouter</a>
+        
+    </ul>
 
-    <table>
-        <thead>
+    <table border="1"; style="width:auto";>
+        <thead border="1" ; bgcolor="#00FF00">
             <tr>
                 <th>Id</th>
-                <th>Nommatiere</th>
-                <th>Dateenreg</th>
-                <th>Commentaire</th>
-                <th>Actions</th>
+                <th>Nom matiere</th>
+                <th width="auto">Actions</th>
             </tr>
         </thead>
         <tbody>
@@ -18,17 +20,23 @@
             <tr>
                 <td><a href="{{ path('matiere_show', { 'id': matiere.id }) }}">{{ matiere.id }}</a></td>
                 <td>{{ matiere.nomMatiere }}</td>
-                <td>{% if matiere.dateEnreg %}{{ matiere.dateEnreg|date('Y-m-d H:i:s') }}{% endif %}</td>
-                <td>{{ matiere.commentaire }}</td>
-                <td>
+                
+                <td bgcolor="#BBD2E1";>
+                    
                     <ul>
-                        <li>
-                            <a href="{{ path('matiere_show', { 'id': matiere.id }) }}">show</a>
-                        </li>
-                        <li>
-                            <a href="{{ path('matiere_edit', { 'id': matiere.id }) }}">edit</a>
-                        </li>
+                        <!--input type="submit" value="Delete"-->
+                            <a href="{{ path('matiere_show', { 'id': matiere.id }) }}" type="submit"  class="btn btn-primary btn-sm">show</a> &nbsp&nbsp&nbsp
+                            <a></a>
+<a></a>
+                            <a href="{{ path('matiere_edit', { 'id': matiere.id }) }}" class="btn btn-primary btn-sm" >edit</a>
+
+                            &nbsp &nbsp &nbsp 
+
+                            <a href="{{ path('matiere_delete', { 'id': matiere.id }) }}" class="btn btn-danger btn-sm">Delete</a>
+                                                
                     </ul>
+                
+                    
                 </td>
             </tr>
         {% endfor %}

@@ -3,10 +3,11 @@
 namespace AppBundle\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
+use Doctrine\Common\Collections\ArrayCollection;
 
 /**
  * Programme
- * @ORM\Table(name="programmeassxxxx")
+ * @ORM\Table(name="programme")
  * @ORM\Entity(repositoryClass="AppBundle\Repository\ProgrammeRepository")
  */
 class Programme
@@ -48,6 +49,14 @@ class Programme
      * @ORM\Column(name="masse_horaire", type="decimal", precision=10, scale=0)
      */
     private $masseHoraire;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="date_enreg", type="datetime", nullable=true, options={"default": "CURRENT_TIMESTAMP"})
+     * @ Assert\GreaterThan("today")
+     */
+    private $dateEnreg;
 
 
     /**
@@ -156,4 +165,42 @@ class Programme
     {
         return $this->promotion;
     }
+
+    /**
+     * Set dateEnreg.
+     *
+     * @param string $dateEnreg
+     *
+     * @return Ouvrage
+     */
+    public function setDateEnreg($dateEnreg)
+    {
+        $this->dateEnreg = $dateEnreg;
+
+        return $this;
+    }
+
+    /**
+     * Get dateEnreg.
+     *
+     * @return string
+     */
+    public function getDateEnreg()
+    {
+       return $this->dateEnreg;
+        //$this->dateEnreg = new \DateTime('now');
+    }
+
+
+     /**
+     * Constructor
+     */
+    public function __construct()
+    {
+        $this->promotions = new \Doctrine\Common\Collections\ArrayCollection();
+        $this->matieres = new \Doctrine\Common\Collections\ArrayCollection();
+        $this->dateEnreg = new \DateTime('now');
+    }
+
+    
 }

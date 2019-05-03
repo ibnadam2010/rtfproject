@@ -5,7 +5,8 @@ namespace AppBundle\Controller;
 use AppBundle\Entity\Programme;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Method;
-use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;use Symfony\Component\HttpFoundation\Request;
+use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
+use Symfony\Component\HttpFoundation\Request;
 
 /**
  * Programme controller.
@@ -88,7 +89,8 @@ class ProgrammeController extends Controller
         if ($editForm->isSubmitted() && $editForm->isValid()) {
             $this->getDoctrine()->getManager()->flush();
 
-            return $this->redirectToRoute('programme_edit', array('id' => $programme->getId()));
+            //return $this->redirectToRoute('programme_edit', array('id' => $programme->getId()));
+            return $this->redirectToRoute('index_programme');
         }
 
         return $this->render('programme/edit.html.twig', array(
@@ -96,26 +98,27 @@ class ProgrammeController extends Controller
             'edit_form' => $editForm->createView(),
             'delete_form' => $deleteForm->createView(),
         ));
+
     }
 
     /**
      * Deletes a programme entity.
      *
-     * @Route("/{id}", name="programme_delete")
+     * @Route("delete/{id}", name="programme_delete")
      * @Method("DELETE")
      */
     public function deleteAction(Request $request, Programme $programme)
     {
-        $form = $this->createDeleteForm($programme);
-        $form->handleRequest($request);
+       // $form = $this->createDeleteForm($programme);
+        //$form->handleRequest($request);
 
-        if ($form->isSubmitted() && $form->isValid()) {
+       // if ($form->isSubmitted() && $form->isValid()) {
             $em = $this->getDoctrine()->getManager();
             $em->remove($programme);
             $em->flush();
-        }
+        //}
 
-        return $this->redirectToRoute('programme_index');
+        return $this->redirectToRoute('index_programme');
     }
 
     /**

@@ -48,13 +48,15 @@ class ArrondissementController extends Controller
             $em->persist($arrondissement);
             $em->flush();
 
-            return $this->redirectToRoute('arrondissement_show', array('id' => $arrondissement->getId()));
+//return $this->redirectToRoute('arrondissement_show', array('id' => $arrondissement->getId()));
+            return $this->redirectToRoute('index_arrondissement');
         }
 
         return $this->render('arrondissement/new.html.twig', array(
             'arrondissement' => $arrondissement,
             'form' => $form->createView(),
         ));
+
     }
 
     /**
@@ -88,7 +90,8 @@ class ArrondissementController extends Controller
         if ($editForm->isSubmitted() && $editForm->isValid()) {
             $this->getDoctrine()->getManager()->flush();
 
-            return $this->redirectToRoute('arrondissement_edit', array('id' => $arrondissement->getId()));
+            //return $this->redirectToRoute('arrondissement_edit', array('id' => $arrondissement->getId()));
+            return $this->redirectToRoute('index_arrondissement');
         }
 
         return $this->render('arrondissement/edit.html.twig', array(

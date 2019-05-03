@@ -1,33 +1,43 @@
 {% extends 'adminbase.html.twig' %}
 
 {% block admin %}
-    <h1>Departements list</h1>
 
-    <table>
-        <thead>
-            <tr>
+    <h1>Departements list</h1>
+    <ul>
+          <a href="{{ path('departement_new') }}" role="button" class="btn btn-primary" > Ajouter</a>
+        
+    </ul>
+
+    <table border="1"; style="width:auto";>
+        <thead border="1" ; bgcolor="#00FF00" >
+            <tr style="auto"  >
                 <th>Id</th>
-                <th>Nomdepartement</th>
-                <th>Dateenreg</th>
-                <th>Actions</th>
+                <th>Nom departement</th>
+                <th style="width: 40%;">Actions</th>
             </tr>
         </thead>
         <tbody>
         {% for departement in departements %}
             <tr>
-                <td></td>
-                <td>{{ departement.nomDepartement }}</td>
-                <td>{% if departement.dateEnreg %}{{ departement.dateEnreg|date('Y-m-d H:i:s') }}{% endif %}</td>
-                <td>
+                 <td>{{ departement.id }}</td>
+                 <td>{{ departement.nomDepartement }}</td>
+                
+                <!--td>{% if departement.dateEnreg %}{{ departement.dateEnreg|date('Y-m-d H:i:s') }}{% endif %}</td-->
+                <td bgcolor="#BBD2E1";>
+                    
                     <ul>
-                        <li>
-                            <a href="{{ path('departement_show', { 'id': departement.id }) }}">show</a>
+                        <!--input type="submit" value="Delete"-->
+                            <a href="{{ path('departement_show', { 'id': departement.id }) }}" type="submit"  class="btn btn-default btn-sm">Show</a> &nbsp &nbsp &nbsp
+                            <a></a>
+                            <a></a>
+                            <a href="{{ path('departement_edit', { 'id': departement.id }) }}" class="btn btn-default btn-sm" >Edit</a>
+                            &nbsp &nbsp &nbsp 
 
-                        </li>
-                        <li>
-                            <a href="{{ path('departement_edit', { 'id': departement.id }) }}">edit</a>
-                        </li>
+                            <a href="{{ path('departement_delete', { 'id': departement.id }) }}" class="btn btn-danger btn-sm">Delete</a>
+                                                
                     </ul>
+                
+                    
                 </td>
             </tr>
         {% endfor %}
@@ -35,8 +45,8 @@
     </table>
 
     <ul>
-        <li>
-            <a href="{{ path('departement_new') }}">Create a new departement</a>
-        </li>
+        
+            <a href="{{ path('departement_new') }}" role="button" class="btn btn-primary" > Ajouter</a>
+        
     </ul>
 {% endblock %}

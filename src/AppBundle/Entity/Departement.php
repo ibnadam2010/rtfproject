@@ -36,7 +36,7 @@ class Departement
      * @var string
      *
      * @ORM\Column(name="date_enreg", type="datetime", nullable=true, options={"default": "CURRENT_TIMESTAMP"})
-     * @ Assert\GreaterThan("today")
+     
      */
     private $dateEnreg;
 
@@ -107,8 +107,8 @@ class Departement
      */
     public function getDateEnreg()
     {
-       // return $this->dateEnreg;
-        $this->dateEnreg = new \DateTime();
+       return $this->dateEnreg;
+        //$this->dateEnreg = new \DateTime();
     }
 
 
@@ -118,6 +118,7 @@ class Departement
     public function __construct()
     {
         $this->communes = new \Doctrine\Common\Collections\ArrayCollection();
+        $this->dateEnreg = new \DateTime('now');
     }
     /**
      * Add commune.
@@ -194,4 +195,6 @@ class Departement
     {
         return $this->etablissements;
     }
+
+
 }

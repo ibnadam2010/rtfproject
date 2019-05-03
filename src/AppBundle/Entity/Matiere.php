@@ -41,9 +41,10 @@ class Matiere
     private $dateEnreg;
 
     //relation entre matiere et ouvrage
-    ///**
-   //  * @ORM\OneToMany(targetEntity="Ouvrage", mappedBy="matiere")
-   //  */
+    /**
+     * @ORM\OneToMany(targetEntity="Ouvrage", mappedBy="matiere")
+     */
+    private $ouvrages;
 
     /**
      * @var text
@@ -109,8 +110,8 @@ class Matiere
      */
     public function getDateEnreg()
     {
-       // return $this->dateEnreg;
-        $this->dateEnreg = new \DateTime();
+       return $this->dateEnreg;
+        //$this->dateEnreg = new \DateTime();
     }
 
     /**
@@ -136,4 +137,9 @@ class Matiere
     {
         return $this->commentaire;
     }
+
+    public function __toString()
+   {
+           return $this->getNomMatiere();
+   }
 }

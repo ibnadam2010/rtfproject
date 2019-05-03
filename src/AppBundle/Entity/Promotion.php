@@ -40,12 +40,12 @@ class Promotion
      */
     private $dateEnreg;
 
-    //association
+    //association matiere promotion
 
-    /**
-     * @ORM\ManyToMany(targetEntity="Matiere", cascade={"persist"})
-     */
-    private $matiere;
+    ///**
+   //  * @ORM\ManyToMany(targetEntity="Matiere", cascade={"persist"})
+   //  */
+   // private $matiere;
 
 
     /**
@@ -55,12 +55,26 @@ class Promotion
      */
     private $commentaire;
 
+// promotion cycle
+   // /**
+    // * @ORM\ManyToOne(targetEntity="Cycle")
+    // * @ORM\JoinColumn(nullable=false)
+    // */
+    //private $cycle;
 
+    //relation entre promotion et cycle
     /**
-     * @ORM\ManyToOne(targetEntity="Cycle")
-     * @ORM\JoinColumn(nullable=false)
+     * @ORM\ManyToOne(targetEntity="Cycle", inversedBy="promotions")
+     * @ORM\JoinColumn(name="id_cycle", referencedColumnName="id")
      */
-    private $cycle;
+    public $cycle;
+
+    //relation entre Promotion et ouvrage
+    /**
+     * @ORM\OneToMany(targetEntity="Ouvrage", mappedBy="promotion")
+     */
+
+    public $ouvrages;
 
     /**
      * Get id.
@@ -119,8 +133,8 @@ class Promotion
      */
     public function getDateEnreg()
     {
-       // return $this->dateEnreg;
-        $this->dateEnreg = new \DateTime();
+       return $this->dateEnreg;
+        //$this->dateEnreg = new \DateTime();
     }
     /**
      * Constructor
@@ -211,4 +225,9 @@ class Promotion
     {
         return $this->commentaire;
     }
+
+    public function __toString()
+   {
+           return $this->getNomPromotion();
+   }
 }

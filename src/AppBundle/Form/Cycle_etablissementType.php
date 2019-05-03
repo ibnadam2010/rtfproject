@@ -5,23 +5,22 @@ namespace AppBundle\Form;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
-use Symfony\Component\Form\Extension\Core\Type\DateType;
 
-class CycleType extends AbstractType
+class Cycle_etablissementType extends AbstractType
 {
     /**
      * {@inheritdoc}
      */
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
-        $builder->add('nomCycle');
+        $builder->add('cycle')->add('etablissement');
     }/**
      * {@inheritdoc}
      */
     public function configureOptions(OptionsResolver $resolver)
     {
         $resolver->setDefaults(array(
-            'data_class' => 'AppBundle\Entity\Cycle'
+            'data_class' => 'AppBundle\Entity\Cycle_etablissement'
         ));
     }
 
@@ -30,7 +29,7 @@ class CycleType extends AbstractType
      */
     public function getBlockPrefix()
     {
-        return 'appbundle_cycle';
+        return 'appbundle_cycle_etablissement';
     }
 
 

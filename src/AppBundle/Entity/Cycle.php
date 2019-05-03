@@ -4,6 +4,7 @@ namespace AppBundle\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
 use Symfony\Component\Form\Extension\Core\Type\DateType;
+use Doctrine\Common\Collections\ArrayCollection;
 
 /**
  * Cycle
@@ -44,6 +45,13 @@ class Cycle
      * @ Assert\GreaterThan("today")
      */
     private $dateEnreg;
+
+    //relation entre cycle et promotion
+    /**
+     * @ORM\OneToMany(targetEntity="Promotion", mappedBy="cycle")
+     */
+
+    public $promotions;
 
 
 
@@ -102,8 +110,8 @@ class Cycle
      */
     public function getDateEnreg()
     {
-       // return $this->dateEnreg;
-        $this->dateEnreg = new \DateTime();
+       return $this->dateEnreg;
+        //$this->dateEnreg = new \DateTime();
     }
 
     /**
@@ -129,4 +137,9 @@ class Cycle
     {
         return $this->commentaire;
     }
+
+    public function __toString()
+   {
+           return $this->getNomCycle();
+   }
 }

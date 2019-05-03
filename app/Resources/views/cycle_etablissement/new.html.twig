@@ -1,0 +1,16 @@
+{% extends 'adminbase.html.twig' %}
+
+{% block admin %}
+    <h1>Cycle_etablissement creation</h1>
+
+    {{ form_start(form) }}
+        {{ form_widget(form) }}
+        <input type="submit" value="Create" />
+    {{ form_end(form) }}
+
+    <ul>
+        <li>
+            <a href="{{ path('cycle_etablissement_index') }}">Retour à la liste</a>
+        </li>
+    </ul>
+{% endblock %}

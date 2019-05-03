@@ -3,6 +3,7 @@
 namespace AppBundle\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
+use Doctrine\Common\Collections\ArrayCollection;
 
 /**
  * Ouvrage
@@ -49,11 +50,27 @@ class Ouvrage
      */
     private $annee;
 
+   // /**
+     //* @ORM\ManyToOne(targetEntity="Matiere")
+     //* @ORM\JoinColumn(nullable=false)
+     //*/
+    //private $matiere;
+
+
+    //relation entre ouvrage et matiere
     /**
-     * @ORM\ManyToOne(targetEntity="Matiere")
-     * @ORM\JoinColumn(nullable=false)
+     * @ORM\ManyToOne(targetEntity="Matiere", inversedBy="ouvrages")
+     * @ORM\JoinColumn(name="id_matiere", referencedColumnName="id")
      */
-    private $matiere;
+    public $matiere;
+
+    //relation entre ouvrage et promotion
+   /**
+     * @ORM\ManyToOne(targetEntity="Promotion", inversedBy="ouvrages")
+     * @ORM\JoinColumn(name="id_promotion", referencedColumnName="id")
+     */
+    public $promotion;
+
 
 
     /**
@@ -62,6 +79,14 @@ class Ouvrage
      * @ORM\Column(name="commentaire", type="text",nullable=true)
      */
     private $commentaire;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="date_enreg", type="datetime", nullable=true, options={"default": "CURRENT_TIMESTAMP"})
+     * @ Assert\GreaterThan("today")
+     */
+    private $dateEnreg;
 
 
     /**
@@ -216,5 +241,41 @@ class Ouvrage
     public function getCommentaire()
     {
         return $this->commentaire;
+    }
+
+    /**
+     * Set dateEnreg.
+     *
+     * @param string $dateEnreg
+     *
+     * @return Ouvrage
+     */
+    public function setDateEnreg($dateEnreg)
+    {
+        $this->dateEnreg = $dateEnreg;
+
+        return $this;
+    }
+
+    /**
+     * Get dateEnreg.
+     *
+     * @return string
+     */
+    public function getDateEnreg()
+    {
+       return $this->dateEnreg;
+        //$this->dateEnreg = new \DateTime('now');
+    }
+
+
+     /**
+     * Constructor
+     */
+    public function __construct()
+    {
+        $this->promotions = new \Doctrine\Common\Collections\ArrayCollection();
+        $this->matieres = new \Doctrine\Common\Collections\ArrayCollection();
+        $this->dateEnreg = new \DateTime('now');
     }
 }

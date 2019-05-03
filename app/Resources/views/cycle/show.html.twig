@@ -3,7 +3,7 @@
 {% block admin %}
     <h1>Cycle</h1>
 
-    <table>
+    <table border="1"; style="width:auto">
         <tbody>
             <tr>
                 <th>Id</th>
@@ -14,11 +14,11 @@
                 <td>{{ cycle.commentaire }}</td>
             </tr>
             <tr>
-                <th>Nomcycle</th>
+                <th>Nom cycle</th>
                 <td>{{ cycle.nomCycle }}</td>
             </tr>
             <tr>
-                <th>Dateenreg</th>
+                <th>Date enreg</th>
                 <td>{% if cycle.dateEnreg %}{{ cycle.dateEnreg|date('Y-m-d H:i:s') }}{% endif %}</td>
             </tr>
         </tbody>

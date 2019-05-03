@@ -13,7 +13,7 @@ class DepartementType extends AbstractType
      */
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
-        $builder->add('nomDepartement')->add('dateEnreg');
+        $builder->add('nomDepartement');
     }/**
      * {@inheritdoc}
      */

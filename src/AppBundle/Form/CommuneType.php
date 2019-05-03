@@ -13,7 +13,7 @@ class CommuneType extends AbstractType
      */
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
-        $builder->add('nomCommune')->add('dateEnreg')->add('departement');
+        $builder->add('nomCommune')->add('departement');
     }/**
      * {@inheritdoc}
      */

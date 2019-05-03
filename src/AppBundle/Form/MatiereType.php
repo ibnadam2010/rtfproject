@@ -13,7 +13,7 @@ class MatiereType extends AbstractType
      */
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
-        $builder->add('nomMatiere')->add('dateEnreg')->add('commentaire');
+        $builder->add('nomMatiere');
     }/**
      * {@inheritdoc}
      */

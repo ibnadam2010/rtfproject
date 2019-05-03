@@ -55,6 +55,7 @@ class DepartementController extends Controller
             'departement' => $departement,
             'form' => $form->createView(),
         ));
+       // return $this->redirectToRoute('index_departement');
     }
 
     /**
@@ -67,10 +68,12 @@ class DepartementController extends Controller
     {
         $deleteForm = $this->createDeleteForm($departement);
 
+
         return $this->render('departement/show.html.twig', array(
             'departement' => $departement,
             'delete_form' => $deleteForm->createView(),
         ));
+       // return $this->redirectToRoute('index_ouvrage');
     }
 
     /**
@@ -88,7 +91,8 @@ class DepartementController extends Controller
         if ($editForm->isSubmitted() && $editForm->isValid()) {
             $this->getDoctrine()->getManager()->flush();
 
-            return $this->redirectToRoute('departement_edit', array('id' => $departement->getId()));
+    // return $this->redirectToRoute('departement_edit', array('id' => $departement->getId()));
+        return $this->redirectToRoute('index_departement');
         }
 
         return $this->render('departement/edit.html.twig', array(
@@ -96,25 +100,32 @@ class DepartementController extends Controller
             'edit_form' => $editForm->createView(),
             'delete_form' => $deleteForm->createView(),
         ));
-    }
 
+       // return $this->redirectToRoute('index_departement');
+    }
+//XXX* XXXXX @xXXXRouteXXX("/{id}", name="departement_delete")
     /**
      * Deletes a departement entity.
      *
-     * @Route("/{id}", name="departement_delete")
+     * @param Request  $request
+     * @param Departement $departement
+     * @return \Symfony\Component\HttpFoundation\RedirectResponse
+     
+     * @Route("delete/{id}", name="departement_delete")
      * @Method("DELETE")
      */
     public function deleteAction(Request $request, Departement $departement)
     {
-        $form = $this->createDeleteForm($departement);
-        $form->handleRequest($request);
+       // $form = $this->createDeleteForm($departement);
+        //$form->handleRequest($request);
 
-        if ($form->isSubmitted() && $form->isValid()) {
+        //if ($form->isSubmitted() && $form->isValid()) {
             $em = $this->getDoctrine()->getManager();
             $em->remove($departement);
             $em->flush();
-        }
+       // }
 
+       // return $this->redirectToRoute('index_departement');
         return $this->redirectToRoute('index_departement');
     }
 
@@ -132,5 +143,6 @@ class DepartementController extends Controller
             ->setMethod('DELETE')
             ->getForm()
         ;
+       // return $this->redirectToRoute('index_departement');
     }
 }

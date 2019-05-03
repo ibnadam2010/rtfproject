@@ -3,52 +3,63 @@
 {% block admin %}
     <h1>Etablissement</h1>
 
-    <table>
+    <table border="1"; style="width:auto">
         <tbody>
             <tr>
                 <th>Id</th>
                 <td>{{ etablissement.id }}</td>
             </tr>
             <tr>
-                <th>Nometablissement</th>
+                <th>Nom etablissement</th>
                 <td>{{ etablissement.nomEtablissement }}</td>
             </tr>
             <tr>
-                <th>Typeetablissement</th>
+                <th>Type </th>
                 <td>{{ etablissement.typeEtablissement }}</td>
             </tr>
+            
             <tr>
-                <th>Commentaire</th>
-                <td>{{ etablissement.commentaire }}</td>
-            </tr>
-            <tr>
-                <th>Statutetablissement</th>
+                <th>Statut</th>
                 <td>{{ etablissement.statutEtablissement }}</td>
             </tr>
             <tr>
-                <th>Datecreation</th>
+                <th>Date creation</th>
                 <td>{{ etablissement.dateCreation }}</td>
             </tr>
             <tr>
-                <th>Adresseetablissement</th>
+                <th>Adresse</th>
                 <td>{{ etablissement.adresseEtablissement }}</td>
             </tr>
             <tr>
-                <th>Teletablissement</th>
+                <th>Telephone</th>
                 <td>{{ etablissement.telEtablissement }}</td>
             </tr>
             <tr>
-                <th>Emailetablissement</th>
+                <th>Email</th>
                 <td>{{ etablissement.emailEtablissement }}</td>
             </tr>
             <tr>
-                <th>Sitewebetablissement</th>
+                <th>Site web</th>
                 <td>{{ etablissement.sitewebEtablissement }}</td>
             </tr>
             <tr>
-                <th>Dateenreg</th>
+                <th>Date enreg</th>
                 <td>{% if etablissement.dateEnreg %}{{ etablissement.dateEnreg|date('Y-m-d H:i:s') }}{% endif %}</td>
             </tr>
+            <tr>
+            <th>departement</th>
+            <td>{{ etablissement.departement.nomDepartement }}</td>
+            </tr>
+            <tr>
+            <th>commune</th>
+            <td>{{ etablissement.commune.nomCommune }}</td>
+            </tr>
+            <tr>
+            <th>Arrondissement</th>
+            <td>{{ etablissement.arrondissement.nomArrondissement }}</td>
+            </tr>
+                
+
         </tbody>
     </table>
 

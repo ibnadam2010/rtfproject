@@ -3,15 +3,19 @@
 {% block admin %}
     <h1>Promotion</h1>
 
-    <table>
+    <table border="1"; style="width:auto">
         <tbody>
             <tr>
                 <th>Id</th>
                 <td>{{ promotion.id }}</td>
             </tr>
             <tr>
-                <th>Nompromotion</th>
+                <th>Nom promotion</th>
                 <td>{{ promotion.nomPromotion }}</td>
+            </tr>
+            <tr>
+                <th>Cycle</th>
+                <td>{{ promotion.cycle.nomCycle }}</td>
             </tr>
             <tr>
                 <th>Dateenreg</th>

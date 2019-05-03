@@ -48,7 +48,8 @@ class MatiereController extends Controller
             $em->persist($matiere);
             $em->flush();
 
-            return $this->redirectToRoute('matiere_show', array('id' => $matiere->getId()));
+            //return $this->redirectToRoute('matiere_show', array('id' => $matiere->getId()));
+            return $this->redirectToRoute('index_matiere');
         }
 
         return $this->render('matiere/new.html.twig', array(
@@ -96,26 +97,27 @@ class MatiereController extends Controller
             'edit_form' => $editForm->createView(),
             'delete_form' => $deleteForm->createView(),
         ));
+        return $this->redirectToRoute('index_matiere');
     }
 
     /**
      * Deletes a matiere entity.
      *
-     * @Route("/{id}", name="matiere_delete")
+     * @Route("delete/{id}", name="matiere_delete")
      * @Method("DELETE")
      */
     public function deleteAction(Request $request, Matiere $matiere)
     {
-        $form = $this->createDeleteForm($matiere);
-        $form->handleRequest($request);
+        //$form = $this->createDeleteForm($matiere);
+        //$form->handleRequest($request);
 
-        if ($form->isSubmitted() && $form->isValid()) {
+        //if ($form->isSubmitted() && $form->isValid()) {
             $em = $this->getDoctrine()->getManager();
             $em->remove($matiere);
             $em->flush();
-        }
+       // }
 
-        return $this->redirectToRoute('matiere_index');
+        return $this->redirectToRoute('index_matiere');
     }
 
     /**

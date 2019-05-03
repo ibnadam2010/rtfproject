@@ -5,6 +5,7 @@ namespace AppBundle\Form;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
+use Symfony\Component\Form\Extension\Core\Type\ChoiceType;
 
 class EtablissementType extends AbstractType
 {
@@ -13,7 +14,10 @@ class EtablissementType extends AbstractType
      */
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
-        $builder->add('nomEtablissement')->add('typeEtablissement')->add('commentaire')->add('statutEtablissement')->add('dateCreation')->add('adresseEtablissement')->add('telEtablissement')->add('emailEtablissement')->add('sitewebEtablissement')->add('dateEnreg')->add('promotion')->add('commune')->add('arrondissement')->add('departement');
+        $builder->add('nomEtablissement')->add('typeEtablissement',ChoiceType::class,['choices'=>['Collège'=> true,'Lycée'=> false]])
+        ->add('statutEtablissement',ChoiceType::class,['choices'=>['Public'=> true,'Privé'=> false]])
+
+        ->add('dateCreation')->add('adresseEtablissement')->add('telEtablissement')->add('emailEtablissement')->add('sitewebEtablissement')->add('commune')->add('arrondissement')->add('departement');
     }/**
      * {@inheritdoc}
      */

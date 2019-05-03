@@ -2,14 +2,20 @@
 
 {% block admin %}
     <h1>Arrondissements list</h1>
+    <ul>
+          <a href="{{ path('arrondissement_new') }}" role="button" class="btn btn-primary" > Ajouter</a>
+        
+    </ul>
 
-    <table>
-        <thead>
+    <table border="1"; style="width:auto">
+        <thead border="1" ; bgcolor="#00FF00">
             <tr>
                 <th>Id</th>
-                <th>Nomarrondissement</th>
-                <th>Dateenreg</th>
-                <th>Actions</th>
+                <th>Nom arrondissement</th>
+                <th>Nom commune</th>
+                <th>Nom departement</th>
+                
+                <th style="width: auto">Actions</th>
             </tr>
         </thead>
         <tbody>
@@ -17,15 +23,20 @@
             <tr>
                 <td><a href="{{ path('arrondissement_show', { 'id': arrondissement.id }) }}">{{ arrondissement.id }}</a></td>
                 <td>{{ arrondissement.nomArrondissement }}</td>
-                <td>{% if arrondissement.dateEnreg %}{{ arrondissement.dateEnreg|date('Y-m-d H:i:s') }}{% endif %}</td>
-                <td>
+                <td>{{ arrondissement.commune.nomCommune }}</td>
+                <td>{{ arrondissement.commune.departement.nomDepartement }}</td>
+                
+                <td bgcolor="#BBD2E1";>
                     <ul>
-                        <li>
-                            <a href="{{ path('arrondissement_show', { 'id': arrondissement.id }) }}">show</a>
-                        </li>
-                        <li>
-                            <a href="{{ path('arrondissement_edit', { 'id': arrondissement.id }) }}">edit</a>
-                        </li>
+                        
+                            <a href="{{ path('arrondissement_show', { 'id': arrondissement.id }) }}" type="submit"  class="btn btn-primary btn-sm">show</a>
+                        
+                            <a href="{{ path('arrondissement_edit', { 'id': arrondissement.id }) }}" type="submit"  class="btn btn-primary btn-sm">edit</a>
+
+                            &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp
+
+                            <a href="{{ path('arrondissement_delete', { 'id': arrondissement.id }) }}" class="btn btn-danger btn-sm">Delete</a>
+                        
                     </ul>
                 </td>
             </tr>
