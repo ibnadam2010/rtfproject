@@ -242,7 +242,7 @@
       <footer class="sticky-footer bg-white">
         <div class="container my-auto">
           <div class="copyright text-center my-auto">
-           <center> <span>Copyright &copy; Your Website 2019</span></center>
+           <center> <span>Copyright &copy; DATA-CONCEPT BENIN 2019</span></center>
           </div>
         </div>
       </footer>
@@ -279,25 +279,67 @@
   </div>
 
   <!-- Bootstrap core JavaScript-->
-   <script src="{{ absolute_url(asset('vendor/jquery-easing/jquery.easing.min.js')) }}"></script>
-    <script src="{{ absolute_url(asset('js/sb-admin-2.min.js')) }}"></script>
-	 <script src="{{ absolute_url(asset('vendor/chart.js/Chart.min.js')) }}"></script>
-   <script src="{{ absolute_url(asset('js/demo/chart-area-demo.js')) }}"></script>
-    <script src="{{ absolute_url(asset('js/demo/chart-pie-demo.js')) }}"></script>
-	 <script src="{{ absolute_url(asset('jquery.js')) }}"></script>
-	 <script src="{{ absolute_url(asset('jquery-ui.js')) }}"></script>
-	  <script src="{{ absolute_url(asset('confirm.js')) }}"></script>
-	   <script src="{{ absolute_url(asset('confirm.min.js')) }}"></script>
-	  <script src="{{ absolute_url(asset('vendor/bootstrap/js/bootstrap.bundle.min.js')) }}"></script>
+  <script src="{{ absolute_url(asset('vendor/jquery-easing/jquery.easing.min.js')) }}"></script>
+  <script src="{{ absolute_url(asset('js/sb-admin-2.min.js')) }}"></script>
+  <script src="{{ absolute_url(asset('vendor/chart.js/Chart.min.js')) }}"></script>
+  <script src="{{ absolute_url(asset('js/demo/chart-area-demo.js')) }}"></script>
+  <script src="{{ absolute_url(asset('js/demo/chart-pie-demo.js')) }}"></script>
+  <script src="{{ absolute_url(asset('jquery.js')) }}"></script>
+  <script src="{{ absolute_url(asset('jquery-ui.js')) }}"></script>
+  <script src="{{ absolute_url(asset('confirm.js')) }}"></script>
+  <script src="{{ absolute_url(asset('confirm.min.js')) }}"></script>
+  <script src="{{ absolute_url(asset('vendor/bootstrap/js/bootstrap.bundle.min.js')) }}"></script>
 
 
-			<script src="{{ absolute_url(asset('footable/js/footable.js')) }}"></script>
-			<script src="{{ absolute_url(asset('footable/js/footable.paginate.js')) }}"></script>
-			<script src="{{ absolute_url(asset('footable/js/footable.paginate.js')) }}"></script>
-			<script src="{{ absolute_url(asset('footable/js/footable.filter.js')) }}"></script>
+  <script src="{{ absolute_url(asset('footable/js/footable.js')) }}"></script>
+  <script src="{{ absolute_url(asset('footable/js/footable.paginate.js')) }}"></script>
+  <script src="{{ absolute_url(asset('footable/js/footable.paginate.js')) }}"></script>
+  <script src="{{ absolute_url(asset('footable/js/footable.filter.js')) }}"></script>
 			
 <script type="text/javascript">
+    $('.add_departement').submit(function(e) {
 
+        e.preventDefault();
+        var url = "{{ path('departement_new') }}";
+        var formSerialize = $(this).serialize();
+
+        $.post(url, formSerialize, function(response) {
+
+            $('#addModal').modal('hide');
+            $('#infosDepModal').modal('show');
+        }, 'JSON');
+    });
+
+    function deleteDep(str){
+
+        $('.confirm').confirm({
+
+
+            text:"Voulez-vous supprimer cette ligne?",
+            title:"",
+            confirm: function(button){
+                var url = "{{ path('departement_delete',{'id':1}) }}";
+                url = url.replace("1",str);
+
+                $.ajax({
+                    type:"GET",
+                    url:url
+
+                }).done(function(){
+                    document.location.reload(true);
+                });
+            },
+            cancel:function(button){
+
+            },
+            confirmButton:"Oui",
+            cancelButton:"Non",
+            post:true,
+            confirmButtonClass:"btn-danger",
+            cancelButtonClass:"btn-default",
+            dialogClass:"modal-dialog modal-sm"
+        });
+    }
 
     $(".footable").footable();
 </script>

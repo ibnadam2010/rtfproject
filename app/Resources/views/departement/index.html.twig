@@ -1,52 +1,46 @@
 {% extends 'adminbase.html.twig' %}
 
 {% block admin %}
+    {{ render(controller('AppBundle:Departement:new')) }}
+    <br><br><br>
+    <h3>Liste des départements</h3>
+    <div class="form-group">
+        <div class = "input-group">
+            <input type="text" id ="filter" name = "prenom" class="form-control" placeholder="Rechercher un département"/>
+        </div>
+    </div>
+<table  class="footable" data-page-size ="3" data-filter="#filter">
+    <thead >
+    <th data-toggle="true" style="background:#122e48">Nom</th>
+    <th data-hide="phone" style="background:#122e48">Date de création</th>
+    <th data-hide="phone" style="background:#122e48">Action</th>
+    </thead>
+    <tbody >
+    {% for departement in departements %}
+    <tr>
+        <td>{{ departement.nomDepartement }}</td>
+        <td>{{ departement.dateEnreg|date("d/m/Y") }}</td>
+        <td>
+            {{ render(controller('AppBundle:Departement:edit',{'id':departement.id})) }}
+            <button class="btn btn-danger btn-sm confirm"  onclick="deleteDep('{{ departement.id }}')" ><i class="fas fa-trash-alt"></i></button>
+        </td>
+    </tr>
+    {% endfor %}
+    </tbody>
+    <tfoot class = "hide-if-no-paging">
+    <td colspan="3">
 
-    <h1>Departements list</h1>
-    <ul>
-          <a href="{{ path('departement_new') }}" role="button" class="btn btn-primary" > Ajouter</a>
-        
-    </ul>
+        <div class = "pagination">
 
-    <table border="1"; style="width:auto";>
-        <thead border="1" ; bgcolor="#00FF00" >
-            <tr style="auto"  >
-                <th>Id</th>
-                <th>Nom departement</th>
-                <th style="width: 40%;">Actions</th>
-            </tr>
-        </thead>
-        <tbody>
-        {% for departement in departements %}
-            <tr>
-                 <td>{{ departement.id }}</td>
-                 <td>{{ departement.nomDepartement }}</td>
-                
-                <!--td>{% if departement.dateEnreg %}{{ departement.dateEnreg|date('Y-m-d H:i:s') }}{% endif %}</td-->
-                <td bgcolor="#BBD2E1";>
-                    
-                    <ul>
-                        <!--input type="submit" value="Delete"-->
-                            <a href="{{ path('departement_show', { 'id': departement.id }) }}" type="submit"  class="btn btn-default btn-sm">Show</a> &nbsp &nbsp &nbsp
-                            <a></a>
-                            <a></a>
-                            <a href="{{ path('departement_edit', { 'id': departement.id }) }}" class="btn btn-default btn-sm" >Edit</a>
-                            &nbsp &nbsp &nbsp 
+        </div>
 
-                            <a href="{{ path('departement_delete', { 'id': departement.id }) }}" class="btn btn-danger btn-sm">Delete</a>
-                                                
-                    </ul>
-                
-                    
-                </td>
-            </tr>
-        {% endfor %}
-        </tbody>
-    </table>
+    </td>
 
-    <ul>
-        
-            <a href="{{ path('departement_new') }}" role="button" class="btn btn-primary" > Ajouter</a>
-        
-    </ul>
+    </tfoot>
+</table>
+
+
+    <script type="text/javascript">
+        $(".footable").footable();
+    </script>
 {% endblock %}
