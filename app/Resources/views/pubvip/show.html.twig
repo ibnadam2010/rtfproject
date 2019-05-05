@@ -1,0 +1,44 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+    <h1>Pubvip</h1>
+
+    <table>
+        <tbody>
+            <tr>
+                <th>Id</th>
+                <td>{{ pubvip.id }}</td>
+            </tr>
+            <tr>
+                <th>Title</th>
+                <td>{{ pubvip.title }}</td>
+            </tr>
+            <tr>
+                <th>Content</th>
+                <td>{{ pubvip.content }}</td>
+            </tr>
+            <tr>
+                <th>Commentaire</th>
+                <td>{{ pubvip.commentaire }}</td>
+            </tr>
+            <tr>
+                <th>Path</th>
+                <td>{{ pubvip.path }}</td>
+            </tr>
+        </tbody>
+    </table>
+
+    <ul>
+        <li>
+            <a href="{{ path('pubvip_index') }}">Back to the list</a>
+        </li>
+        <li>
+            <a href="{{ path('pubvip_edit', { 'id': pubvip.id }) }}">Edit</a>
+        </li>
+        <li>
+            {{ form_start(delete_form, {'action': path('pubvip_delete',{'id':pubvip.id}), 'method': 'POST'}) }}
+                <input type="submit" value="Delete">
+            {{ form_end(delete_form) }}
+        </li>
+    </ul>
+{% endblock %}

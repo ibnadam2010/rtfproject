@@ -1,0 +1,50 @@
+{% extends 'adminbase.html.twig' %}
+
+{% block admin %}
+{{ render(controller('AppBundle:News:new')) }}
+<br><br><br>
+<h3>Liste des news</h3>
+<div class="form-group">
+    <div class = "input-group">
+        <input type="text" id ="filter" name = "prenom" class="form-control" placeholder="Rechercher un news"/>
+    </div>
+</div>
+<table  class="footable" data-page-size ="2" data-filter="#filter">
+    <thead >
+    <th data-toggle="true" style="background:#122e48">Titre</th>
+    <th data-hide="phone" style="background:#122e48">Contenu</th>
+    <th data-hide="phone" style="background:#122e48">Commentaire</th>
+    <th data-hide="phone" style="background:#122e48">Images</th>
+    <th data-hide="phone" style="background:#122e48">Action</th>
+    </thead>
+    <tbody >
+    {% for new in news %}
+        <tr>
+            <td>{{ new.title }}</td>
+            <td>{{ new.content }}</td>
+            <td>{{ new.commentaire }}</td>
+            <td><img src="{{ asset('uploads/documents/PhotoNews/'~new.path) }}" width="200" height="100" /></td>
+            <td>
+                {{ render(controller('AppBundle:News:edit',{'id':new.id})) }}
+                <button class="btn btn-danger btn-sm confirm"  onclick="deleteNews('{{ new.id }}')" ><i class="fas fa-trash-alt"></i></button>
+            </td>
+        </tr>
+    {% endfor %}
+    </tbody>
+    <tfoot class = "hide-if-no-paging">
+    <td colspan="5">
+
+        <div class = "pagination">
+
+        </div>
+
+    </td>
+
+    </tfoot>
+</table>
+
+
+<script type="text/javascript">
+    $(".footable").footable();
+</script>
+{% endblock %}
