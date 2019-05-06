@@ -168,6 +168,11 @@
           <!-- Topbar Navbar -->
           <ul class="navbar-nav ml-auto">
 
+            <div id="choisir_langue">Choisir la langue :
+    <a href="{{ path('index_ouvrage', {'langue' : 'fr'}) }}">FR</a> |
+    <a href="{{ path('index_ouvrage', {'langue' : 'en'}) }}">EN</a>
+</div>
+
             <!-- Nav Item - Search Dropdown (Visible Only XS) -->
             <li class="nav-item dropdown no-arrow d-sm-none">
               <a class="nav-link dropdown-toggle" href="#" id="searchDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
