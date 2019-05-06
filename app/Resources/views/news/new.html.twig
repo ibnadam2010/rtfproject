@@ -16,7 +16,7 @@
                     </button>
                 </div>
                 <div class="modal-body">
-                    {{ form_start(form, {'action': path('departement_new'), 'method': 'POST','attr': {'class': 'add_departement'}}) }}
+                    {{ form_start(form, {'action': path('departement_new'), 'method': 'POST','attr': {'class': 'add_news','id':'myNewsForm'}}) }}
                     {{ form_widget(form) }}
 
 
@@ -42,7 +42,7 @@
                     </button>
                 </div>
                 <div class="modal-body">
-                   <center> <h3 style="color:green"><i class="fa fa-check"></i> Departement créé avec succès</h3></center>
+                    <center> <h3 style="color:green"><i class="fa fa-check"></i> News créé avec succès</h3></center>
                 </div>
                 <div class="modal-footer">
 

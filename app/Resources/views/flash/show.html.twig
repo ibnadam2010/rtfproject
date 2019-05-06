@@ -1,0 +1,32 @@
+{% extends 'adminbase.html.twig' %}
+
+{% block admin %}
+    <h1>Flash</h1>
+
+    <table>
+        <tbody>
+            <tr>
+                <th>Id</th>
+                <td>{{ flash.id }}</td>
+            </tr>
+            <tr>
+                <th>Content</th>
+                <td>{{ flash.content }}</td>
+            </tr>
+        </tbody>
+    </table>
+
+    <ul>
+        <li>
+            <a href="{{ path('flash_index') }}">Back to the list</a>
+        </li>
+        <li>
+            <a href="{{ path('flash_edit', { 'id': flash.id }) }}">Edit</a>
+        </li>
+        <li>
+            {{ form_start(delete_form) }}
+                <input type="submit" value="Delete">
+            {{ form_end(delete_form) }}
+        </li>
+    </ul>
+{% endblock %}

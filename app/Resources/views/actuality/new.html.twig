@@ -10,13 +10,13 @@
         <div class="modal-dialog" role="document">
             <div class="modal-content">
                 <div class="modal-header">
-                    <h5 class="modal-title" id="addModalLabel">Département</h5>
+                    <h5 class="modal-title" id="addModalLabel">Actualité</h5>
                     <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                         <span aria-hidden="true">&times;</span>
                     </button>
                 </div>
                 <div class="modal-body">
-                    {{ form_start(form, {'action': path('departement_new'), 'method': 'POST','attr': {'class': 'add_departement'}}) }}
+                    {{ form_start(form, {'action': path('actuality_new'), 'method': 'POST','attr': {'class': 'add_actuality','id':'myActualityForm'}}) }}
                     {{ form_widget(form) }}
 
 
@@ -42,7 +42,7 @@
                     </button>
                 </div>
                 <div class="modal-body">
-                   <center> <h3 style="color:green"><i class="fa fa-check"></i> Departement créé avec succès</h3></center>
+                    <center> <h3 style="color:green"><i class="fa fa-check"></i> Actualité créée avec succès</h3></center>
                 </div>
                 <div class="modal-footer">
 

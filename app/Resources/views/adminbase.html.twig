@@ -121,19 +121,19 @@
         <div id="collapsePages" class="collapse" aria-labelledby="headingPages" data-parent="#accordionSidebar">
           <div class="bg-white py-2 collapse-inner rounded">
             <h6 class="collapse-header">Créer/Supprimer/Modifier:</h6>
-            <a class="collapse-item" href="login.html">Publicité VIP</a>
-            <a class="collapse-item" href="register.html">Publicité tiers</a>
+            <a class="collapse-item" href="{{ path('pubvip_index') }}">Publicité VIP</a>
+            <a class="collapse-item" href="{{ path('pubtiers_index') }}">Publicité tiers</a>
             <div class="collapse-divider"></div>
             <h6 class="collapse-header">Actualité/News:</h6>
-            <a class="collapse-item" href="Button.html">Actualité</a>
-			  <a class="collapse-item" href="Button.html">News</a>
+            <a class="collapse-item" href="{{ path('actuality_index') }}">Actualité</a>
+			  <a class="collapse-item" href="{{ path('news_index') }}">News</a>
           </div>
         </div>
       </li>
 
       <!-- Nav Item - Charts -->
       <li class="nav-item">
-        <a class="nav-link" href="charts.html">
+        <a class="nav-link" href="{{ path('flash_index') }}">
           <i class="fas fa-fw fa-chart-area"></i>
           <span>Flash Infos</span></a>
       </li>
@@ -247,7 +247,7 @@
       <footer class="sticky-footer bg-white">
         <div class="container my-auto">
           <div class="copyright text-center my-auto">
-           <center> <span>Copyright &copy; Your Website 2019</span></center>
+           <center> <span>Copyright &copy; DATA-CONCEPT BENIN 2019</span></center>
           </div>
         </div>
       </footer>
@@ -284,24 +284,315 @@
   </div>
 
   <!-- Bootstrap core JavaScript-->
-   <script src="{{ absolute_url(asset('vendor/jquery-easing/jquery.easing.min.js')) }}"></script>
-    <script src="{{ absolute_url(asset('js/sb-admin-2.min.js')) }}"></script>
-	 <script src="{{ absolute_url(asset('vendor/chart.js/Chart.min.js')) }}"></script>
-   <script src="{{ absolute_url(asset('js/demo/chart-area-demo.js')) }}"></script>
-    <script src="{{ absolute_url(asset('js/demo/chart-pie-demo.js')) }}"></script>
-	 <script src="{{ absolute_url(asset('jquery.js')) }}"></script>
-	 <script src="{{ absolute_url(asset('jquery-ui.js')) }}"></script>
-	  <script src="{{ absolute_url(asset('confirm.js')) }}"></script>
-	   <script src="{{ absolute_url(asset('confirm.min.js')) }}"></script>
-	  <script src="{{ absolute_url(asset('vendor/bootstrap/js/bootstrap.bundle.min.js')) }}"></script>
+  <script src="{{ absolute_url(asset('vendor/jquery-easing/jquery.easing.min.js')) }}"></script>
+  <script src="{{ absolute_url(asset('js/sb-admin-2.min.js')) }}"></script>
+  <script src="{{ absolute_url(asset('vendor/chart.js/Chart.min.js')) }}"></script>
+  <script src="{{ absolute_url(asset('js/demo/chart-area-demo.js')) }}"></script>
+  <script src="{{ absolute_url(asset('js/demo/chart-pie-demo.js')) }}"></script>
+  <script src="{{ absolute_url(asset('jquery.js')) }}"></script>
+  <script src="{{ absolute_url(asset('jquery-ui.js')) }}"></script>
+  <script src="{{ absolute_url(asset('confirm.js')) }}"></script>
+  <script src="{{ absolute_url(asset('confirm.min.js')) }}"></script>
+  <script src="{{ absolute_url(asset('vendor/bootstrap/js/bootstrap.bundle.min.js')) }}"></script>
 
 
-			<script src="{{ absolute_url(asset('footable/js/footable.js')) }}"></script>
-			<script src="{{ absolute_url(asset('footable/js/footable.paginate.js')) }}"></script>
-			<script src="{{ absolute_url(asset('footable/js/footable.paginate.js')) }}"></script>
-			<script src="{{ absolute_url(asset('footable/js/footable.filter.js')) }}"></script>
+  <script src="{{ absolute_url(asset('footable/js/footable.js')) }}"></script>
+  <script src="{{ absolute_url(asset('footable/js/footable.paginate.js')) }}"></script>
+  <script src="{{ absolute_url(asset('footable/js/footable.paginate.js')) }}"></script>
+  <script src="{{ absolute_url(asset('footable/js/footable.filter.js')) }}"></script>
 			
 <script type="text/javascript">
+    $('.add_departement').submit(function(e) {
+
+        e.preventDefault();
+        var url = "{{ path('departement_new') }}";
+        var formSerialize = $(this).serialize();
+
+        $.post(url, formSerialize, function(response) {
+
+            $('#addModal').modal('hide');
+            $('#infosDepModal').modal('show');
+        }, 'JSON');
+    });
+
+
+    $('.add_news').submit(function(e) {
+        e.preventDefault();
+        var url = "{{ path('news_new') }}";
+        var form = document.getElementById("myNewsForm");
+        $.ajax({
+            url:url,
+            data: new FormData(form),// the formData function is available in almost all new browsers.
+            type:"post",
+            contentType:false,
+            processData:false,
+            cache:false,
+            dataType:"json", // Change this according to your response from the server.
+            error:function(err){
+                console.error(err);
+            },
+            success:function(data){
+                console.log(data);
+            },
+            complete:function(){
+                $('#addModal').modal('hide');
+                $('#infosDepModal').modal('show');
+
+            }
+        });
+
+    });
+
+
+    $('.add_pubvip').submit(function(e) {
+        e.preventDefault();
+        var url = "{{ path('pubvip_new') }}";
+        var form = document.getElementById("myPubvipForm");
+        $.ajax({
+            url:url,
+            data: new FormData(form),// the formData function is available in almost all new browsers.
+            type:"post",
+            contentType:false,
+            processData:false,
+            cache:false,
+            dataType:"json", // Change this according to your response from the server.
+            error:function(err){
+                console.error(err);
+            },
+            success:function(data){
+                console.log(data);
+            },
+            complete:function(){
+                $('#addModal').modal('hide');
+                $('#infosDepModal').modal('show');
+
+            }
+        });
+
+    });
+
+
+
+
+    $('.add_pubtiers').submit(function(e) {
+        e.preventDefault();
+        var url = "{{ path('pubtiers_new') }}";
+        var form = document.getElementById("myPubtiersForm");
+        $.ajax({
+            url:url,
+            data: new FormData(form),// the formData function is available in almost all new browsers.
+            type:"post",
+            contentType:false,
+            processData:false,
+            cache:false,
+            dataType:"json", // Change this according to your response from the server.
+            error:function(err){
+                console.error(err);
+            },
+            success:function(data){
+                console.log(data);
+            },
+            complete:function(){
+                $('#addModal').modal('hide');
+                $('#infosDepModal').modal('show');
+
+            }
+        });
+
+    });
+
+
+
+    $('.add_actuality').submit(function(e) {
+        e.preventDefault();
+        var url = "{{ path('actuality_new') }}";
+        var form = document.getElementById("myActualityForm");
+        $.ajax({
+            url:url,
+            data: new FormData(form),// the formData function is available in almost all new browsers.
+            type:"post",
+            contentType:false,
+            processData:false,
+            cache:false,
+            dataType:"json", // Change this according to your response from the server.
+            error:function(err){
+                console.error(err);
+            },
+            success:function(data){
+                console.log(data);
+            },
+            complete:function(){
+                $('#addModal').modal('hide');
+                $('#infosDepModal').modal('show');
+
+            }
+        });
+
+    });
+
+    function deleteDep(str){
+
+        $('.confirm').confirm({
+
+
+            text:"Voulez-vous supprimer cette ligne?",
+            title:"",
+            confirm: function(button){
+                var url = "{{ path('departement_delete',{'id':1}) }}";
+                url = url.replace("1",str);
+
+                $.ajax({
+                    type:"GET",
+                    url:url
+
+                }).done(function(){
+                    document.location.reload(true);
+                });
+            },
+            cancel:function(button){
+
+            },
+            confirmButton:"Oui",
+            cancelButton:"Non",
+            post:true,
+            confirmButtonClass:"btn-danger",
+            cancelButtonClass:"btn-default",
+            dialogClass:"modal-dialog modal-sm"
+        });
+    }
+
+
+    function deletePubvip(str){
+
+        $('.confirm').confirm({
+
+
+            text:"Voulez-vous supprimer cette ligne?",
+            title:"",
+            confirm: function(button){
+                var url = "{{ path('pubvip_delete',{'id':1}) }}";
+                url = url.replace("1",str);
+
+                $.ajax({
+                    type:"GET",
+                    url:url
+
+                }).done(function(){
+                    document.location.reload(true);
+                });
+            },
+            cancel:function(button){
+
+            },
+            confirmButton:"Oui",
+            cancelButton:"Non",
+            post:true,
+            confirmButtonClass:"btn-danger",
+            cancelButtonClass:"btn-default",
+            dialogClass:"modal-dialog modal-sm"
+        });
+    }
+
+
+
+
+    function deleteActuality(str){
+
+        $('.confirm').confirm({
+
+
+            text:"Voulez-vous supprimer cette ligne?",
+            title:"",
+            confirm: function(button){
+                var url = "{{ path('actuality_delete',{'id':1}) }}";
+                url = url.replace("1",str);
+
+                $.ajax({
+                    type:"GET",
+                    url:url
+
+                }).done(function(){
+                    document.location.reload(true);
+                });
+            },
+            cancel:function(button){
+
+            },
+            confirmButton:"Oui",
+            cancelButton:"Non",
+            post:true,
+            confirmButtonClass:"btn-danger",
+            cancelButtonClass:"btn-default",
+            dialogClass:"modal-dialog modal-sm"
+        });
+    }
+
+
+
+
+    function deletePubtiers(str){
+
+        $('.confirm').confirm({
+
+
+            text:"Voulez-vous supprimer cette ligne?",
+            title:"",
+            confirm: function(button){
+                var url = "{{ path('pubtiers_delete',{'id':1}) }}";
+                url = url.replace("1",str);
+
+                $.ajax({
+                    type:"GET",
+                    url:url
+
+                }).done(function(){
+                    document.location.reload(true);
+                });
+            },
+            cancel:function(button){
+
+            },
+            confirmButton:"Oui",
+            cancelButton:"Non",
+            post:true,
+            confirmButtonClass:"btn-danger",
+            cancelButtonClass:"btn-default",
+            dialogClass:"modal-dialog modal-sm"
+        });
+    }
+
+
+
+    function deleteNews(str){
+
+        $('.confirm').confirm({
+
+
+            text:"Voulez-vous supprimer cette ligne?",
+            title:"",
+            confirm: function(button){
+                var url = "{{ path('news_delete',{'id':1}) }}";
+                url = url.replace("1",str);
+
+                $.ajax({
+                    type:"GET",
+                    url:url
+
+                }).done(function(){
+                    document.location.reload(true);
+                });
+            },
+            cancel:function(button){
+
+            },
+            confirmButton:"Oui",
+            cancelButton:"Non",
+            post:true,
+            confirmButtonClass:"btn-danger",
+            cancelButtonClass:"btn-default",
+            dialogClass:"modal-dialog modal-sm"
+        });
+    }
 
 
     $(".footable").footable();

@@ -43,19 +43,19 @@ class DepartementController extends Controller
         $form = $this->createForm('AppBundle\Form\DepartementType', $departement);
         $form->handleRequest($request);
 
+
         if ($form->isSubmitted() && $form->isValid()) {
+
             $em = $this->getDoctrine()->getManager();
             $em->persist($departement);
             $em->flush();
 
-            return $this->redirectToRoute('index_departement', array('id' => $departement->getId()));
+            return $this->json(['response' => 'ok']);
         }
-
         return $this->render('departement/new.html.twig', array(
             'departement' => $departement,
             'form' => $form->createView(),
         ));
-       // return $this->redirectToRoute('index_departement');
     }
 
     /**
@@ -73,7 +73,6 @@ class DepartementController extends Controller
             'departement' => $departement,
             'delete_form' => $deleteForm->createView(),
         ));
-       // return $this->redirectToRoute('index_ouvrage');
     }
 
     /**
@@ -91,7 +90,7 @@ class DepartementController extends Controller
         if ($editForm->isSubmitted() && $editForm->isValid()) {
             $this->getDoctrine()->getManager()->flush();
 
-    // return $this->redirectToRoute('departement_edit', array('id' => $departement->getId()));
+
         return $this->redirectToRoute('index_departement');
         }
 
@@ -101,9 +100,8 @@ class DepartementController extends Controller
             'delete_form' => $deleteForm->createView(),
         ));
 
-       // return $this->redirectToRoute('index_departement');
     }
-//XXX* XXXXX @xXXXRouteXXX("/{id}", name="departement_delete")
+
     /**
      * Deletes a departement entity.
      *
@@ -116,16 +114,13 @@ class DepartementController extends Controller
      */
     public function deleteAction(Request $request, Departement $departement)
     {
-       // $form = $this->createDeleteForm($departement);
-        //$form->handleRequest($request);
 
-        //if ($form->isSubmitted() && $form->isValid()) {
+
             $em = $this->getDoctrine()->getManager();
             $em->remove($departement);
             $em->flush();
-       // }
 
-       // return $this->redirectToRoute('index_departement');
+
         return $this->redirectToRoute('index_departement');
     }
 
@@ -143,6 +138,6 @@ class DepartementController extends Controller
             ->setMethod('DELETE')
             ->getForm()
         ;
-       // return $this->redirectToRoute('index_departement');
+
     }
 }
