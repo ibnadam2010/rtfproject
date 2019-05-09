@@ -1,66 +1,60 @@
 {% extends 'adminbase.html.twig' %}
 
 {% block admin %}
-    <h1>Etablissements list</h1>
-    <ul>
-          <a href="{{ path('etablissement_new') }}" role="button" class="btn btn-primary" > Ajouter</a>
-        
-    </ul>
+    {{ render(controller('AppBundle:Etablissement:new')) }}
+    <br><br><br>
+    <h3>Liste des établissement</h3>
+    <div class="form-group">
+        <div class = "input-group">
+            <input type="text" id ="filter" name = "prenom" class="form-control" placeholder="Rechercher un etablissement"/>
+        </div>
+    </div>
+<table  class="footable" data-page-size ="10" data-filter="#filter">
+    <thead >
+    <th data-toggle="true" style="background:#122e48">ID</th>
+    <th data-hide="phone" style="background:#122e48">Etablissement</th>
+    <th data-hide="phone" style="background:#122e48">Type</th>
+    <th data-toggle="true" style="background:#122e48">Statut</th>
+    <th data-hide="phone" style="background:#122e48">Date Creation</th>
+    <th data-hide="phone" style="background:#122e48">Adresse</th>
+    <th data-toggle="true" style="background:#122e48">Téléphone</th>
+    <th data-hide="phone" style="background:#122e48">Arrondissement</th>
+    <th data-hide="phone" style="background:#122e48">Commune</th>
+     <th data-hide="phone" style="background:#122e48">Action</th>
+    </thead>
+    <tbody >
+    {% for etablissement in etablissements %}
+    <tr>
+        <td>{{ etablissement.id }}</a></td>
+            <td>{{ etablissement.nomEtablissement }}</td>
+            <td>{{ etablissement.typeEtablissement }}</td>
+            <td>{{ etablissement.statutEtablissement }}</td>
+            <td>{{ etablissement.dateCreation }}</td>
+            <td>{{ etablissement.adresseEtablissement }}</td>
+            <td>{{ etablissement.telEtablissement }}</td>
+            <td>{{ etablissement.arrondissement.nomArrondissement }}</td>
+            <td>{{ etablissement.commune.nomCommune }}</td>
+        <td>
+            {{ render(controller('AppBundle:Etablissement:edit',{'id':etablissement.id})) }}
+            <button class="btn btn-danger btn-sm confirm"  onclick="deleteDep('{{ etablissement.id }}')" ><i class="fas fa-trash-alt"></i></button>
+        </td>
+    </tr>
+    {% endfor %}
+    </tbody>
+    <tfoot class = "hide-if-no-paging">
+    <td colspan="10">
 
-    <table border="1"; style="width:auto";>
-        <thead border="1" ; bgcolor="#00FF00">
-            <tr>
-                <th>Id</th>
-                <th>Nom </th>
-                <th>Type </th>
-                <th>Statut </th>
-                <th>Création</th>
-                <th>Adresse </th>
-                <th>Téléphone </th>
-                <th>Arrondissement </th>
-                <th>Commune </th>
-                <th style="width: 27%">Actions</th>
-                
-            </tr>
-        </thead>
-        <tbody>
-        {% for etablissement in etablissements %}
-            <tr>
-                <td><a href="{{ path('etablissement_show', { 'id': etablissement.id }) }}">{{ etablissement.id }}</a></td>
-                <td>{{ etablissement.nomEtablissement }}</td>
-                <td>{{ etablissement.typeEtablissement }}</td>
-                <td>{{ etablissement.statutEtablissement }}</td>
-                <td>{{ etablissement.dateCreation }}</td>
-                <td>{{ etablissement.adresseEtablissement }}</td>
-                <td>{{ etablissement.telEtablissement }}</td>
-                <td>{{ etablissement.arrondissement.nomArrondissement }}</td>
-                <td>{{ etablissement.commune.nomCommune }}</td>
-                
-                
-                <td bgcolor="#BBD2E1";>
-                    
-                    <ul>
-                        <!--input type="submit" value="Delete"-->
-                            <a href="{{ path('etablissement_show', { 'id': etablissement.id }) }}" type="submit"  class="btn btn-primary btn-sm">show</a> &nbsp&nbsp&nbsp
-                            <a></a>
+        <div class = "pagination">
 
-                            <a href="{{ path('etablissement_edit', { 'id': etablissement.id }) }}" class="btn btn-primary btn-sm" >edit</a>
-                            &nbsp &nbsp &nbsp
+        </div>
 
-                            <a href="{{ path('etablissement_delete', { 'id': etablissement.id }) }}" class="btn btn-danger btn-sm">Delete</a>
-                                                
-                    </ul>
-                
-                    
-                </td>
-            </tr>
-        {% endfor %}
-        </tbody>
-    </table>
+    </td>
 
-    <ul>
-        <li>
-            <a href="{{ path('etablissement_new') }}">Create a new etablissement</a>
-        </li>
-    </ul>
+    </tfoot>
+</table>
+
+
+    <script type="text/javascript">
+        $(".footable").footable();
+    </script>
 {% endblock %}

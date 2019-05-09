@@ -1,21 +1,33 @@
-{% extends 'adminbase.html.twig' %}
+
 
 {% block admin %}
-    <h1>Commune edit</h1>
 
-    {{ form_start(edit_form) }}
+<button type="button" class="btn  btn-sm btn-warning" data-toggle="modal" data-target="#editModal{{ commune.id }}">
+ <i class="fas fa-pencil-alt"></i>
+</button>
+
+<!-- Modal -->
+<div class="modal fade editDepModal" id="editModal{{ commune.id }}" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="editModalLabel">Commune</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+         {{ form_start(edit_form, {'action': path('commune_edit',{'id':commune.id}), 'method': 'POST','attr': {'class': 'edit_commune'}}) }}
         {{ form_widget(edit_form) }}
-        <input type="submit" value="Edit" />
+    
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-default" data-dismiss="modal">Fermer</button>
+        <input type="submit" class = "btn btn-primary" value="Modifier" />
     {{ form_end(edit_form) }}
+      </div>
+    </div>
+  </div>
+</div>
 
-    <ul>
-        <li>
-            <a href="{{ path('index_commune') }}">Back to the list</a>
-        </li>
-        <li>
-            {{ form_start(delete_form) }}
-                <input type="submit" value="Delete">
-            {{ form_end(delete_form) }}
-        </li>
-    </ul>
 {% endblock %}

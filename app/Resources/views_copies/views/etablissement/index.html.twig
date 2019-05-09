@@ -1,0 +1,66 @@
+{% extends 'adminbase.html.twig' %}
+
+{% block admin %}
+    <h1>Etablissements list</h1>
+    <ul>
+          <a href="{{ path('etablissement_new') }}" role="button" class="btn btn-primary" > Ajouter</a>
+        
+    </ul>
+
+    <table border="1"; style="width:auto";>
+        <thead border="1" ; bgcolor="#00FF00">
+            <tr>
+                <th>Id</th>
+                <th>Nom </th>
+                <th>Type </th>
+                <th>Statut </th>
+                <th>Création</th>
+                <th>Adresse </th>
+                <th>Téléphone </th>
+                <th>Arrondissement </th>
+                <th>Commune </th>
+                <th style="width: 27%">Actions</th>
+                
+            </tr>
+        </thead>
+        <tbody>
+        {% for etablissement in etablissements %}
+            <tr>
+                <td><a href="{{ path('etablissement_show', { 'id': etablissement.id }) }}">{{ etablissement.id }}</a></td>
+                <td>{{ etablissement.nomEtablissement }}</td>
+                <td>{{ etablissement.typeEtablissement }}</td>
+                <td>{{ etablissement.statutEtablissement }}</td>
+                <td>{{ etablissement.dateCreation }}</td>
+                <td>{{ etablissement.adresseEtablissement }}</td>
+                <td>{{ etablissement.telEtablissement }}</td>
+                <td>{{ etablissement.arrondissement.nomArrondissement }}</td>
+                <td>{{ etablissement.commune.nomCommune }}</td>
+                
+                
+                <td bgcolor="#BBD2E1";>
+                    
+                    <ul>
+                        <!--input type="submit" value="Delete"-->
+                            <a href="{{ path('etablissement_show', { 'id': etablissement.id }) }}" type="submit"  class="btn btn-primary btn-sm">show</a> &nbsp&nbsp&nbsp
+                            <a></a>
+
+                            <a href="{{ path('etablissement_edit', { 'id': etablissement.id }) }}" class="btn btn-primary btn-sm" >edit</a>
+                            &nbsp &nbsp &nbsp
+
+                            <a href="{{ path('etablissement_delete', { 'id': etablissement.id }) }}" class="btn btn-danger btn-sm">Delete</a>
+                                                
+                    </ul>
+                
+                    
+                </td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+
+    <ul>
+        <li>
+            <a href="{{ path('etablissement_new') }}">Create a new etablissement</a>
+        </li>
+    </ul>
+{% endblock %}

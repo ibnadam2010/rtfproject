@@ -1,54 +1,48 @@
 {% extends 'adminbase.html.twig' %}
 
 {% block admin %}
-    <h1>Cycle_etablissements list</h1>
-    <ul>
-          <a href="{{ path('cycle_etablissement_new') }}" role="button" class="btn btn-primary" > Ajouter</a>
-        
-    </ul>
+    {{ render(controller('AppBundle:Cycle_etablissement:new')) }}
+    <br><br><br>
+    <h3>Liste des Cycles Etablissements</h3>
+    <div class="form-group">
+        <div class = "input-group">
+            <input type="text" id ="filter" name = "prenom" class="form-control" placeholder="Rechercher un Cycle Etablissement"/>
+        </div>
+    </div>
+<table  class="footable" data-page-size ="10" data-filter="#filter">
+    <thead >
+    <th data-toggle="true" style="background:#122e48">Id</th>
+    <th data-hide="phone" style="background:#122e48">Etablissement</th>
+    <th data-hide="phone" style="background:#122e48">Cycle</th>
+    <th data-hide="phone" style="background:#122e48">Action</th>
+    </thead>
+    <tbody >
+    {% for cycle_etablissement in cycle_etablissements %}
+    <tr>
+        <td>{{ cycle_etablissement.id }}</td>
+        <td>{{ cycle_etablissement.etablissement.nomEtablissement }}</td>
+        <td>{{ cycle_etablissement.cycle.nomCycle }}</td>
+        <td>
+            {{ render(controller('AppBundle:Cycle_etablissement:edit',{'id':cycle_etablissement.id})) }}
+            <button class="btn btn-danger btn-sm confirm"  onclick="deleteDep('{{ cycle_etablissement.id }}')" ><i class="fas fa-trash-alt"></i></button>
+        </td>
+    </tr>
+    {% endfor %}
+    </tbody>
+    <tfoot class = "hide-if-no-paging">
+    <td colspan="4">
 
-    <table  border="1"; width="auto">
-        <thead border="1" ; bgcolor="#00FF00">
-            <tr>
-                <th >Id</th>
-                <th >Etablissement</th>
-                <th >Cyle</th>
-                <th width="auto">Actions</th>
-            </tr>
-        </thead>
-        <tbody>
-        {% for cycle_etablissement in cycle_etablissements %}
-            <tr>
-                <td >
-                <a href="{{ path('cycle_etablissement_show', { 'id': cycle_etablissement.id }) }}">{{ cycle_etablissement.id }}</a>
-                </td>
-                
+        <div class = "pagination">
 
-                <td>{{ cycle_etablissement.etablissement.nomEtablissement }}</td>
-                <td>{{ cycle_etablissement.cycle.nomCycle }}</td>
-                <td>
-                    <ul>
-                        
-                            <a href="{{ path('cycle_etablissement_show', { 'id': cycle_etablissement.id }) }}" type="submit"  class="btn btn-default btn-sm">show</a>&nbsp &nbsp &nbsp
-                        
-                        
-                            <a href="{{ path('cycle_etablissement_edit', { 'id': cycle_etablissement.id }) }}" type="submit"  class="btn btn-default btn-sm">edit</a>
+        </div>
 
-                            &nbsp &nbsp &nbsp 
+    </td>
 
-                            <a href="{{ path('cycle_etablissement_delete', { 'id': cycle_etablissement.id }) }}" class="btn btn-danger btn-sm">Delete</a>
-                        
-                    </ul>
-                </td>
-                </td>
-            </tr>
-        {% endfor %}
-        </tbody>
-    </table>
+    </tfoot>
+</table>
 
-    <ul>
-        
-            <a href="{{ path('cycle_etablissement_new') }}">Ajouter un cycle_etablissement</a>
-        
-    </ul>
+
+    <script type="text/javascript">
+        $(".footable").footable();
+    </script>
 {% endblock %}

@@ -1,0 +1,44 @@
+{% extends 'adminbase.html.twig' %}
+
+{% block admin %}
+    <h1>Cycle_etablissement</h1>
+
+    <table class="table table-hover table-responsive">
+        <tbody>
+            <tr>
+                <th>Id</th>
+                <td>{{ cycle_etablissement.id }}</td>
+            </tr>
+            <tr>
+                <th>Etablissement</th>
+                <td>{{ cycle_etablissement.etablissement.nomEtablissement }}</td>
+            </tr>
+            <tr>
+                <th>Cycle</th>
+                <td>{{ cycle_etablissement.cycle.nomCycle }}</td>
+            </tr>
+            <tr>
+                <th>Date enreg</th>
+                <td>{% if cycle_etablissement.dateEnreg %}{{ cycle_etablissement.dateEnreg|date('Y-m-d H:i:s') }}{% endif %}</td>
+            </tr>
+        </tbody>
+    </table>
+
+    <ul>
+
+            {{ form_start(delete_form) }}
+                <input type="submit" value="Delete">
+            {{ form_end(delete_form) }}
+        
+        <ul>
+            <a href="{{ path('cycle_etablissement_index') }}">Retour à la liste</a>
+        
+        </ul>
+        
+        <ul>
+            <a href="{{ path('cycle_etablissement_edit', { 'id': cycle_etablissement.id }) }}">Edit</a>
+        </ul>
+        
+        
+    </ul>
+{% endblock %}

@@ -1,0 +1,52 @@
+{% extends 'adminbase.html.twig' %}
+
+{% block admin %}
+    <h1>Arrondissements list</h1>
+    <ul>
+          <a href="{{ path('arrondissement_new') }}" role="button" class="btn btn-primary" > Ajouter</a>
+        
+    </ul>
+
+    <table border="1"; style="width:auto">
+        <thead border="1" ; bgcolor="#00FF00">
+            <tr>
+                <th>Id</th>
+                <th>Nom arrondissement</th>
+                <th>Nom commune</th>
+                <th>Nom departement</th>
+                
+                <th style="width: auto">Actions</th>
+            </tr>
+        </thead>
+        <tbody>
+        {% for arrondissement in arrondissements %}
+            <tr>
+                <td><a href="{{ path('arrondissement_show', { 'id': arrondissement.id }) }}">{{ arrondissement.id }}</a></td>
+                <td>{{ arrondissement.nomArrondissement }}</td>
+                <td>{{ arrondissement.commune.nomCommune }}</td>
+                <td>{{ arrondissement.commune.departement.nomDepartement }}</td>
+                
+                <td bgcolor="#BBD2E1";>
+                    <ul>
+                        
+                            <a href="{{ path('arrondissement_show', { 'id': arrondissement.id }) }}" type="submit"  class="btn btn-primary btn-sm">show</a>
+                        
+                            <a href="{{ path('arrondissement_edit', { 'id': arrondissement.id }) }}" type="submit"  class="btn btn-primary btn-sm">edit</a>
+
+                            &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp
+
+                            <a href="{{ path('arrondissement_delete', { 'id': arrondissement.id }) }}" class="btn btn-danger btn-sm">Delete</a>
+                        
+                    </ul>
+                </td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+
+    <ul>
+        <li>
+            <a href="{{ path('arrondissement_new') }}">Create a new arrondissement</a>
+        </li>
+    </ul>
+{% endblock %}

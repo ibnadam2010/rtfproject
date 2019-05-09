@@ -1,0 +1,48 @@
+{% extends 'adminbase.html.twig' %}
+
+{% block admin %}
+    <h1>Communes list</h1>
+    <ul>
+          <a href="{{ path('commune_new') }}" role="button" class="btn btn-primary" > Ajouter</a>
+        
+    </ul>
+
+    <table border="1"; style="width:auto">
+        <thead border="1" ; bgcolor="#00FF00">
+            <tr>
+                <th>Id</th>
+                <th>Nom commune</th>
+                <th>Nom departement</th>
+                
+                <th style="width: auto">Actions</th>
+            </tr>
+        </thead>
+        <tbody>
+        {% for commune in communes %}
+            <tr>
+                <td><a href="{{ path('commune_show', { 'id': commune.id }) }}">{{ commune.id }}</a></td>
+                <td>{{ commune.nomCommune }}</td>
+                <td>{{ commune.departement.nomDepartement }}</td>
+                
+                <td>
+                    <ul>
+                        
+                            <a href="{{ path('commune_show', { 'id': commune.id }) }}" type="submit"  class="btn btn-primary btn-sm">show</a>
+                        
+                            <a href="{{ path('commune_edit', { 'id': commune.id }) }}" type="submit"  class="btn btn-primary btn-sm">edit</a>
+                            &nbsp &nbsp &nbsp 
+                            <a href="{{ path('commune_delete', { 'id': commune.id }) }}" class="btn btn-danger btn-sm">Delete</a>
+                        
+                    </ul>
+                </td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+
+    <ul>
+        <li>
+            <a href="{{ path('commune_new') }}">Create a new commune</a>
+        </li>
+    </ul>
+{% endblock %}

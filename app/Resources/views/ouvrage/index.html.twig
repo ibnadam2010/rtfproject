@@ -1,55 +1,52 @@
 {% extends 'adminbase.html.twig' %}
 
 {% block admin %}
-    <h1>Ouvrages list</h1>
-    <ul>
-          <a href="{{ path('ouvrage_new') }}" role="button" class="btn btn-primary" > Ajouter</a>
-        
-    </ul>
+    {{ render(controller('AppBundle:Ouvrage:new')) }}
+    <br><br><br>
+    <h3>Liste des Ouvrage</h3>
+    <div class="form-group">
+        <div class = "input-group">
+            <input type="text" id ="filter" name = "prenom" class="form-control" placeholder="Rechercher un ouvrage"/>
+        </div>
+    </div>
+<table  class="footable" data-page-size ="10" data-filter="#filter">
+    <thead >
+    <th data-toggle="true" style="background:#122e48">Id</th>
+    <th data-hide="phone" style="background:#122e48">Nom Ouvrage</th>
+    <th data-hide="phone" style="background:#122e48">Edition</th>
+    <th data-toggle="true" style="background:#122e48">Auteur</th>
+    <th data-hide="phone" style="background:#122e48">Année</th>
+    <th data-hide="phone" style="background:#122e48">Actions</th>
+    </thead>
+    <tbody >
+    {% for ouvrage in ouvrages %}
+    <tr>
+        <td>{{ ouvrage.id }}</td>
+        <td>{{ ouvrage.nomOuvrage }}</td>
+        <td>{{ ouvrage.edition }}</td>
+        <td>{{ ouvrage.auteur }}</td>
+        <td>{{ ouvrage.annee }}</td>
+        <td>
+            {{ render(controller('AppBundle:Ouvrage:edit',{'id':ouvrage.id})) }}
+            <button class="btn btn-danger btn-sm confirm"  onclick="deleteDep('{{ ouvrage.id }}')" ><i class="fas fa-trash-alt"></i></button>
+        </td>
+    </tr>
+    {% endfor %}
+    </tbody>
+    <tfoot class = "hide-if-no-paging">
+    <td colspan="6">
 
-    <table border="1"; style="width:auto">
-        <thead border="1" ; bgcolor="#00FF00">
-            <tr>
-                <th>Id</th>
-                <th>Nom ouvrage</th>
-                <th>Edition</th>
-                <th>Auteur(s)</th>
-                <th>Année</th>
-                <th width="auto">Actions</th>
-            </tr>
-        </thead>
-        <tbody>
-        {% for ouvrage in ouvrages %}
-            <tr>
-                <td><a href="{{ path('ouvrage_show', { 'id': ouvrage.id }) }}">{{ ouvrage.id }}</a></td>
-                <td>{{ ouvrage.nomOuvrage }}</td>
-                
-                <td>{{ ouvrage.edition }}</td>
-                <td>{{ ouvrage.auteur }}</td>
-                <td>{{ ouvrage.annee }}</td>
-                
-                <td>
-                    <ul>
-                        
-                            <a href="{{ path('ouvrage_show', { 'id': ouvrage.id }) }}" type="submit"  class="btn btn-primary btn-sm">show</a>&nbsp &nbsp &nbsp
-                        
-                        
-                            <a href="{{ path('ouvrage_edit', { 'id': ouvrage.id }) }}" type="submit"  class="btn btn-primary btn-sm">edit</a>
+        <div class = "pagination">
 
-                            &nbsp &nbsp &nbsp 
+        </div>
 
-                            <a href="{{ path('ouvrage_delete', { 'id': ouvrage.id }) }}" class="btn btn-danger btn-sm">Delete</a>
-                        
-                    </ul>
-                </td>
-            </tr>
-        {% endfor %}
-        </tbody>
-    </table>
+    </td>
 
-    <ul>
-        <li>
-            <a href="{{ path('ouvrage_new') }}">Create a new ouvrage</a>
-        </li>
-    </ul>
+    </tfoot>
+</table>
+
+
+    <script type="text/javascript">
+        $(".footable").footable();
+    </script>
 {% endblock %}

@@ -1,0 +1,46 @@
+{% extends 'adminbase.html.twig' %}
+
+{% block admin %}
+    <h1>Programme</h1>
+
+    <table border="1"; style="width:auto">
+        <tbody>
+            <tr>
+                <th>Id</th>
+                <td>{{ programme.id }}</td>
+            </tr>
+            
+            <tr>
+                <th>Matiere</th>
+                <td>{{ programme.matiere.nomMatiere }}</td>
+            </tr>
+            <tr>
+                <th>Classe</th>
+                <td>{{ programme.promotion.nomPromotion }}</td>
+            </tr>
+            
+            <tr>
+                <th>Coefficient</th>
+                <td>{{ programme.coef }}</td>
+            </tr>
+            <tr>
+                <th>Masse horaire</th>
+                <td>{{ programme.masseHoraire }}</td>
+            </tr>
+        </tbody>
+    </table>
+
+    <ul>
+        <li>
+            <a href="{{ path('index_programme') }}">Back to the list</a>
+        </li>
+        <li>
+            <a href="{{ path('programme_edit', { 'id': programme.id }) }}">Edit</a>
+        </li>
+        <li>
+            {{ form_start(delete_form) }}
+                <input type="submit" value="Delete">
+            {{ form_end(delete_form) }}
+        </li>
+    </ul>
+{% endblock %}

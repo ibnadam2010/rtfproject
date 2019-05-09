@@ -1,0 +1,40 @@
+{% extends 'adminbase.html.twig' %}
+
+{% block admin %}
+    <h1>Matiere</h1>
+
+    <table border="1"; style="width:auto">
+        <tbody>
+            <tr>
+                <th>Id</th>
+                <td>{{ matiere.id }}</td>
+            </tr>
+            <tr>
+                <th>Nommatiere</th>
+                <td>{{ matiere.nomMatiere }}</td>
+            </tr>
+            <tr>
+                <th>Dateenreg</th>
+                <td>{% if matiere.dateEnreg %}{{ matiere.dateEnreg|date('Y-m-d H:i:s') }}{% endif %}</td>
+            </tr>
+            <tr>
+                <th>Commentaire</th>
+                <td>{{ matiere.commentaire }}</td>
+            </tr>
+        </tbody>
+    </table>
+
+    <ul>
+        <li>
+            <a href="{{ path('index_matiere') }}">Back to the list</a>
+        </li>
+        <li>
+            <a href="{{ path('matiere_edit', { 'id': matiere.id }) }}">Edit</a>
+        </li>
+        <li>
+            {{ form_start(delete_form) }}
+                <input type="submit" value="Delete">
+            {{ form_end(delete_form) }}
+        </li>
+    </ul>
+{% endblock %}

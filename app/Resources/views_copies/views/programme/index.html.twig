@@ -1,0 +1,56 @@
+{% extends 'adminbase.html.twig' %}
+
+{% block admin %}
+    <h1>Programmes list</h1>
+    <ul>
+          <a href="{{ path('programme_new') }}" role="button" class="btn btn-primary" > Ajouter</a>
+        
+    </ul>
+
+    <table border="1"; style="width:auto";>
+        <thead border="1" ; bgcolor="#00FF00">
+            <tr style="auto">
+                <th>Id</th>
+                <th>Matiere</th>
+                <th>Promotion</th>
+                <th>Coefficient</th>
+                <th>Masse horaire</th>
+                <th style="width: auto">Actions</th>
+            </tr>
+        </thead>
+        <tbody>
+        {% for programme in programmes %}
+            <tr>
+                <td><a href="{{ path('programme_show', { 'id': programme.id }) }}">{{ programme.id }}</a></td>
+                <td>{{ programme.matiere.nomMatiere }}</td>
+                <td>{{ programme.promotion.nomPromotion }}</td>
+                
+                <td>{{ programme.coef }}</td>
+                <td>{{ programme.masseHoraire }}</td>
+                <td bgcolor="#BBD2E1";>
+                    
+                    <ul>
+                        <!--input type="submit" value="Delete"-->
+                            <a href="{{ path('programme_show', { 'id': programme.id }) }}" type="submit"  class="btn btn-primary btn-sm">show</a> &nbsp&nbsp&nbsp
+                            <a></a>
+                            <a></a>
+                            <a href="{{ path('programme_edit', { 'id': programme.id }) }}" class="btn btn-primary btn-sm" >edit</a>
+
+                            &nbsp &nbsp &nbsp 
+                            <a href="{{ path('programme_delete', { 'id': programme.id }) }}" class="btn btn-danger btn-sm">Delete</a>
+                                                
+                    </ul>
+                
+                    
+                </td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+
+    <ul>
+        <li>
+            <a href="{{ path('programme_new') }}">Create a new programme</a>
+        </li>
+    </ul>
+{% endblock %}

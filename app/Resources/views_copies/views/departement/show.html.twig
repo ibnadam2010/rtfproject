@@ -1,0 +1,36 @@
+{% extends 'adminbase.html.twig' %}
+
+{% block admin %}
+    <h1>Departement</h1>
+
+    <table class="table table-hover table-responsive">
+        <tbody>
+            <tr>
+                <th>Id</th>
+                <td>{{ departement.id }}</td>
+            </tr>
+            <tr>
+                <th>Nom departement</th>
+                <td>{{ departement.nomDepartement }}</td>
+            </tr>
+            <tr>
+                <th>Date enreg</th>
+                <td>{% if departement.dateEnreg %}{{ departement.dateEnreg|date('Y-m-d H:i:s') }}{% endif %}</td>
+            </tr>
+        </tbody>
+    </table>
+
+    <ul>
+        <li>
+            <a href="{{ path('index_departement') }}">Back to the list</a>
+        </li>
+        <li>
+            <a href="{{ path('departement_edit', { 'id': departement.id }) }}">Edit</a>
+        </li>
+        
+            {{ form_start(delete_form) }}
+                <input type="submit" value="Delete">
+            {{ form_end(delete_form) }}
+        
+    </ul>
+{% endblock %}

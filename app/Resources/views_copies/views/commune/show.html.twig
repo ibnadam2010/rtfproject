@@ -1,0 +1,40 @@
+{% extends 'adminbase.html.twig' %}
+
+{% block admin %}
+    <h1>Commune</h1>
+
+    <table border="1"; style="width:auto">
+        <tbody>
+            <tr>
+                <th>Id</th>
+                <td>{{ commune.id }}</td>
+            </tr>
+            <tr>
+                <th>Nomcommune</th>
+                <td>{{ commune.nomCommune }}</td>
+            </tr>
+            <tr>
+                <th>Nom departement</th>
+                <td>{{ commune.departement.nomDepartement }}</td>
+            </tr>
+            <tr>
+                <th>Dateenreg</th>
+                <td>{% if commune.dateEnreg %}{{ commune.dateEnreg|date('Y-m-d H:i:s') }}{% endif %}</td>
+            </tr>
+        </tbody>
+    </table>
+
+    <ul>
+        <li>
+            <a href="{{ path('index_commune') }}">Back to the list</a>
+        </li>
+        <li>
+            <a href="{{ path('commune_edit', { 'id': commune.id }) }}">Edit</a>
+        </li>
+        <li>
+            {{ form_start(delete_form) }}
+                <input type="submit" value="Delete">
+            {{ form_end(delete_form) }}
+        </li>
+    </ul>
+{% endblock %}
