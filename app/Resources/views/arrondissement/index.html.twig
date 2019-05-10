@@ -1,52 +1,50 @@
 {% extends 'adminbase.html.twig' %}
 
 {% block admin %}
-    <h1>Arrondissements list</h1>
-    <ul>
-          <a href="{{ path('arrondissement_new') }}" role="button" class="btn btn-primary" > Ajouter</a>
-        
-    </ul>
-
-    <table border="1"; style="width:auto">
-        <thead border="1" ; bgcolor="#00FF00">
-            <tr>
-                <th>Id</th>
-                <th>Nom arrondissement</th>
-                <th>Nom commune</th>
-                <th>Nom departement</th>
-                
-                <th style="width: auto">Actions</th>
-            </tr>
-        </thead>
-        <tbody>
-        {% for arrondissement in arrondissements %}
-            <tr>
-                <td><a href="{{ path('arrondissement_show', { 'id': arrondissement.id }) }}">{{ arrondissement.id }}</a></td>
+    {{ render(controller('AppBundle:Arrondissement:new')) }}
+    <br><br><br>
+    <h3>Liste des arrondissement</h3>
+    <div class="form-group">
+        <div class = "input-group">
+            <input type="text" id ="filter" name = "prenom" class="form-control" placeholder="Rechercher un arrondissement"/>
+        </div>
+    </div>
+<table  class="footable" data-page-size ="10" data-filter="#filter">
+    <thead >
+    <th data-toggle="true" style="background:#122e48">Id</th>
+    <th data-hide="phone" style="background:#122e48">Arrondissement</th>
+    <th data-hide="phone" style="background:#122e48">Commune</th>
+    <th data-hide="phone" style="background:#122e48">Département</th>
+    <th data-hide="phone" style="background:#122e48">Action</th>
+    </thead>
+    <tbody >
+    {% for arrondissement in arrondissements %}
+    <tr>
+        <td>{{ arrondissement.id }}</td>
                 <td>{{ arrondissement.nomArrondissement }}</td>
                 <td>{{ arrondissement.commune.nomCommune }}</td>
                 <td>{{ arrondissement.commune.departement.nomDepartement }}</td>
-                
-                <td bgcolor="#BBD2E1";>
-                    <ul>
-                        
-                            <a href="{{ path('arrondissement_show', { 'id': arrondissement.id }) }}" type="submit"  class="btn btn-primary btn-sm">show</a>
-                        
-                            <a href="{{ path('arrondissement_edit', { 'id': arrondissement.id }) }}" type="submit"  class="btn btn-primary btn-sm">edit</a>
+        <td>
+            {{ render(controller('AppBundle:Arrondissement:edit',{'id':arrondissement.id})) }}
+            <button class="btn btn-danger btn-sm confirm"  onclick="deleteDep('{{ path('arrondissement_delete', { 'id': arrondissement.id }) }}')" ><i class="fas fa-trash-alt"></i></button>
+        </td>
+    </tr>
+    {% endfor %}
+    </tbody>
+    <tfoot class = "hide-if-no-paging">
+    <td colspan="5">
 
-                            &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp
+        <div class = "pagination">
 
-                            <a href="{{ path('arrondissement_delete', { 'id': arrondissement.id }) }}" class="btn btn-danger btn-sm">Delete</a>
-                        
-                    </ul>
-                </td>
-            </tr>
-        {% endfor %}
-        </tbody>
-    </table>
+        </div>
 
-    <ul>
-        <li>
-            <a href="{{ path('arrondissement_new') }}">Create a new arrondissement</a>
-        </li>
-    </ul>
+    </td>
+
+    </tfoot>
+</table>
+
+
+    <script type="text/javascript">
+        $(".footable").footable();
+    </script>
 {% endblock %}
