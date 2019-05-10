@@ -1,0 +1,68 @@
+{% extends 'adminbase.html.twig' %}
+
+{% block admin %}
+    <h1>Ecole_sup</h1>
+
+    <table>
+        <tbody>
+            <tr>
+                <th>Id</th>
+                <td>{{ ecole_sup.id }}</td>
+            </tr>
+            <tr>
+                <th>Nome cole</th>
+                <td>{{ ecole_sup.nomEcole }}</td>
+            </tr>
+            <tr>
+                <th>Nom universite</th>
+                <td>{{ ecole_sup.nomUniversite }}</td>
+            </tr>
+            <tr>
+                <th>Type ecole</th>
+                <td>{{ ecole_sup.typeEcole }}</td>
+            </tr>
+            <tr>
+                <th>Statut ecole</th>
+                <td>{{ ecole_sup.statutEcole }}</td>
+            </tr>
+            <tr>
+                <th>Adres ecole</th>
+                <td>{{ ecole_sup.adresEcole }}</td>
+            </tr>
+            <tr>
+                <th>Tele cole</th>
+                <td>{{ ecole_sup.telEcole }}</td>
+            </tr>
+            <tr>
+                <th>Email ecole</th>
+                <td>{{ ecole_sup.emailEcole }}</td>
+            </tr>
+            <tr>
+                <th>Url ecole</th>
+                <td>{{ ecole_sup.urlEcole }}</td>
+            </tr>
+            <tr>
+                <th>Annee creation</th>
+                <td>{{ ecole_sup.anneeCreation }}</td>
+            </tr>
+            <tr>
+                <th>Date enreg</th>
+                <td>{% if ecole_sup.dateEnreg %}{{ ecole_sup.dateEnreg|date('Y-m-d H:i:s') }}{% endif %}</td>
+            </tr>
+        </tbody>
+    </table>
+
+    <ul>
+        <li>
+            <a href="{{ path('ecole_sup_index') }}">Back to the list</a>
+        </li>
+        <li>
+            <a href="{{ path('ecole_sup_edit', { 'id': ecole_sup.id }) }}">Edit</a>
+        </li>
+        <li>
+            {{ form_start(delete_form) }}
+                <input type="submit" value="Delete">
+            {{ form_end(delete_form) }}
+        </li>
+    </ul>
+{% endblock %}

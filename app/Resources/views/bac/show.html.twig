@@ -1,0 +1,36 @@
+{% extends 'adminbase.html.twig' %}
+
+{% block admin %}
+    <h1>Bac</h1>
+
+    <table>
+        <tbody>
+            <tr>
+                <th>Id</th>
+                <td>{{ bac.id }}</td>
+            </tr>
+            <tr>
+                <th>Nombac</th>
+                <td>{{ bac.nomBac }}</td>
+            </tr>
+            <tr>
+                <th>Dateenreg</th>
+                <td>{% if bac.dateEnreg %}{{ bac.dateEnreg|date('Y-m-d H:i:s') }}{% endif %}</td>
+            </tr>
+        </tbody>
+    </table>
+
+    <ul>
+        <li>
+            <a href="{{ path('bac_index') }}">Back to the list</a>
+        </li>
+        <li>
+            <a href="{{ path('bac_edit', { 'id': bac.id }) }}">Edit</a>
+        </li>
+        <li>
+            {{ form_start(delete_form) }}
+                <input type="submit" value="Delete">
+            {{ form_end(delete_form) }}
+        </li>
+    </ul>
+{% endblock %}

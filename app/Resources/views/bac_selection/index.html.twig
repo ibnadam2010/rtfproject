@@ -1,0 +1,45 @@
+{% extends 'adminbase.html.twig' %}
+
+{% block admin %}
+    <h1>Bac_selections list</h1>
+
+    <table border="1"; style="width:auto";>
+        <thead>
+            <tr>
+                <th>Id</th>
+                <th>Bac</th>
+                <th>Specialité</th>
+                <th>Dateenreg</th>
+                <th>Actions</th>
+            </tr>
+        </thead>
+        <tbody>
+        {% for bac_selection in bac_selections %}
+            <tr>
+                <td><a href="{{ path('bac_selection_show', { 'id': bac_selection.id }) }}">{{ bac_selection.id }}</a></td>
+                <td>{{ bac_selection.bac.nomBac }}</td>
+                <td>{{ bac_selection.specialite.nomSpecialite }}</td>
+                <td>{% if bac_selection.dateEnreg %}{{ bac_selection.dateEnreg|date('Y-m-d H:i:s') }}{% endif %}</td>
+                <td>
+                    <ul>
+                        
+                            <a href="{{ path('bac_selection_show', { 'id': bac_selection.id }) }}">show</a>
+                        
+                            <a href="{{ path('bac_selection_edit', { 'id': bac_selection.id }) }}">edit</a>
+
+                            <a href="{{ path('bac_selection_delete', { 'id': bac_selection.id }) }}">delete</a>
+
+                        
+                    </ul>
+                </td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+
+    <ul>
+        <li>
+            <a href="{{ path('bac_selection_new') }}">Create a new bac_selection</a>
+        </li>
+    </ul>
+{% endblock %}

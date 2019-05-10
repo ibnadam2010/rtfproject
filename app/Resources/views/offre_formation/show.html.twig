@@ -1,0 +1,32 @@
+{% extends 'adminbase.html.twig' %}
+
+{% block admin %}
+    <h1>Offre_formation</h1>
+
+    <table>
+        <tbody>
+            <tr>
+                <th>Id</th>
+                <td>{{ offre_formation.id }}</td>
+            </tr>
+            <tr>
+                <th>Dateenreg</th>
+                <td>{% if offre_formation.dateEnreg %}{{ offre_formation.dateEnreg|date('Y-m-d H:i:s') }}{% endif %}</td>
+            </tr>
+        </tbody>
+    </table>
+
+    <ul>
+        <li>
+            <a href="{{ path('offre_formation_index') }}">Back to the list</a>
+        </li>
+        <li>
+            <a href="{{ path('offre_formation_edit', { 'id': offre_formation.id }) }}">Edit</a>
+        </li>
+        <li>
+            {{ form_start(delete_form) }}
+                <input type="submit" value="Delete">
+            {{ form_end(delete_form) }}
+        </li>
+    </ul>
+{% endblock %}

@@ -1,0 +1,42 @@
+{% extends 'adminbase.html.twig' %}
+
+{% block admin %}
+    <h1>Domaines list</h1>
+
+    <table border="1"; style="width:auto";>
+        <thead>
+            <tr>
+                <th>Id</th>
+                <th>Nomdomaine</th>
+                
+                <th>Actions</th>
+            </tr>
+        </thead>
+        <tbody>
+        {% for domaine in domaines %}
+            <tr>
+                <td><a href="{{ path('domaine_show', { 'id': domaine.id }) }}">{{ domaine.id }}</a></td>
+                <td>{{ domaine.nomDomaine }}</td>
+                <!--td>{% if domaine.dateEnreg %}{{ domaine.dateEnreg|date('Y-m-d H:i:s') }}{% endif %}</td-->
+                <td>
+                    <ul>
+                        
+                            <a href="{{ path('domaine_show', { 'id': domaine.id }) }}">show</a>
+                        
+                            <a href="{{ path('domaine_edit', { 'id': domaine.id }) }}">edit</a>
+
+                            <a href="{{ path('domaine_delete', { 'id': domaine.id }) }}">delete</a>
+                        
+                    </ul>
+                </td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+
+    <ul>
+        <li>
+            <a href="{{ path('domaine_new') }}">Create a new domaine</a>
+        </li>
+    </ul>
+{% endblock %}

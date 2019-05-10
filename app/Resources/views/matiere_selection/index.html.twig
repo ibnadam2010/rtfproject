@@ -1,0 +1,46 @@
+{% extends 'adminbase.html.twig' %}
+
+{% block admin %}
+    <h1>Matiere_selections list</h1>
+
+    <table border="1"; style="width:auto";>
+        <thead>
+            <tr>
+                <th>Id</th>
+                <th>Matiere</th>
+                <th>Specialite</th>
+                <th>Coefficient</th>
+                <th>Dateenreg</th>
+                <th>Actions</th>
+            </tr>
+        </thead>
+        <tbody>
+        {% for matiere_selection in matiere_selections %}
+            <tr>
+                <td><a href="{{ path('matiere_selection_show', { 'id': matiere_selection.id }) }}">{{ matiere_selection.id }}</a></td>
+                <td>{{ matiere_selection.matiere.nomMatiere }}</td>
+                <td>{{ matiere_selection.specialite.nomSpecialite }}</td>
+                <td>{{ matiere_selection.coefMatiere }}</td>
+                <td>{% if matiere_selection.dateEnreg %}{{ matiere_selection.dateEnreg|date('Y-m-d H:i:s') }}{% endif %}</td>
+                <td>
+                    <ul>
+                        
+                            <a href="{{ path('matiere_selection_show', { 'id': matiere_selection.id }) }}">show</a>
+                        
+                            <a href="{{ path('matiere_selection_edit', { 'id': matiere_selection.id }) }}">edit</a>
+
+                            <a href="{{ path('matiere_selection_delete', { 'id': matiere_selection.id }) }}">delete</a>
+                        
+                    </ul>
+                </td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+
+    <ul>
+        <li>
+            <a href="{{ path('matiere_selection_new') }}">Create a new matiere_selection</a>
+        </li>
+    </ul>
+{% endblock %}

@@ -1,0 +1,36 @@
+{% extends 'adminbase.html.twig' %}
+
+{% block admin %}
+    <h1>Matiere_selection</h1>
+
+    <table>
+        <tbody>
+            <tr>
+                <th>Id</th>
+                <td>{{ matiere_selection.id }}</td>
+            </tr>
+            <tr>
+                <th>Coefmatiere</th>
+                <td>{{ matiere_selection.coefMatiere }}</td>
+            </tr>
+            <tr>
+                <th>Dateenreg</th>
+                <td>{% if matiere_selection.dateEnreg %}{{ matiere_selection.dateEnreg|date('Y-m-d H:i:s') }}{% endif %}</td>
+            </tr>
+        </tbody>
+    </table>
+
+    <ul>
+        <li>
+            <a href="{{ path('matiere_selection_index') }}">Back to the list</a>
+        </li>
+        <li>
+            <a href="{{ path('matiere_selection_edit', { 'id': matiere_selection.id }) }}">Edit</a>
+        </li>
+        <li>
+            {{ form_start(delete_form) }}
+                <input type="submit" value="Delete">
+            {{ form_end(delete_form) }}
+        </li>
+    </ul>
+{% endblock %}

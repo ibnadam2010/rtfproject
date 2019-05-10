@@ -1,0 +1,42 @@
+{% extends 'adminbase.html.twig' %}
+
+{% block admin %}
+    <h1>Bacs list</h1>
+
+    <table border="1"; style="width:auto";>
+        <thead>
+            <tr>
+                <th>Id</th>
+                <th>Nom bac</th>
+                <th>Dateenreg</th>
+                <th>Actions</th>
+            </tr>
+        </thead>
+        <tbody>
+        {% for bac in bacs %}
+            <tr>
+                <td><a href="{{ path('bac_show', { 'id': bac.id }) }}">{{ bac.id }}</a></td>
+                <td>{{ bac.nomBac }}</td>
+                <td>{% if bac.dateEnreg %}{{ bac.dateEnreg|date('Y-m-d H:i:s') }}{% endif %}</td>
+                <td>
+                    <ul>
+                        
+                            <a href="{{ path('bac_show', { 'id': bac.id }) }}">show</a>
+                        
+                            <a href="{{ path('bac_edit', { 'id': bac.id }) }}">edit</a>
+
+                            <a href="{{ path('bac_delete', { 'id': bac.id }) }}">delete</a>
+                        
+                    </ul>
+                </td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+
+    <ul>
+        <li>
+            <a href="{{ path('bac_new') }}">Create a new bac</a>
+        </li>
+    </ul>
+{% endblock %}

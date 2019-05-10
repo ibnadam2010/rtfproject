@@ -1,0 +1,50 @@
+{% extends 'adminbase.html.twig' %}
+
+{% block admin %}
+    <h1>Epreuve_bacs list</h1>
+
+    <table border="1"; style="width:auto";>
+        <thead>
+            <tr>
+                <th>Id</th>
+                <th>Matiere</th>
+                <th>Bac</th>
+                <th>Duree</th>
+                <th>Coefficient</th>
+                <th>Type epreuve</th>
+                <th>Date enreg</th>
+                <th>Actions</th>
+            </tr>
+        </thead>
+        <tbody>
+        {% for epreuve_bac in epreuve_bacs %}
+            <tr>
+                <td><a href="{{ path('epreuve_bac_show', { 'id': epreuve_bac.id }) }}">{{ epreuve_bac.id }}</a></td>
+                <td>{{ epreuve_bac.matiere.nomMatiere }}</td>
+                <td>{{ epreuve_bac.bac.nomBac }}</td>
+                <td>{{ epreuve_bac.duree }}</td>
+                <td>{{ epreuve_bac.coefEpreuve }}</td>
+                <td>{{ epreuve_bac.typeEpreuve }}</td>
+                <td>{% if epreuve_bac.dateEnreg %}{{ epreuve_bac.dateEnreg|date('Y-m-d H:i:s') }}{% endif %}</td>
+                <td>
+                    <ul>
+                        
+                            <a href="{{ path('epreuve_bac_show', { 'id': epreuve_bac.id }) }}">show</a>
+                        
+                            <a href="{{ path('epreuve_bac_edit', { 'id': epreuve_bac.id }) }}">edit</a>
+
+                            <a href="{{ path('epreuve_bac_delete', { 'id': epreuve_bac.id }) }}">delete</a>
+                        
+                    </ul>
+                </td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+
+    <ul>
+        <li>
+            <a href="{{ path('epreuve_bac_new') }}">Create a new epreuve_bac</a>
+        </li>
+    </ul>
+{% endblock %}

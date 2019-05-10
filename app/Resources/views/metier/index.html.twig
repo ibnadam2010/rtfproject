@@ -1,0 +1,49 @@
+{% extends 'adminbase.html.twig' %}
+
+{% block admin %}
+    <h1>Metiers list</h1>
+
+    <table border="1"; style="width:auto";>
+        <thead>
+            <tr>
+                <th>Id</th>
+                <th>Metier</th>
+                <th>Specialite</th>
+                <th>Filiere</th>
+                
+                <th>Actions</th>
+            </tr>
+        </thead>
+        <tbody>
+        {% for metier in metiers %}
+            <tr>
+                <td><a href="{{ path('metier_show', { 'id': metier.id }) }}">{{ metier.id }}</a></td>
+                <td>{{ metier.nomMetier }}</td>
+                <td>{{ metier.specialite.nomSpecialite }}</td>
+                <td>{{ metier.specialite.filiere.nomFiliere }}</td>
+                
+                
+                
+                
+                <td>
+                    <ul>
+                        
+                            <a href="{{ path('metier_show', { 'id': metier.id }) }}">show</a>
+                        
+                            <a href="{{ path('metier_edit', { 'id': metier.id }) }}">edit</a>
+
+                            <a href="{{ path('metier_delete', { 'id': metier.id }) }}">delete</a>
+                        
+                    </ul>
+                </td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+
+    <ul>
+        <li>
+            <a href="{{ path('metier_new') }}">Create a new metier</a>
+        </li>
+    </ul>
+{% endblock %}

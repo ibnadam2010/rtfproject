@@ -7,24 +7,27 @@ use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
 use Symfony\Component\Form\Extension\Core\Type\ChoiceType;
 
-class EtablissementType extends AbstractType
+class DiplomeType extends AbstractType
 {
     /**
      * {@inheritdoc}
      */
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
-        $builder->add('nomEtablissement')->add('typeEtablissement',ChoiceType::class,['choices'=>['Collège'=> true,'Lycée'=> false]])
-        ->add('statutEtablissement',ChoiceType::class,['choices'=>['Public'=> false,'Privé'=> false]])
+        $builder->add('specialite')
+       // ->add('nomDiplome')
+        ->add('nomDiplome')
 
-        ->add('dateCreation')->add('adresseEtablissement')->add('telEtablissement')->add('emailEtablissement')->add('sitewebEtablissement')->add('commune')->add('arrondissement')->add('departement');
-    }/**
+        ->add('niveauDiplome', ChoiceType::class,[
+            'choices'=>["Bac + 3"=> true,'Bac + 4'=> false,'Bac + 5'=> false, 'Bac + 7'=> false],]);
+    }
+    /**
      * {@inheritdoc}
      */
     public function configureOptions(OptionsResolver $resolver)
     {
         $resolver->setDefaults(array(
-            'data_class' => 'AppBundle\Entity\Etablissement'
+            'data_class' => 'AppBundle\Entity\Diplome'
         ));
     }
 
@@ -33,7 +36,7 @@ class EtablissementType extends AbstractType
      */
     public function getBlockPrefix()
     {
-        return 'appbundle_etablissement';
+        return 'appbundle_diplome';
     }
 
 

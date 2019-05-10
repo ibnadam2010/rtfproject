@@ -1,0 +1,44 @@
+{% extends 'adminbase.html.twig' %}
+
+{% block admin %}
+    <h1>Epreuve_bac</h1>
+
+    <table>
+        <tbody>
+            <tr>
+                <th>Id</th>
+                <td>{{ epreuve_bac.id }}</td>
+            </tr>
+            <tr>
+                <th>Duree</th>
+                <td>{{ epreuve_bac.duree }}</td>
+            </tr>
+            <tr>
+                <th>Coefepreuve</th>
+                <td>{{ epreuve_bac.coefEpreuve }}</td>
+            </tr>
+            <tr>
+                <th>Typeepreuve</th>
+                <td>{{ epreuve_bac.typeEpreuve }}</td>
+            </tr>
+            <tr>
+                <th>Dateenreg</th>
+                <td>{% if epreuve_bac.dateEnreg %}{{ epreuve_bac.dateEnreg|date('Y-m-d H:i:s') }}{% endif %}</td>
+            </tr>
+        </tbody>
+    </table>
+
+    <ul>
+        <li>
+            <a href="{{ path('epreuve_bac_index') }}">Back to the list</a>
+        </li>
+        <li>
+            <a href="{{ path('epreuve_bac_edit', { 'id': epreuve_bac.id }) }}">Edit</a>
+        </li>
+        <li>
+            {{ form_start(delete_form) }}
+                <input type="submit" value="Delete">
+            {{ form_end(delete_form) }}
+        </li>
+    </ul>
+{% endblock %}

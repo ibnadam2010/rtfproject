@@ -1,0 +1,46 @@
+{% extends 'adminbase.html.twig' %}
+
+{% block admin %}
+    <h1>Diplomes list</h1>
+
+    <table border="1"; style="width:auto";>
+        <thead>
+            <tr>
+                <th>Id</th>
+                <th>Nom diplome</th>
+                <th>Niveau</th>
+                <th>Specialite</th>
+                <th>Dateenreg</th>
+                <th>Actions</th>
+            </tr>
+        </thead>
+        <tbody>
+        {% for diplome in diplomes %}
+            <tr>
+                <td><a href="{{ path('diplome_show', { 'id': diplome.id }) }}">{{ diplome.id }}</a></td>
+                <td>{{ diplome.nomDiplome }}</td>
+                <td>{{ diplome.niveauDiplome }}</td>
+                <td>{{ diplome.specialite.nomSpecialite }}</td>
+                <td>{% if diplome.dateEnreg %}{{ diplome.dateEnreg|date('Y-m-d H:i:s') }}{% endif %}</td>
+                <td>
+                    <ul>
+                        
+                            <a href="{{ path('diplome_show', { 'id': diplome.id }) }}">show</a>
+                        
+                            <a href="{{ path('diplome_edit', { 'id': diplome.id }) }}">edit</a>
+
+                            <a href="{{ path('diplome_delete', { 'id': diplome.id }) }}">delete</a>
+                        
+                    </ul>
+                </td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+
+    <ul>
+        <li>
+            <a href="{{ path('diplome_new') }}">Create a new diplome</a>
+        </li>
+    </ul>
+{% endblock %}

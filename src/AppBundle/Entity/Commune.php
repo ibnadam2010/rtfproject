@@ -59,6 +59,13 @@ class Commune
     private $etablissements;
 
 
+    //relation entre commune et ecole_sup
+    /**
+     * @ORM\OneToMany(targetEntity="Ecole_sup", mappedBy="commune")
+     */
+    public $ecole_sups;
+
+
     /**
      * Get id.
      *

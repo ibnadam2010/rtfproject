@@ -1,0 +1,47 @@
+{% extends 'adminbase.html.twig' %}
+
+{% block admin %}
+    <h1>Specialites list</h1>
+
+    <table border="1"; style="width:auto";>
+        <thead>
+            <tr>
+                <th>Id</th>
+                <th>Nom specialite</th>
+                
+                
+                <th>Actions</th>
+            </tr>
+        </thead>
+        <tbody>
+        {% for specialite in specialites %}
+            <tr>
+                <td><a href="{{ path('specialite_show', { 'id': specialite.id }) }}">{{ specialite.id }}</a></td>
+                
+                <td>{{ specialite.nomSpecialite }}</td>
+                
+                
+                
+                <!--td>{% if specialite.dateEnreg %}{{ specialite.dateEnreg|date('Y-m-d H:i:s') }}{% endif %}</td-->
+                <td>
+                    <ul>
+                        
+                            <a href="{{ path('specialite_show', { 'id': specialite.id }) }}">show</a>
+                        
+                            <a href="{{ path('specialite_edit', { 'id': specialite.id }) }}">edit</a>
+
+                            <a href="{{ path('specialite_delete', { 'id': specialite.id }) }}">delete</a>
+                        
+                    </ul>
+                </td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+
+    <ul>
+        <li>
+            <a href="{{ path('specialite_new') }}">Create a new specialite</a>
+        </li>
+    </ul>
+{% endblock %}

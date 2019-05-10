@@ -1,0 +1,42 @@
+{% extends 'adminbase.html.twig' %}
+
+{% block admin %}
+    <h1>Filieres list</h1>
+
+    <table border="1"; style="width:auto";>
+        <thead>
+            <tr>
+                <th>Id</th>
+                <th>Nom filiere</th>
+                <th>Domaine</th>
+                <th>Actions</th>
+            </tr>
+        </thead>
+        <tbody>
+        {% for filiere in filieres %}
+            <tr>
+                <td><a href="{{ path('filiere_show', { 'id': filiere.id }) }}">{{ filiere.id }}</a></td>
+                <td>{{ filiere.nomFiliere }}</td>
+                <td>{{ filiere.domaine.nomDomaine }}</td>
+                <!--td>{% if filiere.dateEnreg %}{{ filiere.dateEnreg|date('Y-m-d H:i:s') }}{% endif %}</td-->
+                <td>
+                    <ul>
+                        
+                            <a href="{{ path('filiere_show', { 'id': filiere.id }) }}">show</a>
+                        
+                            <a href="{{ path('filiere_edit', { 'id': filiere.id }) }}">edit</a>
+                            <a href="{{ path('filiere_delete', { 'id': filiere.id }) }}">delete</a>
+                        
+                    </ul>
+                </td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+
+    <ul>
+        <li>
+            <a href="{{ path('filiere_new') }}">Create a new filiere</a>
+        </li>
+    </ul>
+{% endblock %}

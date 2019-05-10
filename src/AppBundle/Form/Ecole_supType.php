@@ -7,24 +7,25 @@ use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
 use Symfony\Component\Form\Extension\Core\Type\ChoiceType;
 
-class EtablissementType extends AbstractType
+class Ecole_supType extends AbstractType
 {
     /**
      * {@inheritdoc}
      */
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
-        $builder->add('nomEtablissement')->add('typeEtablissement',ChoiceType::class,['choices'=>['Collège'=> true,'Lycée'=> false]])
-        ->add('statutEtablissement',ChoiceType::class,['choices'=>['Public'=> false,'Privé'=> false]])
-
-        ->add('dateCreation')->add('adresseEtablissement')->add('telEtablissement')->add('emailEtablissement')->add('sitewebEtablissement')->add('commune')->add('arrondissement')->add('departement');
+        $builder->add('nomEcole')->add('nomUniversite')
+        ->add('typeEcole',ChoiceType::class,['choices'=>['Ecole'=> true,'Faculté'=> false],])
+        
+        ->add('statutEcole',ChoiceType::class,['choices'=>['Public'=> true,'Privé'=> false],])
+        ->add('adresEcole')->add('telEcole')->add('emailEcole')->add('urlEcole')->add('anneeCreation')->add('commune');
     }/**
      * {@inheritdoc}
      */
     public function configureOptions(OptionsResolver $resolver)
     {
         $resolver->setDefaults(array(
-            'data_class' => 'AppBundle\Entity\Etablissement'
+            'data_class' => 'AppBundle\Entity\Ecole_sup'
         ));
     }
 
@@ -33,7 +34,7 @@ class EtablissementType extends AbstractType
      */
     public function getBlockPrefix()
     {
-        return 'appbundle_etablissement';
+        return 'appbundle_ecole_sup';
     }
 
 

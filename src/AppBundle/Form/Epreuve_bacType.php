@@ -7,24 +7,22 @@ use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
 use Symfony\Component\Form\Extension\Core\Type\ChoiceType;
 
-class EtablissementType extends AbstractType
+class Epreuve_bacType extends AbstractType
 {
     /**
      * {@inheritdoc}
      */
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
-        $builder->add('nomEtablissement')->add('typeEtablissement',ChoiceType::class,['choices'=>['Collège'=> true,'Lycée'=> false]])
-        ->add('statutEtablissement',ChoiceType::class,['choices'=>['Public'=> false,'Privé'=> false]])
-
-        ->add('dateCreation')->add('adresseEtablissement')->add('telEtablissement')->add('emailEtablissement')->add('sitewebEtablissement')->add('commune')->add('arrondissement')->add('departement');
+        $builder->add('bac')->add('typeEpreuve',ChoiceType::class,['choices'=>['Epreuve écrite'=> true,'Epreuve orale'=> false],])
+        ->add('matiere')->add('coefEpreuve')->add('duree');
     }/**
      * {@inheritdoc}
      */
     public function configureOptions(OptionsResolver $resolver)
     {
         $resolver->setDefaults(array(
-            'data_class' => 'AppBundle\Entity\Etablissement'
+            'data_class' => 'AppBundle\Entity\Epreuve_bac'
         ));
     }
 
@@ -33,7 +31,7 @@ class EtablissementType extends AbstractType
      */
     public function getBlockPrefix()
     {
-        return 'appbundle_etablissement';
+        return 'appbundle_epreuve_bac';
     }
 
 

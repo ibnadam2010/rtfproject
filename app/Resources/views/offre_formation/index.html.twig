@@ -1,0 +1,48 @@
+{% extends 'adminbase.html.twig' %}
+
+{% block admin %}
+    <h1>Offre_formations list</h1>
+
+    <table border="1"; style="width:auto";>
+        <thead>
+            <tr>
+                <th>Id</th>
+                <th>Ecole</th>
+                <th>Specialite</th>
+                <th>Dateenreg</th>
+                <th>Actions</th>
+            </tr>
+        </thead>
+        <tbody>
+        {% for offre_formation in offre_formations %}
+            <tr>
+                <td><a href="{{ path('offre_formation_show', { 'id': offre_formation.id }) }}">{{ offre_formation.id }}</a></td>
+
+                <td>{{ offre_formation.ecole_sup.nomEcole }}</td>
+                <td>{{ offre_formation.specialite.nomSpecialite }}</td>
+                
+                
+
+                <td>{% if offre_formation.dateEnreg %}{{ offre_formation.dateEnreg|date('Y-m-d H:i:s') }}{% endif %}</td>
+                <td>
+                    <ul>
+                        
+                            <a href="{{ path('offre_formation_show', { 'id': offre_formation.id }) }}">show</a>
+                        
+                            <a href="{{ path('offre_formation_edit', { 'id': offre_formation.id }) }}">edit</a>
+
+                            <a href="{{ path('offre_formation_delete', { 'id': offre_formation.id }) }}">delete</a>
+                        
+                    </ul>
+                </td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+
+    <ul>
+        <li>
+            <a href="{{ path('offre_formation_new') }}">Create a new offre_formation</a>
+        </li>
+    </ul>
+{% endblock %}
