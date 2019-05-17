@@ -1,58 +1,62 @@
 {% extends 'adminbase.html.twig' %}
 
 {% block admin %}
-    <h1>Ecole_sups list</h1>
+    {{ render(controller('AppBundle:Ecole_sup:new')) }}
+    <br><br><br>
+    <h3>Liste des ecoles supérieurs</h3>
+    <div class="form-group">
+        <div class = "input-group">
+            <input type="text" id ="filter" name = "prenom" class="form-control" placeholder="Rechercher une ecole supérieur"/>
+        </div>
+    </div>
+<table  class="footable" data-page-size ="10" data-filter="#filter">
+    <thead >
+    <th data-toggle="true" style="background:#122e48">Id</th>
+    <th data-hide="phone" style="background:#122e48">Ecole</th>
+    <th data-hide="phone" style="background:#122e48">Université</th>
+    <th data-toggle="true" style="background:#122e48">Type</th>
+    <th data-hide="phone" style="background:#122e48">Statut</th>
+    <th data-hide="phone" style="background:#122e48">Adresse</th>
+    <th data-toggle="true" style="background:#122e48">Telephone</th>
+    <th data-hide="phone" style="background:#122e48">Email</th>
+    <th data-hide="phone" style="background:#122e48">Site Web</th>
+    <th data-hide="phone" style="background:#122e48">Année de Creation</th>
+    <th data-hide="phone" style="background:#122e48">Action</th>
+    </thead>
+    <tbody >
+    {% for ecole_sup in ecole_sups %}
+    <tr>
+        <td>{{ ecole_sup.id }}</td>
+        <td>{{ ecole_sup.nomEcole }}</td>
+        <td>{{ ecole_sup.nomUniversite }}</td>
+        <td>{{ ecole_sup.typeEcole }}</td>
+        <td>{{ ecole_sup.statutEcole }}</td>
+        <td>{{ ecole_sup.adresEcole }}</td>
+        <td>{{ ecole_sup.telEcole }}</td>
+        <td>{{ ecole_sup.emailEcole }}</td>
+        <td>{{ ecole_sup.urlEcole }}</td>
+        <td>{{ ecole_sup.anneeCreation }}</td>
+        <td>
+            {{ render(controller('AppBundle:Ecole_sup:edit',{'id':ecole_sup.id})) }}
+            <button class="btn btn-danger btn-sm confirm"  onclick="deleteDep('{{ ecole_sup.id }}')" ><i class="fas fa-trash-alt"></i></button>
+        </td>
+    </tr>
+    {% endfor %}
+    </tbody>
+    <tfoot class = "hide-if-no-paging">
+    <td colspan="11">
 
-    <table border="1"; style="width:auto";>
-        <thead>
-            <tr>
-                <th>Id</th>
-                <th>Nom ecole</th>
-                <th>Nom universite</th>
-                <th>Type ecole</th>
-                <th>Statut ecole</th>
-                <th>Adresse ecole</th>
-                <th>Telephone</th>
-                <th>Email ecole</th>
-                <th>site web</th>
-                <th>Année de creation</th>
-                
-                <th>Actions</th>
-            </tr>
-        </thead>
-        <tbody>
-        {% for ecole_sup in ecole_sups %}
-            <tr>
-                <td><a href="{{ path('ecole_sup_show', { 'id': ecole_sup.id }) }}">{{ ecole_sup.id }}</a></td>
-                <td>{{ ecole_sup.nomEcole }}</td>
-                <td>{{ ecole_sup.nomUniversite }}</td>
-                <td>{{ ecole_sup.typeEcole }}</td>
-                <td>{{ ecole_sup.statutEcole }}</td>
-                <td>{{ ecole_sup.adresEcole }}</td>
-                <td>{{ ecole_sup.telEcole }}</td>
-                <td>{{ ecole_sup.emailEcole }}</td>
-                <td>{{ ecole_sup.urlEcole }}</td>
-                <td>{{ ecole_sup.anneeCreation }}</td>
-                <!--td>{% if ecole_sup.dateEnreg %}{{ ecole_sup.dateEnreg|date('Y-m-d H:i:s') }}{% endif %}</td-->
-                <td>
-                    <ul>
-                        
-                            <a href="{{ path('ecole_sup_show', { 'id': ecole_sup.id }) }}">show</a>
-                        
-                            <a href="{{ path('ecole_sup_edit', { 'id': ecole_sup.id }) }}">edit</a>
+        <div class = "pagination">
 
-                            <a href="{{ path('ecole_sup_delete', { 'id': ecole_sup.id }) }}">delete</a>
-                        
-                    </ul>
-                </td>
-            </tr>
-        {% endfor %}
-        </tbody>
-    </table>
+        </div>
 
-    <ul>
-        <li>
-            <a href="{{ path('ecole_sup_new') }}">Create a new ecole_sup</a>
-        </li>
-    </ul>
+    </td>
+
+    </tfoot>
+</table>
+
+
+    <script type="text/javascript">
+        $(".footable").footable();
+    </script>
 {% endblock %}

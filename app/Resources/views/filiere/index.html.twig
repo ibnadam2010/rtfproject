@@ -1,42 +1,48 @@
 {% extends 'adminbase.html.twig' %}
 
 {% block admin %}
-    <h1>Filieres list</h1>
+    {{ render(controller('AppBundle:Filiere:new')) }}
+    <br><br><br>
+    <h3>Liste des filière</h3>
+    <div class="form-group">
+        <div class = "input-group">
+            <input type="text" id ="filter" name = "prenom" class="form-control" placeholder="Rechercher une filière"/>
+        </div>
+    </div>
+<table  class="footable" data-page-size ="10" data-filter="#filter">
+    <thead >
+    <th data-toggle="true" style="background:#122e48">Id</th>
+    <th data-hide="phone" style="background:#122e48">Filière</th>
+    <th data-hide="phone" style="background:#122e48">Domaine</th>
+    <th data-hide="phone" style="background:#122e48">Action</th>
+    </thead>
+    <tbody >
+    {% for filiere in filieres %}
+    <tr>
+        <td>{{ filiere.id }}</td>
+        <td>{{ filiere.nomFiliere }}</td>
+        <td>{{ filiere.domaine.nomDomaine }}</td>
+        <td>
+            {{ render(controller('AppBundle:Filiere:edit',{'id':filiere.id})) }}
+            <button class="btn btn-danger btn-sm confirm"  onclick="deleteDep('{{ filiere.id }}')" ><i class="fas fa-trash-alt"></i></button>
+        </td>
+    </tr>
+    {% endfor %}
+    </tbody>
+    <tfoot class = "hide-if-no-paging">
+    <td colspan="4">
 
-    <table border="1"; style="width:auto";>
-        <thead>
-            <tr>
-                <th>Id</th>
-                <th>Nom filiere</th>
-                <th>Domaine</th>
-                <th>Actions</th>
-            </tr>
-        </thead>
-        <tbody>
-        {% for filiere in filieres %}
-            <tr>
-                <td><a href="{{ path('filiere_show', { 'id': filiere.id }) }}">{{ filiere.id }}</a></td>
-                <td>{{ filiere.nomFiliere }}</td>
-                <td>{{ filiere.domaine.nomDomaine }}</td>
-                <!--td>{% if filiere.dateEnreg %}{{ filiere.dateEnreg|date('Y-m-d H:i:s') }}{% endif %}</td-->
-                <td>
-                    <ul>
-                        
-                            <a href="{{ path('filiere_show', { 'id': filiere.id }) }}">show</a>
-                        
-                            <a href="{{ path('filiere_edit', { 'id': filiere.id }) }}">edit</a>
-                            <a href="{{ path('filiere_delete', { 'id': filiere.id }) }}">delete</a>
-                        
-                    </ul>
-                </td>
-            </tr>
-        {% endfor %}
-        </tbody>
-    </table>
+        <div class = "pagination">
 
-    <ul>
-        <li>
-            <a href="{{ path('filiere_new') }}">Create a new filiere</a>
-        </li>
-    </ul>
+        </div>
+
+    </td>
+
+    </tfoot>
+</table>
+
+
+    <script type="text/javascript">
+        $(".footable").footable();
+    </script>
 {% endblock %}
