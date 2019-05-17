@@ -5,6 +5,9 @@ namespace AppBundle\Entity;
 use Doctrine\ORM\Mapping as ORM;
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
+use Symfony\Component\Form\Extension\Core\Type\DateType;
+
+
 
 /**
  * Diplome
@@ -43,6 +46,12 @@ class Diplome
      * @ORM\Column(name="date_enreg", type="datetime")
      */
     private $dateEnreg;
+
+    //relation entre diplome et offre
+    /**
+     * @ORM\OneToMany(targetEntity="Offre", mappedBy="diplome")
+     */
+    public $offres;
 
     //relation entre diplome et specialite
     /**

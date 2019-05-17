@@ -1,0 +1,50 @@
+{% extends 'adminbase.html.twig' %}
+
+{% block admin %}
+    <h1>Diplome_coaches list</h1>
+
+    <table border="1"; style="width:auto";>
+        <thead>
+            <tr>
+                <th>Id</th>
+                <th>Coach</th>
+                <th>Diplome</th>
+                <th>Anexperiencecoach</th>
+                <th>Couthorairecoach</th>
+                <th>Dateenreg</th>
+                <th>Actions</th>
+            </tr>
+        </thead>
+        <tbody>
+        {% for diplome_coach in diplome_coaches %}
+            <tr>
+                <td><a href="{{ path('diplome_coach_show', { 'id': diplome_coach.id }) }}">{{ diplome_coach.id }}</a></td>
+                <td>{{ diplome_coach.coach.nomCoach }}</td>
+                <td>{{ diplome_coach.diplome.nomDiplome }}</td>
+                <td>{{ diplome_coach.anexperienceCoach }}</td>
+                <td>{{ diplome_coach.couthoraireCoach }}</td>
+                <td>{% if diplome_coach.dateEnreg %}{{ diplome_coach.dateEnreg|date('Y-m-d H:i:s') }}{% endif %}</td>
+                <td>
+                    <ul>
+                        <li>
+                            <a href="{{ path('diplome_coach_show', { 'id': diplome_coach.id }) }}">show</a>
+                        </li>
+                        <li>
+                            <a href="{{ path('diplome_coach_edit', { 'id': diplome_coach.id }) }}">edit</a>
+                        </li>
+                        <li>
+                            <a href="{{ path('diplome_coach_delete', { 'id': diplome_coach.id }) }}">delete</a>
+                        </li>
+                    </ul>
+                </td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+
+    <ul>
+        <li>
+            <a href="{{ path('diplome_coach_new') }}">Create a new diplome_coach</a>
+        </li>
+    </ul>
+{% endblock %}

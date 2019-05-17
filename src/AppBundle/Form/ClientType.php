@@ -7,24 +7,23 @@ use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
 use Symfony\Component\Form\Extension\Core\Type\ChoiceType;
 
-class EtablissementType extends AbstractType
+class ClientType extends AbstractType
 {
     /**
      * {@inheritdoc}
      */
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
-        $builder->add('nomEtablissement')->add('typeEtablissement',ChoiceType::class,['choices'=>['Collège'=> true,'Lycée'=> false]])
-        ->add('statutEtablissement',ChoiceType::class,['choices'=>['Public'=> true,'Privé'=> false]])
-
-        ->add('dateCreation')->add('adresseEtablissement')->add('telEtablissement')->add('emailEtablissement')->add('sitewebEtablissement')->add('commune')->add('arrondissement')->add('departement');
+        $builder->add('raisonsocialeClient')->add('nomClient')->add('prenomClient')->add('professionClient')
+        ->add('sexeClient',ChoiceType::class,['choices'=>['Masculin'=> true,'Féminin'=> false]])
+        ->add('adresseClient')->add('telClient')->add('emailClient')->add('agencertf');
     }/**
      * {@inheritdoc}
      */
     public function configureOptions(OptionsResolver $resolver)
     {
         $resolver->setDefaults(array(
-            'data_class' => 'AppBundle\Entity\Etablissement'
+            'data_class' => 'AppBundle\Entity\Client'
         ));
     }
 
@@ -33,7 +32,7 @@ class EtablissementType extends AbstractType
      */
     public function getBlockPrefix()
     {
-        return 'appbundle_etablissement';
+        return 'appbundle_client';
     }
 
 

@@ -1,0 +1,44 @@
+{% extends 'adminbase.html.twig' %}
+
+{% block admin %}
+    <h1>Services list</h1>
+
+    <table border="1"; style="width:auto";>
+        <thead>
+            <tr>
+                <th>Id</th>
+                <th>Nomservice</th>
+                <th>Dateenreg</th>
+                <th>Actions</th>
+            </tr>
+        </thead>
+        <tbody>
+        {% for service in services %}
+            <tr>
+                <td><a href="{{ path('service_show', { 'id': service.id }) }}">{{ service.id }}</a></td>
+                <td>{{ service.nomService }}</td>
+                <td>{% if service.dateEnreg %}{{ service.dateEnreg|date('Y-m-d H:i:s') }}{% endif %}</td>
+                <td>
+                    <ul>
+                        <li>
+                            <a href="{{ path('service_show', { 'id': service.id }) }}">show</a>
+                        </li>
+                        <li>
+                            <a href="{{ path('service_edit', { 'id': service.id }) }}">edit</a>
+                        </li>
+                        <li>
+                            <a href="{{ path('service_delete', { 'id': service.id }) }}">delete</a>
+                        </li>
+                    </ul>
+                </td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+
+    <ul>
+        <li>
+            <a href="{{ path('service_new') }}">Create a new service</a>
+        </li>
+    </ul>
+{% endblock %}

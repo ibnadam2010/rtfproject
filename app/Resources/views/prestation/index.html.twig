@@ -1,0 +1,54 @@
+{% extends 'adminbase.html.twig' %}
+
+{% block admin %}
+    <h1>Prestations list</h1>
+
+    <table border="1"; style="width:auto";>
+        <thead>
+            <tr>
+                <th>Id</th>
+                <th>Client</th>
+                <th>Service</th>
+                <th>Dureeprestation</th>
+                <th>Datedebutprestation</th>
+                <th>Datefinprestation</th>
+                <th>Coutprestation</th>
+                <th>Dateenreg</th>
+                <th>Actions</th>
+            </tr>
+        </thead>
+        <tbody>
+        {% for prestation in prestations %}
+            <tr>
+                <td><a href="{{ path('prestation_show', { 'id': prestation.id }) }}">{{ prestation.id }}</a></td>
+                <td>{{ prestation.client.nomClient }}</td>
+                <td>{{ prestation.service.nomService }}</td>
+                <td>{{ prestation.dureePrestation }}</td>
+                <td>{% if prestation.datedebutPrestation %}{{ prestation.datedebutPrestation|date('Y-m-d') }}{% endif %}</td>
+                <td>{% if prestation.datefinPrestation %}{{ prestation.datefinPrestation|date('Y-m-d') }}{% endif %}</td>
+                <td>{{ prestation.coutPrestation }}</td>
+                <td>{% if prestation.dateEnreg %}{{ prestation.dateEnreg|date('Y-m-d H:i:s') }}{% endif %}</td>
+                <td>
+                    <ul>
+                        <li>
+                            <a href="{{ path('prestation_show', { 'id': prestation.id }) }}">show</a>
+                        </li>
+                        <li>
+                            <a href="{{ path('prestation_edit', { 'id': prestation.id }) }}">edit</a>
+                        </li>
+                        <li>
+                            <a href="{{ path('prestation_delete', { 'id': prestation.id }) }}">delete</a>
+                        </li>
+                    </ul>
+                </td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+
+    <ul>
+        <li>
+            <a href="{{ path('prestation_new') }}">Create a new prestation</a>
+        </li>
+    </ul>
+{% endblock %}

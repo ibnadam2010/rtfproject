@@ -31,13 +31,7 @@ class Specialite
      */
     private $nomSpecialite;
 
-    /**
-     * @var string
-     *
-     * @ORM\Column(name="nom_diplome", type="string", length=255)
-     */
-    private $nomDiplome;
-
+    
 
     /**
      * @var \DateTime
@@ -54,10 +48,10 @@ class Specialite
     public $filiere;
 
     //relation entre specialite et diplome
-   // /**
-    // * @ORM\OneToMany(targetEntity="Diplome", mappedBy="specialite")
-    // */
-   // public $diplomes;
+    /**
+     * @ORM\OneToMany(targetEntity="Diplome", mappedBy="specialite")
+     */
+    public $diplomes;
 
 
 

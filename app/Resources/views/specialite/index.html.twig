@@ -7,7 +7,9 @@
         <thead>
             <tr>
                 <th>Id</th>
-                <th>Nom specialite</th>
+                <th>Specialite</th>
+                <th>Filiere</th>
+                <th>Domaine</th>
                 
                 
                 <th>Actions</th>
@@ -19,6 +21,8 @@
                 <td><a href="{{ path('specialite_show', { 'id': specialite.id }) }}">{{ specialite.id }}</a></td>
                 
                 <td>{{ specialite.nomSpecialite }}</td>
+                <td>{{ specialite.filiere.nomFiliere }}</td>
+                <td>{{ specialite.filiere.domaine.nomDomaine }}</td>
                 
                 
                 

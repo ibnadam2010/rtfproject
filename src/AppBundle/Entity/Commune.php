@@ -39,6 +39,12 @@ class Commune
      */
     private $dateEnreg;
 
+    //relation entre  commune et agencertf
+    /**
+     * @ORM\OneToMany(targetEntity="Agencertf", mappedBy="commune")
+     */
+    public $agencertfs;
+
     //relation entre departement et commune
     /**
      * @ORM\ManyToOne(targetEntity="Departement", inversedBy="communes")
@@ -64,6 +70,12 @@ class Commune
      * @ORM\OneToMany(targetEntity="Ecole_sup", mappedBy="commune")
      */
     public $ecole_sups;
+
+    //relation entre commune et entreprise
+    /**
+     * @ORM\OneToMany(targetEntity="Entreprise", mappedBy="commune")
+     */
+    public $entreprises;
 
 
     /**
