@@ -1,0 +1,76 @@
+{% extends 'adminbase.html.twig' %}
+
+{% block admin %}
+    <h1>Coach</h1>
+
+    <table border="1"; style="width:auto";>
+        <tbody>
+            <tr>
+                <th>Id</th>
+                <td>{{ coach.id }}</td>
+            </tr>
+            <tr>
+                <th>Nomcoach</th>
+                <td>{{ coach.nomCoach }}</td>
+            </tr>
+            <tr>
+                <th>Prenomcoach</th>
+                <td>{{ coach.prenomCoach }}</td>
+            </tr>
+            <tr>
+                <th>Sexecoach</th>
+                <td>{{ coach.sexeCoach }}</td>
+            </tr>
+            <tr>
+                <th>Datenaissancecoach</th>
+                <td>{% if coach.datenaissanceCoach %}{{ coach.datenaissanceCoach|date('Y-m-d') }}{% endif %}</td>
+            </tr>
+            <tr>
+                <th>Piececoach</th>
+                <td>{{ coach.pieceCoach }}</td>
+            </tr>
+            <tr>
+                <th>Numpiececoach</th>
+                <td>{{ coach.numpieceCoach }}</td>
+            </tr>
+            <tr>
+                <th>Adressecoach</th>
+                <td>{{ coach.adresseCoach }}</td>
+            </tr>
+            <tr>
+                <th>Telcoach</th>
+                <td>{{ coach.telCoach }}</td>
+            </tr>
+            <tr>
+                <th>Emailcoach</th>
+                <td>{{ coach.emailCoach }}</td>
+            </tr>
+            <tr>
+                <th>Typecoach</th>
+                <td>{{ coach.typeCoach }}</td>
+            </tr>
+            <tr>
+                <th>arrondissement</th>
+                <td>{{ coach.arrondissement.nomArrondissement }}</td>
+            </tr>
+            <tr>
+                <th>Dateenreg</th>
+                <td>{% if coach.dateEnreg %}{{ coach.dateEnreg|date('Y-m-d H:i:s') }}{% endif %}</td>
+            </tr>
+        </tbody>
+    </table>
+
+    <ul>
+        <li>
+            <a href="{{ path('coach_index') }}">Back to the list</a>
+        </li>
+        <li>
+            <a href="{{ path('coach_edit', { 'id': coach.id }) }}">Edit</a>
+        </li>
+        <li>
+            {{ form_start(delete_form) }}
+                <input type="submit" value="Delete">
+            {{ form_end(delete_form) }}
+        </li>
+    </ul>
+{% endblock %}

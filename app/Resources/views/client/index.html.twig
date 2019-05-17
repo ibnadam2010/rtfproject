@@ -1,0 +1,60 @@
+{% extends 'adminbase.html.twig' %}
+
+{% block admin %}
+    <h1>Clients list</h1>
+
+    <table border="1"; style="width:auto";>
+        <thead>
+            <tr>
+                <th>Id</th>
+                <th>Raisonsocialeclient</th>
+                <th>Nomclient</th>
+                <th>Prenomclient</th>
+                <th>Professionclient</th>
+                <th>Sexeclient</th>
+                <th>Adresseclient</th>
+                <th>Telclient</th>
+                <th>Emailclient</th>
+                <th>Agence RTF</th>
+                <th>Dateenreg</th>
+                <th>Actions</th>
+            </tr>
+        </thead>
+        <tbody>
+        {% for client in clients %}
+            <tr>
+                <td><a href="{{ path('client_show', { 'id': client.id }) }}">{{ client.id }}</a></td>
+                <td>{{ client.raisonsocialeClient }}</td>
+                <td>{{ client.nomClient }}</td>
+                <td>{{ client.prenomClient }}</td>
+                <td>{{ client.professionClient }}</td>
+                <td>{{ client.sexeClient }}</td>
+                <td>{{ client.adresseClient }}</td>
+                <td>{{ client.telClient }}</td>
+                <td>{{ client.emailClient }}</td>
+                <td>{{ client.agencertf.nomAgence}}</td>
+                <td>{% if client.dateEnreg %}{{ client.dateEnreg|date('Y-m-d H:i:s') }}{% endif %}</td>
+                <td>
+                    <ul>
+                        <li>
+                            <a href="{{ path('client_show', { 'id': client.id }) }}">show</a>
+                        </li>
+                        <li>
+                            <a href="{{ path('client_edit', { 'id': client.id }) }}">edit</a>
+                        </li>
+                        <li>
+                            <a href="{{ path('client_delete', { 'id': client.id }) }}">delete</a>
+                        </li>
+                    </ul>
+                </td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+
+    <ul>
+        <li>
+            <a href="{{ path('client_new') }}">Create a new client</a>
+        </li>
+    </ul>
+{% endblock %}

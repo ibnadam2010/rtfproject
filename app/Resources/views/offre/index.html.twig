@@ -1,0 +1,50 @@
+{% extends 'adminbase.html.twig' %}
+
+{% block admin %}
+    {{ render(controller('AppBundle:Offre:new')) }}
+    <br><br><br>
+    <h3>Liste des Publicités vip</h3>
+    <div class="form-group">
+        <div class = "input-group">
+            <input type="text" id ="filter" name = "prenom" class="form-control" placeholder="Rechercher une offre"/>
+        </div>
+    </div>
+    <table  class="footable" data-page-size ="2" data-filter="#filter">
+        <thead >
+        <th data-toggle="true" style="background:#122e48">Titre</th>
+        <th data-hide="phone" style="background:#122e48">Nature</th>
+        <th data-hide="phone" style="background:#122e48">Type</th>
+        <th data-hide="phone" style="background:#122e48">entreprise</th>
+        <th data-hide="phone" style="background:#122e48">diplome</th>
+        </thead>
+        <tbody >
+        {% for offre in offres %}
+            <tr>
+                <td><a href="{{ path('offre_show', { 'id': offre.id }) }}">{{ offre.id }}</a></td>
+                <td>{{ offre.intituleOffre }}</td>
+                                <td>{{ offre.entreprise.nomEntreprise }}</td>
+                <td>{{ offre.natureOffre }}</td>
+                <td>{{ offre.typeOffre }}</td>
+                <td>{{ offre.dureeOffre }}</td>
+                <td>{{ offre.descriptionOffre }}</td>
+                <td>{{ offre.pjOffre }}</td>
+                <td>{{offre.file}}</td>
+                <td>{% if offre.datevaliditeOffre %}{{ offre.datevaliditeOffre|date('Y-m-d') }}{% endif %}</td>
+                <td>{% if offre.dateEnreg %}{{ offre.dateEnreg|date('Y-m-d H:i:s') }}{% endif %}</td>
+                <td>
+                    <td>
+                    {{ render(controller('AppBundle:Offre:edit',{'id':offre.id})) }}
+                    <button class="btn btn-danger btn-sm confirm"  onclick="deleteOffre('{{ offre.id }}')" ><i class="fas fa-trash-alt"></i></button>
+                </td>
+                </td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+
+    <ul>
+        <li>
+            <a href="{{ path('offre_new') }}">Create a new offre</a>
+        </li>
+    </ul>
+{% endblock %}

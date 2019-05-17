@@ -1,0 +1,62 @@
+{% extends 'adminbase.html.twig' %}
+
+{% block admin %}
+    <h1>Coaches list</h1>
+
+    <table border="1"; style="width:auto";>
+        <thead>
+            <tr>
+                <th>Id</th>
+                <th>Nom coach</th>
+                <th>Prenom coach</th>
+                <th>Sexe coach</th>
+                <th>Date naissance </th>
+                <th>Piece coach</th>
+                <th>Num piececoach</th>
+                <th>Adresse coach</th>
+                <th>Tel coach</th>
+                <th>Email coach</th>
+                <th>Type coach</th>
+                <th>Dateenreg</th>
+                <th>Actions</th>
+            </tr>
+        </thead>
+        <tbody>
+        {% for coach in coaches %}
+            <tr>
+                <td><a href="{{ path('coach_show', { 'id': coach.id }) }}">{{ coach.id }}</a></td>
+                <td>{{ coach.nomCoach }}</td>
+                <td>{{ coach.prenomCoach }}</td>
+                <td>{{ coach.sexeCoach }}</td>
+                <td>{% if coach.datenaissanceCoach %}{{ coach.datenaissanceCoach|date('Y-m-d') }}{% endif %}</td>
+                <td>{{ coach.pieceCoach }}</td>
+                <td>{{ coach.numpieceCoach }}</td>
+                <td>{{ coach.adresseCoach }}</td>
+                <td>{{ coach.telCoach }}</td>
+                <td>{{ coach.emailCoach }}</td>
+                <td>{{ coach.typeCoach }}</td>
+                <td>{% if coach.dateEnreg %}{{ coach.dateEnreg|date('Y-m-d H:i:s') }}{% endif %}</td>
+                <td>
+                    <ul>
+                        <li>
+                            <a href="{{ path('coach_show', { 'id': coach.id }) }}">show</a>
+                        </li>
+                        <li>
+                            <a href="{{ path('coach_edit', { 'id': coach.id }) }}">edit</a>
+                        </li>
+                        <li>
+                            <a href="{{ path('coach_delete', { 'id': coach.id }) }}">delete</a>
+                        </li>
+                    </ul>
+                </td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+
+    <ul>
+        <li>
+            <a href="{{ path('coach_new') }}">Create a new coach</a>
+        </li>
+    </ul>
+{% endblock %}

@@ -1,0 +1,44 @@
+{% extends 'adminbase.html.twig' %}
+
+{% block admin %}
+    <h1>Agencertf</h1>
+
+    <table border="1"; style="width:auto";>
+        <tbody>
+            <tr>
+                <th>Id</th>
+                <td>{{ agencertf.id }}</td>
+            </tr>
+            <tr>
+                <th>Nom agence</th>
+                <td>{{ agencertf.nomAgence }}</td>
+            </tr>
+            <tr>
+                <th>Adresse agence</th>
+                <td>{{ agencertf.adresseAgence }}</td>
+            </tr>
+            <tr>
+                <th>Tel agence</th>
+                <td>{{ agencertf.telAgence }}</td>
+            </tr>
+            <tr>
+                <th>Dateenreg</th>
+                <td>{% if agencertf.dateEnreg %}{{ agencertf.dateEnreg|date('Y-m-d H:i:s') }}{% endif %}</td>
+            </tr>
+        </tbody>
+    </table>
+
+    <ul>
+        <li>
+            <a href="{{ path('agencertf_index') }}">Back to the list</a>
+        </li>
+        <li>
+            <a href="{{ path('agencertf_edit', { 'id': agencertf.id }) }}">Edit</a>
+        </li>
+        <li>
+            {{ form_start(delete_form) }}
+                <input type="submit" value="Delete">
+            {{ form_end(delete_form) }}
+        </li>
+    </ul>
+{% endblock %}

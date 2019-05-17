@@ -38,6 +38,12 @@ class Arrondissement
      */
     public $dateEnreg;
 
+    //relation entre arrondissement et coach
+    /**
+     * @ORM\OneToMany(targetEntity="Coach", mappedBy="arrondissement")
+     */
+    public $coachs;
+
     //
 
     /**

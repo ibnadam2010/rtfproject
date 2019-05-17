@@ -1,0 +1,50 @@
+{% extends 'adminbase.html.twig' %}
+
+{% block admin %}
+    <h1>Agencertfs list</h1>
+
+    <table border="1"; style="width:auto";>
+        <thead>
+            <tr>
+                <th>Id</th>
+                <th>Nom agence</th>
+                <th>Adresse agence</th>
+                <th>Tel agence</th>
+                <th>Commune</th>
+                <th>Dateenreg</th>
+                <th>Actions</th>
+            </tr>
+        </thead>
+        <tbody>
+        {% for agencertf in agencertfs %}
+            <tr>
+                <td><a href="{{ path('agencertf_show', { 'id': agencertf.id }) }}">{{ agencertf.id }}</a></td>
+                <td>{{ agencertf.nomAgence }}</td>
+                <td>{{ agencertf.adresseAgence }}</td>
+                <td>{{ agencertf.telAgence }}</td>
+                <td>{{ agencertf.commune.nomCommune }}</td>
+                <td>{% if agencertf.dateEnreg %}{{ agencertf.dateEnreg|date('Y-m-d H:i:s') }}{% endif %}</td>
+                <td>
+                    <ul>
+                        <li>
+                            <a href="{{ path('agencertf_show', { 'id': agencertf.id }) }}">show</a>
+                        </li>
+                        <li>
+                            <a href="{{ path('agencertf_edit', { 'id': agencertf.id }) }}">edit</a>
+                        </li>
+                        <li>
+                            <a href="{{ path('agencertf_delete', { 'id': agencertf.id }) }}">delete</a>
+                        </li>
+                    </ul>
+                </td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+
+    <ul>
+        <li>
+            <a href="{{ path('agencertf_new') }}">Create a new agencertf</a>
+        </li>
+    </ul>
+{% endblock %}

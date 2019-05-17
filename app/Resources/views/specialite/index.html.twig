@@ -3,23 +3,25 @@
 {% block admin %}
     {{ render(controller('AppBundle:Specialite:new')) }}
     <br><br><br>
-    <h3>Liste des specialités</h3>
+    <h3>Liste des metiers</h3>
     <div class="form-group">
         <div class = "input-group">
-            <input type="text" id ="filter" name = "prenom" class="form-control" placeholder="Rechercher une specialité"/>
+            <input type="text" id ="filter" name = "prenom" class="form-control" placeholder="Rechercher une spécialité"/>
         </div>
     </div>
 <table  class="footable" data-page-size ="10" data-filter="#filter">
     <thead >
     <th data-toggle="true" style="background:#122e48">Id</th>
-    <th data-hide="phone" style="background:#122e48">Specialité</th>
-    <th data-hide="phone" style="background:#122e48">Action</th>
+    <th data-hide="phone" style="background:#122e48">Soécialité</th>
+    <th data-hide="phone" style="background:#122e48">Filière</th>
+    <th data-toggle="true" style="background:#122e48">Domaine</th>
     </thead>
     <tbody >
     {% for specialite in specialites %}
     <tr>
         <td>{{ specialite.id }}</td>
         <td>{{ specialite.nomSpecialite }}</td>
+        <td>{{ specialite.filiere.domaine.nomDomaine }}</td>
         <td>
             {{ render(controller('AppBundle:Specialite:edit',{'id':specialite.id})) }}
             <button class="btn btn-danger btn-sm confirm"  onclick="deleteDep('{{ specialite.id }}')" ><i class="fas fa-trash-alt"></i></button>
@@ -28,7 +30,7 @@
     {% endfor %}
     </tbody>
     <tfoot class = "hide-if-no-paging">
-    <td colspan="3">
+    <td colspan="4">
 
         <div class = "pagination">
 
