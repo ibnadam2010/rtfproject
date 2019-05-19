@@ -4,7 +4,7 @@
 <head>
 
   <meta charset="utf-8">
-  <title>{% block title %}{% endblock %}</title>
+  <title>{% block title %}Admin Cycle{% endblock %}</title>
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
   <meta name="description" content="">
@@ -508,6 +508,270 @@
             dialogClass:"modal-dialog modal-sm"
         });
     }
+
+
+    function deleteCommune(str){
+
+        $('.confirm').confirm({
+
+
+            text:"Voulez-vous supprimer cette ligne?",
+            title:"",
+            confirm: function(button){
+                var url = "{{ path('commune_delete',{'id':1}) }}";
+                url = url.replace("1",str);
+
+                $.ajax({
+                    type:"GET",
+                    url:url
+
+                }).done(function(){
+                    document.location.reload(true);
+                });
+            },
+            cancel:function(button){
+
+            },
+            confirmButton:"Oui",
+            cancelButton:"Non",
+            post:true,
+            confirmButtonClass:"btn-danger",
+            cancelButtonClass:"btn-default",
+            dialogClass:"modal-dialog modal-sm"
+        });
+    }
+
+
+    function deleteArrond(str){
+
+        $('.confirm').confirm({
+
+
+            text:"Voulez-vous supprimer cette ligne?",
+            title:"",
+            confirm: function(button){
+                var url = "{{ path('arrondissement_delete',{'id':1}) }}";
+                url = url.replace("1",str);
+
+                $.ajax({
+                    type:"GET",
+                    url:url
+
+                }).done(function(){
+                    document.location.reload(true);
+                });
+            },
+            cancel:function(button){
+
+            },
+            confirmButton:"Oui",
+            cancelButton:"Non",
+            post:true,
+            confirmButtonClass:"btn-danger",
+            cancelButtonClass:"btn-default",
+            dialogClass:"modal-dialog modal-sm"
+        });
+    }
+
+
+
+    function deleteEtab(str){
+
+        $('.confirm').confirm({
+
+
+            text:"Voulez-vous supprimer cette ligne?",
+            title:"",
+            confirm: function(button){
+                var url = "{{ path('etablissement_delete',{'id':1}) }}";
+                url = url.replace("1",str);
+
+                $.ajax({
+                    type:"GET",
+                    url:url
+
+                }).done(function(){
+                    document.location.reload(true);
+                });
+            },
+            cancel:function(button){
+
+            },
+            confirmButton:"Oui",
+            cancelButton:"Non",
+            post:true,
+            confirmButtonClass:"btn-danger",
+            cancelButtonClass:"btn-default",
+            dialogClass:"modal-dialog modal-sm"
+        });
+    }
+
+
+
+
+    function deleteCycle(str){
+
+        $('.confirm').confirm({
+
+
+            text:"Voulez-vous supprimer cette ligne?",
+            title:"",
+            confirm: function(button){
+                var url = "{{ path('cycle_delete',{'id':1}) }}";
+                url = url.replace("1",str);
+
+                $.ajax({
+                    type:"GET",
+                    url:url
+
+                }).done(function(){
+                    document.location.reload(true);
+                });
+            },
+            cancel:function(button){
+
+            },
+            confirmButton:"Oui",
+            cancelButton:"Non",
+            post:true,
+            confirmButtonClass:"btn-danger",
+            cancelButtonClass:"btn-default",
+            dialogClass:"modal-dialog modal-sm"
+        });
+    }
+
+
+
+
+    function deletePromotion(str){
+
+        $('.confirm').confirm({
+
+
+            text:"Voulez-vous supprimer cette ligne?",
+            title:"",
+            confirm: function(button){
+                var url = "{{ path('promotion_delete',{'id':1}) }}";
+                url = url.replace("1",str);
+
+                $.ajax({
+                    type:"GET",
+                    url:url
+
+                }).done(function(){
+                    document.location.reload(true);
+                });
+            },
+            cancel:function(button){
+
+            },
+            confirmButton:"Oui",
+            cancelButton:"Non",
+            post:true,
+            confirmButtonClass:"btn-danger",
+            cancelButtonClass:"btn-default",
+            dialogClass:"modal-dialog modal-sm"
+        });
+    }
+
+
+    function deleteProg(str){
+
+        $('.confirm').confirm({
+
+
+            text:"Voulez-vous supprimer cette ligne?",
+            title:"",
+            confirm: function(button){
+                var url = "{{ path('programme_delete',{'id':1}) }}";
+                url = url.replace("1",str);
+
+                $.ajax({
+                    type:"GET",
+                    url:url
+
+                }).done(function(){
+                    document.location.reload(true);
+                });
+            },
+            cancel:function(button){
+
+            },
+            confirmButton:"Oui",
+            cancelButton:"Non",
+            post:true,
+            confirmButtonClass:"btn-danger",
+            cancelButtonClass:"btn-default",
+            dialogClass:"modal-dialog modal-sm"
+        });
+    }
+
+
+
+    function deleteMatiere(str){
+
+        $('.confirm').confirm({
+
+
+            text:"Voulez-vous supprimer cette ligne?",
+            title:"",
+            confirm: function(button){
+                var url = "{{ path('matiere_delete',{'id':1}) }}";
+                url = url.replace("1",str);
+
+                $.ajax({
+                    type:"GET",
+                    url:url
+
+                }).done(function(){
+                    document.location.reload(true);
+                });
+            },
+            cancel:function(button){
+
+            },
+            confirmButton:"Oui",
+            cancelButton:"Non",
+            post:true,
+            confirmButtonClass:"btn-danger",
+            cancelButtonClass:"btn-default",
+            dialogClass:"modal-dialog modal-sm"
+        });
+    }
+
+
+
+    function deleteOuvrage(str){
+
+        $('.confirm').confirm({
+
+
+            text:"Voulez-vous supprimer cette ligne?",
+            title:"",
+            confirm: function(button){
+                var url = "{{ path('ouvrage_delete',{'id':1}) }}";
+                url = url.replace("1",str);
+
+                $.ajax({
+                    type:"GET",
+                    url:url
+
+                }).done(function(){
+                    document.location.reload(true);
+                });
+            },
+            cancel:function(button){
+
+            },
+            confirmButton:"Oui",
+            cancelButton:"Non",
+            post:true,
+            confirmButtonClass:"btn-danger",
+            cancelButtonClass:"btn-default",
+            dialogClass:"modal-dialog modal-sm"
+        });
+    }
+
 
 
     function deletePubvip(str){

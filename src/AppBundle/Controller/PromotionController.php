@@ -10,7 +10,7 @@ use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;use Symfony\Component
 /**
  * Promotion controller.
  *
- * @Route("promotion")
+ * @Route("admin/promotion")
  */
 class PromotionController extends Controller
 {
@@ -48,7 +48,7 @@ class PromotionController extends Controller
             $em->persist($promotion);
             $em->flush();
 
-            return $this->redirectToRoute('promotion_show', array('id' => $promotion->getId()));
+            return $this->redirectToRoute('index_promotion');
         }
 
         return $this->render('promotion/new.html.twig', array(
@@ -107,16 +107,11 @@ class PromotionController extends Controller
      */
     public function deleteAction(Request $request, Promotion $promotion)
     {
-        //$form = $this->createDeleteForm($promotion);
-        //$form->handleRequest($request);
 
-       // if ($form->isSubmitted() && $form->isValid()) {
             $em = $this->getDoctrine()->getManager();
             $em->remove($promotion);
             $em->flush();
-        //}
-
-        return $this->redirectToRoute('index_promotion');
+            return $this->redirectToRoute('index_promotion');
     }
 
     /**

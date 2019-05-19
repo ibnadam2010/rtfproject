@@ -10,7 +10,7 @@ use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;use Symfony\Component
 /**
  * Entreprise controller.
  *
- * @Route("entreprise")
+ * @Route("admin/entreprise")
  */
 class EntrepriseController extends Controller
 {

@@ -10,7 +10,7 @@ use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;use Symfony\Component
 /**
  * Ecole_sup controller.
  *
- * @Route("ecole_sup")
+ * @Route("admin/ecole_sup")
  */
 class Ecole_supController extends Controller
 {

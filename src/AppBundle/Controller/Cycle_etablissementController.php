@@ -11,7 +11,7 @@ use Symfony\Component\HttpFoundation\Request;
 /**
  * Cycle_etablissement controller.
  *
- * @Route("cycle_etablissement")
+ * @Route("admin/cycle_etablissement")
  */
 class Cycle_etablissementController extends Controller
 {

@@ -10,7 +10,7 @@ use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;use Symfony\Component
 /**
  * Cycle controller.
  *
- * @Route("cycle")
+ * @Route("admin/cycle")
  */
 class CycleController extends Controller
 {
@@ -48,7 +48,7 @@ class CycleController extends Controller
             $em->persist($cycle);
             $em->flush();
 
-            return $this->redirectToRoute('cycle_show', array('id' => $cycle->getId()));
+            return $this->redirectToRoute('index_cycle');
             
         }
 
@@ -111,15 +111,10 @@ class CycleController extends Controller
      */
     public function deleteAction(Request $request, Cycle $cycle)
     {
-        //$form = $this->createDeleteForm($cycle);
-        //$form->handleRequest($request);
 
-        //if ($form->isSubmitted() && $form->isValid()) {
             $em = $this->getDoctrine()->getManager();
             $em->remove($cycle);
             $em->flush();
-        //}
-
         return $this->redirectToRoute('index_cycle');
     }
 

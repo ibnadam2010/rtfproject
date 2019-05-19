@@ -10,7 +10,7 @@ use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;use Symfony\Component
 /**
  * Matiere controller.
  *
- * @Route("matiere")
+ * @Route("admin/matiere")
  */
 class MatiereController extends Controller
 {
@@ -48,7 +48,6 @@ class MatiereController extends Controller
             $em->persist($matiere);
             $em->flush();
 
-            //return $this->redirectToRoute('matiere_show', array('id' => $matiere->getId()));
             return $this->redirectToRoute('index_matiere');
         }
 
@@ -89,7 +88,7 @@ class MatiereController extends Controller
         if ($editForm->isSubmitted() && $editForm->isValid()) {
             $this->getDoctrine()->getManager()->flush();
 
-            return $this->redirectToRoute('matiere_edit', array('id' => $matiere->getId()));
+            return $this->redirectToRoute('index_matiere');
         }
 
         return $this->render('matiere/edit.html.twig', array(
@@ -108,14 +107,11 @@ class MatiereController extends Controller
      */
     public function deleteAction(Request $request, Matiere $matiere)
     {
-        //$form = $this->createDeleteForm($matiere);
-        //$form->handleRequest($request);
 
-        //if ($form->isSubmitted() && $form->isValid()) {
             $em = $this->getDoctrine()->getManager();
             $em->remove($matiere);
             $em->flush();
-       // }
+
 
         return $this->redirectToRoute('index_matiere');
     }

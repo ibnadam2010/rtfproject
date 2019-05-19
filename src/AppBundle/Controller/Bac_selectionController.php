@@ -10,7 +10,7 @@ use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;use Symfony\Component
 /**
  * Bac_selection controller.
  *
- * @Route("bac_selection")
+ * @Route("admin/bac_selection")
  */
 class Bac_selectionController extends Controller
 {

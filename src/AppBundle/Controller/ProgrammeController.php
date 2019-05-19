@@ -49,7 +49,7 @@ class ProgrammeController extends Controller
             $em->persist($programme);
             $em->flush();
 
-            return $this->redirectToRoute('programme_show', array('id' => $programme->getId()));
+            return $this->redirectToRoute('index_programme');
         }
 
         return $this->render('programme/new.html.twig', array(
@@ -109,14 +109,11 @@ class ProgrammeController extends Controller
      */
     public function deleteAction(Request $request, Programme $programme)
     {
-       // $form = $this->createDeleteForm($programme);
-        //$form->handleRequest($request);
 
-       // if ($form->isSubmitted() && $form->isValid()) {
             $em = $this->getDoctrine()->getManager();
             $em->remove($programme);
             $em->flush();
-        //}
+
 
         return $this->redirectToRoute('index_programme');
     }

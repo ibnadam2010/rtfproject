@@ -10,7 +10,7 @@ use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;use Symfony\Component
 /**
  * Departement controller.
  *
- * @Route("departement")
+ * @Route("admin/departement")
  */
 class DepartementController extends Controller
 {

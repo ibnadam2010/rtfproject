@@ -10,7 +10,7 @@ use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;use Symfony\Component
 /**
  * Diplome_coach controller.
  *
- * @Route("diplome_coach")
+ * @Route("admin/diplome_coach")
  */
 class Diplome_coachController extends Controller
 {
