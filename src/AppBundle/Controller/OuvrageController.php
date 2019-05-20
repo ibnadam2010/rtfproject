@@ -10,7 +10,7 @@ use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;use Symfony\Component
 /**
  * Ouvrage controller.
  *
- * @Route("ouvrage")
+ * @Route("admin/ouvrage")
  */
 class OuvrageController extends Controller
 {
@@ -48,15 +48,14 @@ class OuvrageController extends Controller
             $em->persist($ouvrage);
             $em->flush();
 
-            return $this->redirectToRoute('index_ouvrage', array('id' => $ouvrage->getId()));
+            return $this->redirectToRoute('index_ouvrage');
         }
 
         return $this->render('ouvrage/new.html.twig', array(
             'ouvrage' => $ouvrage,
             'form' => $form->createView(),
         ));
-        
-       // return $this->redirectToRoute('index_ouvrage');
+
     }
 
     /**
@@ -90,7 +89,7 @@ class OuvrageController extends Controller
         if ($editForm->isSubmitted() && $editForm->isValid()) {
             $this->getDoctrine()->getManager()->flush();
 
-            //return $this->redirectToRoute('ouvrage_edit', array('id' => $ouvrage->getId()));
+
             return $this->redirectToRoute('index_ouvrage');
         }
 
@@ -109,16 +108,10 @@ class OuvrageController extends Controller
      */
     public function deleteAction(Request $request, Ouvrage $ouvrage)
     {
-        //$form = $this->createDeleteForm($ouvrage);
-        //$form->handleRequest($request);
-
-       // if ($form->isSubmitted() && $form->isValid()) {
             $em = $this->getDoctrine()->getManager();
             $em->remove($ouvrage);
             $em->flush();
-        //}
 
-        //return $this->redirectToRoute('ouvrage_index');
         return $this->redirectToRoute('index_ouvrage');
     }
 

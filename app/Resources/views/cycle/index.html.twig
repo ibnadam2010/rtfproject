@@ -11,18 +11,16 @@
     </div>
 <table  class="footable" data-page-size ="10" data-filter="#filter">
     <thead >
-    <th data-toggle="true" style="background:#122e48">Id</th>
     <th data-hide="phone" style="background:#122e48">Cycle</th>
     <th data-hide="phone" style="background:#122e48">Action</th>
     </thead>
     <tbody >
     {% for cycle in cycles %}
     <tr>
-        <td>{{ cycle.id }}</td>
         <td>{{ cycle.nomCycle }}</td>
         <td>
             {{ render(controller('AppBundle:Cycle:edit',{'id':cycle.id})) }}
-            <button class="btn btn-danger btn-sm confirm"  onclick="deleteDep('{{ cycle.id }}')" ><i class="fas fa-trash-alt"></i></button>
+            <button class="btn btn-danger btn-sm confirm"  onclick="deleteCycle('{{ cycle.id }}')" ><i class="fas fa-trash-alt"></i></button>
         </td>
     </tr>
     {% endfor %}

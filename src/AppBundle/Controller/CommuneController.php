@@ -48,7 +48,7 @@ class CommuneController extends Controller
             $em->persist($commune);
             $em->flush();
 
-            return $this->redirectToRoute('commune_show', array('id' => $commune->getId()));
+            return $this->redirectToRoute('index_commune');
         }
 
         return $this->render('commune/new.html.twig', array(
@@ -107,14 +107,11 @@ class CommuneController extends Controller
      */
     public function deleteAction(Request $request, Commune $commune)
     {
-        //$form = $this->createDeleteForm($commune);
-        //$form->handleRequest($request);
 
-       // if ($form->isSubmitted() && $form->isValid()) {
             $em = $this->getDoctrine()->getManager();
             $em->remove($commune);
             $em->flush();
-       // }
+
 
         return $this->redirectToRoute('index_commune');
     }

@@ -1,45 +1,48 @@
 {% extends 'adminbase.html.twig' %}
 
 {% block admin %}
-    <h1>Bac_selections list</h1>
+    {{ render(controller('AppBundle:Bac_selection:new')) }}
+    <br><br><br>
+    <h3>Liste des bac selectionnés</h3>
+    <div class="form-group">
+        <div class = "input-group">
+            <input type="text" id ="filter" name = "prenom" class="form-control" placeholder="Rechercher un bas selectionné"/>
+        </div>
+    </div>
+<table  class="footable" data-page-size ="10" data-filter="#filter">
+    <thead >
+    <th data-toggle="true" style="background:#122e48">Id</th>
+    <th data-hide="phone" style="background:#122e48">Bac</th>
+    <th data-toggle="true" style="background:#122e48">Specialité</th>
+    <th data-hide="phone" style="background:#122e48">Action</th>
+    </thead>
+    <tbody >
+    {% for bac_selection in bac_selections %}
+    <tr>
+        <td>{ bac_selection.id }}</td>
+        <td>{{ bac_selection.bac.nomBac }}</td>
+        <td>{{ bac_selection.specialite.nomSpecialite }}</td>
+        <td>
+            {{ render(controller('AppBundle:Bac_selection:edit',{'id':bac_selection.id})) }}
+            <button class="btn btn-danger btn-sm confirm"  onclick="deleteDep('{{ bac_selection.id }}')" ><i class="fas fa-trash-alt"></i></button>
+        </td>
+    </tr>
+    {% endfor %}
+    </tbody>
+    <tfoot class = "hide-if-no-paging">
+    <td colspan="4">
 
-    <table border="1"; style="width:auto";>
-        <thead>
-            <tr>
-                <th>Id</th>
-                <th>Bac</th>
-                <th>Specialité</th>
-                <th>Dateenreg</th>
-                <th>Actions</th>
-            </tr>
-        </thead>
-        <tbody>
-        {% for bac_selection in bac_selections %}
-            <tr>
-                <td><a href="{{ path('bac_selection_show', { 'id': bac_selection.id }) }}">{{ bac_selection.id }}</a></td>
-                <td>{{ bac_selection.bac.nomBac }}</td>
-                <td>{{ bac_selection.specialite.nomSpecialite }}</td>
-                <td>{% if bac_selection.dateEnreg %}{{ bac_selection.dateEnreg|date('Y-m-d H:i:s') }}{% endif %}</td>
-                <td>
-                    <ul>
-                        
-                            <a href="{{ path('bac_selection_show', { 'id': bac_selection.id }) }}">show</a>
-                        
-                            <a href="{{ path('bac_selection_edit', { 'id': bac_selection.id }) }}">edit</a>
+        <div class = "pagination">
 
-                            <a href="{{ path('bac_selection_delete', { 'id': bac_selection.id }) }}">delete</a>
+        </div>
 
-                        
-                    </ul>
-                </td>
-            </tr>
-        {% endfor %}
-        </tbody>
-    </table>
+    </td>
 
-    <ul>
-        <li>
-            <a href="{{ path('bac_selection_new') }}">Create a new bac_selection</a>
-        </li>
-    </ul>
+    </tfoot>
+</table>
+
+
+    <script type="text/javascript">
+        $(".footable").footable();
+    </script>
 {% endblock %}

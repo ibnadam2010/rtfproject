@@ -1,48 +1,48 @@
 {% extends 'adminbase.html.twig' %}
 
 {% block admin %}
-    <h1>Offre_formations list</h1>
+    {{ render(controller('AppBundle:Offre_formation:new')) }}
+    <br><br><br>
+    <h3>Liste des offres de formations</h3>
+    <div class="form-group">
+        <div class = "input-group">
+            <input type="text" id ="filter" name = "prenom" class="form-control" placeholder="Rechercher une offre de formation"/>
+        </div>
+    </div>
+<table  class="footable" data-page-size ="10" data-filter="#filter">
+    <thead >
+    <th data-toggle="true" style="background:#122e48">ID</th>
+    <th data-hide="phone" style="background:#122e48">Ecole</th>
+    <th data-toggle="true" style="background:#122e48">Specialité</th>
+    <th data-hide="phone" style="background:#122e48">Action</th>
+    </thead>
+    <tbody >
+    {% for offre_formation in offre_formations %}
+    <tr>
+        <td>{{ offre_formation.id }}</td>
+        <td>{{ offre_formation.ecole_sup.nomEcole }}</td>
+        <td>{{ offre_formation.specialite.nomSpecialite }}</td>
+        <td>
+            {{ render(controller('AppBundle:Offre_formation:edit',{'id':offre_formation.id})) }}
+            <button class="btn btn-danger btn-sm confirm"  onclick="deleteDep('{{ offre_formation.id }}')" ><i class="fas fa-trash-alt"></i></button>
+        </td>
+    </tr>
+    {% endfor %}
+    </tbody>
+    <tfoot class = "hide-if-no-paging">
+    <td colspan="4">
 
-    <table border="1"; style="width:auto";>
-        <thead>
-            <tr>
-                <th>Id</th>
-                <th>Ecole</th>
-                <th>Specialite</th>
-                <th>Dateenreg</th>
-                <th>Actions</th>
-            </tr>
-        </thead>
-        <tbody>
-        {% for offre_formation in offre_formations %}
-            <tr>
-                <td><a href="{{ path('offre_formation_show', { 'id': offre_formation.id }) }}">{{ offre_formation.id }}</a></td>
+        <div class = "pagination">
 
-                <td>{{ offre_formation.ecole_sup.nomEcole }}</td>
-                <td>{{ offre_formation.specialite.nomSpecialite }}</td>
-                
-                
+        </div>
 
-                <td>{% if offre_formation.dateEnreg %}{{ offre_formation.dateEnreg|date('Y-m-d H:i:s') }}{% endif %}</td>
-                <td>
-                    <ul>
-                        
-                            <a href="{{ path('offre_formation_show', { 'id': offre_formation.id }) }}">show</a>
-                        
-                            <a href="{{ path('offre_formation_edit', { 'id': offre_formation.id }) }}">edit</a>
+    </td>
 
-                            <a href="{{ path('offre_formation_delete', { 'id': offre_formation.id }) }}">delete</a>
-                        
-                    </ul>
-                </td>
-            </tr>
-        {% endfor %}
-        </tbody>
-    </table>
+    </tfoot>
+</table>
 
-    <ul>
-        <li>
-            <a href="{{ path('offre_formation_new') }}">Create a new offre_formation</a>
-        </li>
-    </ul>
+
+    <script type="text/javascript">
+        $(".footable").footable();
+    </script>
 {% endblock %}

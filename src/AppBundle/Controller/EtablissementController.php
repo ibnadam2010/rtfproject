@@ -10,7 +10,7 @@ use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;use Symfony\Component
 /**
  * Etablissement controller.
  *
- * @Route("etablissement")
+ * @Route("admin/etablissement")
  */
 class EtablissementController extends Controller
 {
@@ -48,7 +48,7 @@ class EtablissementController extends Controller
             $em->persist($etablissement);
             $em->flush();
 
-            return $this->redirectToRoute('etablissement_show', array('id' => $etablissement->getId()));
+            return $this->redirectToRoute('index_etablissement');
         }
 
         return $this->render('etablissement/new.html.twig', array(
@@ -89,7 +89,7 @@ class EtablissementController extends Controller
         if ($editForm->isSubmitted() && $editForm->isValid()) {
             $this->getDoctrine()->getManager()->flush();
 
-           // return $this->redirectToRoute('etablissement_edit', array('id' => $etablissement->getId()));
+
             return $this->redirectToRoute('index_etablissement');
         }
 
@@ -108,14 +108,11 @@ class EtablissementController extends Controller
      */
     public function deleteAction(Request $request, Etablissement $etablissement)
     {
-       // $form = $this->createDeleteForm($etablissement);
-       // $form->handleRequest($request);
 
-       // if ($form->isSubmitted() && $form->isValid()) {
             $em = $this->getDoctrine()->getManager();
             $em->remove($etablissement);
             $em->flush();
-       // }
+
 
         return $this->redirectToRoute('index_etablissement');
     }

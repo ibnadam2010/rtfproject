@@ -10,7 +10,7 @@ use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;use Symfony\Component
 /**
  * Actuality controller.
  *
- * @Route("actuality")
+ * @Route("admin/actuality")
  */
 class ActualityController extends Controller
 {

@@ -11,18 +11,16 @@
     </div>
 <table  class="footable" data-page-size ="10" data-filter="#filter">
     <thead >
-    <th data-toggle="true" style="background:#122e48">Id</th>
     <th data-hide="phone" style="background:#122e48">Nom Matière</th>
     <th data-hide="phone" style="background:#122e48">Action</th>
     </thead>
     <tbody >
     {% for matiere in matieres %}
     <tr>
-        <td>{{ matiere.id }}</td>
         <td>{{ matiere.nomMatiere }}</td>
         <td>
             {{ render(controller('AppBundle:Matiere:edit',{'id':matiere.id})) }}
-            <button class="btn btn-danger btn-sm confirm"  onclick="deleteDep('{{ matiere.id }}')" ><i class="fas fa-trash-alt"></i></button>
+            <button class="btn btn-danger btn-sm confirm"  onclick="deleteMatiere('{{ matiere.id }}')" ><i class="fas fa-trash-alt"></i></button>
         </td>
     </tr>
     {% endfor %}

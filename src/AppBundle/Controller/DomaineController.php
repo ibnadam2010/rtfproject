@@ -10,7 +10,7 @@ use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;use Symfony\Component
 /**
  * Domaine controller.
  *
- * @Route("domaine")
+ * @Route("admin/domaine")
  */
 class DomaineController extends Controller
 {

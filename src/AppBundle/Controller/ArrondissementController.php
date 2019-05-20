@@ -10,7 +10,7 @@ use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;use Symfony\Component
 /**
  * Arrondissement controller.
  *
- * @Route("arrondissement")
+ * @Route("admin/arrondissement")
  */
 class ArrondissementController extends Controller
 {
@@ -104,21 +104,21 @@ class ArrondissementController extends Controller
     /**
      * Deletes a arrondissement entity.
      *
-     * @Route("/{id}", name="arrondissement_delete")
+     * @Route("delete/{id}", name="arrondissement_delete")
      * @Method("DELETE")
      */
     public function deleteAction(Request $request, Arrondissement $arrondissement)
     {
-        $form = $this->createDeleteForm($arrondissement);
-        $form->handleRequest($request);
 
-        if ($form->isSubmitted() && $form->isValid()) {
+
+
             $em = $this->getDoctrine()->getManager();
             $em->remove($arrondissement);
             $em->flush();
-        }
 
-        return $this->redirectToRoute('arrondissement_index');
+
+        return $this->redirectToRoute('index_
+        arrondissement');
     }
 
     /**

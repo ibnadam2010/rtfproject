@@ -33,6 +33,126 @@ class DefaultController extends Controller
         // replace this example code with whatever you need
         return $this->render('default/admin.html.twig');
     }
+
+    /**
+     * @Route("/sixieme", name="link_sixieme")
+     */
+    public function sixiemeAction(Request $request)
+    {
+        // replace this example code with whatever you need
+        return $this->render('default/sixieme.html.twig');
+    }
+
+    /**
+     * @Route("/cinquieme", name="link_cinquieme")
+     */
+    public function cinqiemeAction(Request $request)
+    {
+        // replace this example code with whatever you need
+        return $this->render('default/cinquieme.html.twig');
+    }
+
+
+    /**
+     * @Route("/quatrieme", name="link_quatrieme")
+     */
+    public function quatriemeAction(Request $request)
+    {
+        // replace this example code with whatever you need
+        return $this->render('default/quatrieme.html.twig');
+    }
+
+
+    /**
+     * @Route("/troisieme", name="link_troisieme")
+     */
+    public function troisiemeAction(Request $request)
+    {
+        // replace this example code with whatever you need
+        return $this->render('default/troisieme.html.twig');
+    }
+
+
+
+    /**
+     * @Route("/seconde", name="link_seconde")
+     */
+    public function secondeAction(Request $request)
+    {
+        // replace this example code with whatever you need
+        return $this->render('default/seconde.html.twig');
+    }
+
+
+
+    /**
+     * @Route("/premiere", name="link_premiere")
+     */
+    public function premiereAction(Request $request)
+    {
+        // replace this example code with whatever you need
+        return $this->render('default/premiere.html.twig');
+    }
+
+
+    /**
+     * @Route("/terminale", name="link_terminale")
+     */
+    public function terminaleAction(Request $request)
+    {
+        // replace this example code with whatever you need
+        return $this->render('default/terminale.html.twig');
+    }
+
+
+    /**
+     * @Route("/cours_exercice", name="link_coursetexercice")
+     */
+    public function coursAction(Request $request)
+    {
+        // replace this example code with whatever you need
+        return $this->render('default/cours_exercice.html.twig');
+    }
+
+
+    /**
+     * @Route("/bepc", name="link_bepc")
+     */
+    public function bepcAction(Request $request)
+    {
+        // replace this example code with whatever you need
+        return $this->render('default/bepc.html.twig');
+    }
+
+
+    /**
+     * @Route("/bac", name="link_bac")
+     */
+    public function bacAction(Request $request)
+    {
+        // replace this example code with whatever you need
+        return $this->render('default/bac.html.twig');
+    }
+
+
+    /**
+     * @Route("/repetiteur", name="link_repetiteur")
+     */
+    public function repetiteurAction(Request $request)
+    {
+        // replace this example code with whatever you need
+        return $this->render('default/repetiteur.html.twig');
+    }
+
+
+    /**
+     * @Route("/annuaire/college", name="link_annuaire_college")
+     */
+    public function annuaireCollegeAction(Request $request)
+    {
+        // replace this example code with whatever you need
+        return $this->render('default/annuaire_college.html.twig');
+    }
 	
 
 }

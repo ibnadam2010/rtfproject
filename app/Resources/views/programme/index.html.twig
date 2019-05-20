@@ -11,7 +11,6 @@
     </div>
 <table  class="footable" data-page-size ="10" data-filter="#filter">
     <thead >
-    <th data-toggle="true" style="background:#122e48">Id</th>
     <th data-hide="phone" style="background:#122e48">Matière</th>
     <th data-hide="phone" style="background:#122e48">Promotion</th>
     <th data-toggle="true" style="background:#122e48">Coefficient</th>
@@ -21,14 +20,13 @@
     <tbody >
     {% for programme in programmes %}
     <tr>
-        <td>{{ programme.id }}</td>
         <td>{{ programme.matiere.nomMatiere }}</td>
         <td>{{ programme.promotion.nomPromotion }}</td>
         <td>{{ programme.coef }}</td>
         <td>{{ programme.masseHoraire }}</td>
         <td>
             {{ render(controller('AppBundle:Programme:edit',{'id':programme.id})) }}
-            <button class="btn btn-danger btn-sm confirm"  onclick="deleteDep('{{ programme.id }}')" ><i class="fas fa-trash-alt"></i></button>
+            <button class="btn btn-danger btn-sm confirm"  onclick="deleteProg('{{ programme.id }}')" ><i class="fas fa-trash-alt"></i></button>
         </td>
     </tr>
     {% endfor %}

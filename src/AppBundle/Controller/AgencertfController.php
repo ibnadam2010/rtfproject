@@ -10,7 +10,7 @@ use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;use Symfony\Component
 /**
  * Agencertf controller.
  *
- * @Route("agencertf")
+ * @Route("admin/agencertf")
  */
 class AgencertfController extends Controller
 {
