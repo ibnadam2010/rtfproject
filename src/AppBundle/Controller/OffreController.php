@@ -48,10 +48,7 @@ class OffreController extends Controller
             $em->persist($offre);
             $em->flush();
 
-            //return $this->redirectToRoute('offre_show', array('id' => $offre->getId()));
-            
-            //return $this->addFlash('success', 'We saved a product with id '.$offre->getId());
-            return $this->redirectToRoute('offre_index');
+            return $this->redirectToRoute('offre_show', array('id' => $offre->getId()));
         }
 
         return $this->render('offre/new.html.twig', array(
@@ -91,8 +88,7 @@ class OffreController extends Controller
         if ($editForm->isSubmitted() && $editForm->isValid()) {
             $this->getDoctrine()->getManager()->flush();
 
-            //return $this->redirectToRoute('offre_edit', array('id' => $offre->getId()));
-            return $this->redirectToRoute('offre_index');
+            return $this->redirectToRoute('offre_edit', array('id' => $offre->getId()));
         }
 
         return $this->render('offre/edit.html.twig', array(
@@ -105,19 +101,19 @@ class OffreController extends Controller
     /**
      * Deletes a offre entity.
      *
-     * @Route("delete/{id}", name="offre_delete")
+     * @Route("/{id}", name="offre_delete")
      * @Method("DELETE")
      */
     public function deleteAction(Request $request, Offre $offre)
     {
-        //$form = $this->createDeleteForm($offre);
-        //$form->handleRequest($request);
+        $form = $this->createDeleteForm($offre);
+        $form->handleRequest($request);
 
-        //if ($form->isSubmitted() && $form->isValid()) {
+        if ($form->isSubmitted() && $form->isValid()) {
             $em = $this->getDoctrine()->getManager();
             $em->remove($offre);
             $em->flush();
-       // }
+        }
 
         return $this->redirectToRoute('offre_index');
     }

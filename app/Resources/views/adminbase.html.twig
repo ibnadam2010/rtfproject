@@ -644,10 +644,10 @@
 
     //offre
 
-    $('.add_pubvip').submit(function(e) {
+    $('.add_offre').submit(function(e) {
         e.preventDefault();
-        var url = "{{ path('pubvip_new') }}";
-        var form = document.getElementById("myPubvipForm");
+        var url = "{{ path('offre_new') }}";
+        var form = document.getElementById("myOffreForm");
         $.ajax({
             url:url,
             data: new FormData(form),// the formData function is available in almost all new browsers.
@@ -672,7 +672,7 @@
     });
 
     //offre
-    function deletePubvip(str){
+    function deleteOffre(str){
 
         $('.confirm').confirm({
 
@@ -680,7 +680,7 @@
             text:"Voulez-vous supprimer cette ligne?",
             title:"",
             confirm: function(button){
-                var url = "{{ path('pubvip_delete',{'id':1}) }}";
+                var url = "{{ path('offre_delete',{'id':1}) }}";
                 url = url.replace("1",str);
 
                 $.ajax({

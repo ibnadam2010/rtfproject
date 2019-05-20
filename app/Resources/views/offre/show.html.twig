@@ -3,7 +3,7 @@
 {% block admin %}
     <h1>Offre</h1>
 
-    <table border="1"; style="width:auto";>
+    <table>
         <tbody>
             <tr>
                 <th>Id</th>
@@ -12,14 +12,6 @@
             <tr>
                 <th>Intituleoffre</th>
                 <td>{{ offre.intituleOffre }}</td>
-            </tr>
-            <tr>
-                <th>entreprise</th>
-                <td>{{ offre.entreprise.nomEntreprise }}</td>
-            </tr>
-            <tr>
-                <th>Diplome</th>
-                <td>{{ offre.diplome.nomDiplome }}</td>
             </tr>
             <tr>
                 <th>Natureoffre</th>
@@ -48,6 +40,10 @@
             <tr>
                 <th>Dateenreg</th>
                 <td>{% if offre.dateEnreg %}{{ offre.dateEnreg|date('Y-m-d H:i:s') }}{% endif %}</td>
+            </tr>
+            <tr>
+                <th>Path</th>
+                <td>{{ offre.path }}</td>
             </tr>
         </tbody>
     </table>
