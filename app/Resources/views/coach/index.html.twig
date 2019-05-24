@@ -1,62 +1,64 @@
 {% extends 'adminbase.html.twig' %}
-
+{% block title %}Departement{% endblock %}
 {% block admin %}
-    <h1>Coaches list</h1>
+    {{ render(controller('AppBundle:Coach:new')) }}
+    <br><br><br>
+    <h3>Liste des coach</h3>
+    <div class="form-group">
+        <div class = "input-group">
+            <input type="text" id ="filter" name = "prenom" class="form-control" placeholder="Rechercher un coach"/>
+        </div>
+    </div>
+<table  class="footable" data-page-size ="10" data-filter="#filter">
+    <thead >
+    <th data-toggle="true" style="background:#122e48">Id</th>
+    <th data-hide="phone" style="background:#122e48">Nom</th>
+    <th data-hide="phone" style="background:#122e48">Prenom</th>
+    <th data-hide="phone" style="background:#122e48">Sexe</th>
+    <th data-hide="phone" style="background:#122e48">Date naissance </th>
+    <th data-hide="phone" style="background:#122e48">Piece coach</th>
+    <th data-hide="phone" style="background:#122e48">Num pièce</th>
+    <th data-hide="phone" style="background:#122e48">Adresse</th>
+    <th data-hide="phone" style="background:#122e48">Telephone</th>
+    <th data-hide="phone" style="background:#122e48">Email</th>
+    <th data-hide="phone" style="background:#122e48">Type</th>
+    <th data-hide="phone" style="background:#122e48">Actions</th>
+    </thead>
+    <tbody >
+    {% for coach in coaches %}
+    <tr>
+        <td>{{ coach.id }}</td>
+        <td>{{ coach.nomCoach }}</td>
+        <td>{{ coach.prenomCoach }}</td>
+        <td>{{ coach.sexeCoach }}</td>
+        <td>{% if coach.datenaissanceCoach %}{{ coach.datenaissanceCoach|date('Y-m-d') }}{% endif %}</td>
+        <td>{{ coach.pieceCoach }}</td>
+        <td>{{ coach.numpieceCoach }}</td>
+        <td>{{ coach.adresseCoach }}</td>
+        <td>{{ coach.telCoach }}</td>
+        <td>{{ coach.emailCoach }}</td>
+        <td>{{ coach.typeCoach }}</td>
+        <td>
+            {{ render(controller('AppBundle:Coach:edit',{'id':coach.id})) }}
+            <button class="btn btn-danger btn-sm confirm"  onclick="deleteDep('{{ coach.id }}')" ><i class="fas fa-trash-alt"></i></button>
+        </td>
+    </tr>
+    {% endfor %}
+    </tbody>
+    <tfoot class = "hide-if-no-paging">
+    <td colspan="12">
 
-    <table border="1"; style="width:auto";>
-        <thead>
-            <tr>
-                <th>Id</th>
-                <th>Nom coach</th>
-                <th>Prenom coach</th>
-                <th>Sexe coach</th>
-                <th>Date naissance </th>
-                <th>Piece coach</th>
-                <th>Num piececoach</th>
-                <th>Adresse coach</th>
-                <th>Tel coach</th>
-                <th>Email coach</th>
-                <th>Type coach</th>
-                <th>Dateenreg</th>
-                <th>Actions</th>
-            </tr>
-        </thead>
-        <tbody>
-        {% for coach in coaches %}
-            <tr>
-                <td><a href="{{ path('coach_show', { 'id': coach.id }) }}">{{ coach.id }}</a></td>
-                <td>{{ coach.nomCoach }}</td>
-                <td>{{ coach.prenomCoach }}</td>
-                <td>{{ coach.sexeCoach }}</td>
-                <td>{% if coach.datenaissanceCoach %}{{ coach.datenaissanceCoach|date('Y-m-d') }}{% endif %}</td>
-                <td>{{ coach.pieceCoach }}</td>
-                <td>{{ coach.numpieceCoach }}</td>
-                <td>{{ coach.adresseCoach }}</td>
-                <td>{{ coach.telCoach }}</td>
-                <td>{{ coach.emailCoach }}</td>
-                <td>{{ coach.typeCoach }}</td>
-                <td>{% if coach.dateEnreg %}{{ coach.dateEnreg|date('Y-m-d H:i:s') }}{% endif %}</td>
-                <td>
-                    <ul>
-                        <li>
-                            <a href="{{ path('coach_show', { 'id': coach.id }) }}">show</a>
-                        </li>
-                        <li>
-                            <a href="{{ path('coach_edit', { 'id': coach.id }) }}">edit</a>
-                        </li>
-                        <li>
-                            <a href="{{ path('coach_delete', { 'id': coach.id }) }}">delete</a>
-                        </li>
-                    </ul>
-                </td>
-            </tr>
-        {% endfor %}
-        </tbody>
-    </table>
+        <div class = "pagination">
 
-    <ul>
-        <li>
-            <a href="{{ path('coach_new') }}">Create a new coach</a>
-        </li>
-    </ul>
+        </div>
+
+    </td>
+
+    </tfoot>
+</table>
+
+
+    <script type="text/javascript">
+        $(".footable").footable();
+    </script>
 {% endblock %}

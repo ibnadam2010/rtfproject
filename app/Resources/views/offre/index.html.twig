@@ -1,55 +1,62 @@
 {% extends 'adminbase.html.twig' %}
-
+{% block title %}Offre{% endblock %}
 {% block admin %}
-    <h1>Offres list</h1>
+    {{ render(controller('AppBundle:Offre:new')) }}
+    <br><br><br>
+    <h3>Liste des offres</h3>
+    <div class="form-group">
+        <div class = "input-group">
+            <input type="text" id ="filter" name = "prenom" class="form-control" placeholder="Rechercher un offre"/>
+        </div>
+    </div>
+<table  class="footable" data-page-size ="10" data-filter="#filter">
+    <thead >
+    <th data-toggle="true" style="background:#122e48">id</th>
+    <th data-hide="phone" style="background:#122e48">Intitulé</th>
+    <th data-hide="phone" style="background:#122e48">Nature</th>
+    <th data-toggle="true" style="background:#122e48">Type</th>
+    <th data-hide="phone" style="background:#122e48">durée</th>
+    <th data-toggle="true" style="background:#122e48">Description</th>
+    <th data-hide="phone" style="background:#122e48">Pièce</th>
+    <th data-hide="phone" style="background:#122e48">Date valide</th>
+    <th data-toggle="true" style="background:#122e48">date</th>
+    <th data-hide="phone" style="background:#122e48">chemin</th>
+    <th data-hide="phone" style="background:#122e48">Action</th>
+    </thead>
+    <tbody >
+    {% for offre in offres %}
+    <tr>
+        <td>{{ offre.id }}</td>
+        <td>{{ offre.intituleOffre }}</td>
+        <td>{{ offre.natureOffre }}</td>
+        <td>{{ offre.typeOffre }}</td>
+        <td>{{ offre.dureeOffre }}</td>
+        <td>{{ offre.descriptionOffre }}</td>
+        <td>{{ offre.pjOffre }}</td>
+        <td>{% if offre.datevaliditeOffre %}{{ offre.datevaliditeOffre|date('Y-m-d') }}{% endif %}</td>
+        <td>{% if offre.dateEnreg %}{{ offre.dateEnreg|date('Y-m-d H:i:s') }}{% endif %}</td>
+        <td>{{ offre.path }}</td>
+        <td>
+            {{ render(controller('AppBundle:Offre:edit',{'id':offre.id})) }}
+            <button class="btn btn-danger btn-sm confirm"  onclick="deleteDep('{{ offre.id }}')" ><i class="fas fa-trash-alt"></i></button>
+        </td>
+    </tr>
+    {% endfor %}
+    </tbody>
+    <tfoot class = "hide-if-no-paging">
+    <td colspan="11">
 
-    <table>
-        <thead>
-            <tr>
-                <th>Id</th>
-                <th>Intituleoffre</th>
-                <th>Natureoffre</th>
-                <th>Typeoffre</th>
-                <th>Dureeoffre</th>
-                <th>Descriptionoffre</th>
-                <th>Pjoffre</th>
-                <th>Datevaliditeoffre</th>
-                <th>Dateenreg</th>
-                <th>Path</th>
-                <th>Actions</th>
-            </tr>
-        </thead>
-        <tbody>
-        {% for offre in offres %}
-            <tr>
-                <td><a href="{{ path('offre_show', { 'id': offre.id }) }}">{{ offre.id }}</a></td>
-                <td>{{ offre.intituleOffre }}</td>
-                <td>{{ offre.natureOffre }}</td>
-                <td>{{ offre.typeOffre }}</td>
-                <td>{{ offre.dureeOffre }}</td>
-                <td>{{ offre.descriptionOffre }}</td>
-                <td>{{ offre.pjOffre }}</td>
-                <td>{% if offre.datevaliditeOffre %}{{ offre.datevaliditeOffre|date('Y-m-d') }}{% endif %}</td>
-                <td>{% if offre.dateEnreg %}{{ offre.dateEnreg|date('Y-m-d H:i:s') }}{% endif %}</td>
-                <td>{{ offre.path }}</td>
-                <td>
-                    <ul>
-                        <li>
-                            <a href="{{ path('offre_show', { 'id': offre.id }) }}">show</a>
-                        </li>
-                        <li>
-                            <a href="{{ path('offre_edit', { 'id': offre.id }) }}">edit</a>
-                        </li>
-                    </ul>
-                </td>
-            </tr>
-        {% endfor %}
-        </tbody>
-    </table>
+        <div class = "pagination">
 
-    <ul>
-        <li>
-            <a href="{{ path('offre_new') }}">Create a new offre</a>
-        </li>
-    </ul>
+        </div>
+
+    </td>
+
+    </tfoot>
+</table>
+
+
+    <script type="text/javascript">
+        $(".footable").footable();
+    </script>
 {% endblock %}

@@ -1,50 +1,52 @@
 {% extends 'adminbase.html.twig' %}
-
+{% block title %}Agencertf{% endblock %}
 {% block admin %}
-    <h1>Agencertfs list</h1>
+    {{ render(controller('AppBundle:Agencertf:new')) }}
+    <br><br><br>
+    <h3>Liste des départements</h3>
+    <div class="form-group">
+        <div class = "input-group">
+            <input type="text" id ="filter" name = "prenom" class="form-control" placeholder="Rechercher une agence RTF"/>
+        </div>
+    </div>
+<table  class="footable" data-page-size ="10" data-filter="#filter">
+    <thead >
+    <th data-toggle="true" style="background:#122e48">Id</th>
+    <th data-hide="phone" style="background:#122e48">Nom Agence</th>
+    <th data-hide="phone" style="background:#122e48">Adresse Agence</th>
+    <th data-hide="phone" style="background:#122e48">Tel Agence</th>
+    <th data-hide="phone" style="background:#122e48">Commune</th>
+    <th data-hide="phone" style="background:#122e48">Actions</th>
+    </thead>
+    <tbody >
+    {% for agencertf in agencertfs %}
+    <tr>
+        <td>{{ agencertf.id }}</td>
+        <td>{{ agencertf.nomAgence }}</td>
+        <td>{{ agencertf.adresseAgence }}</td>
+        <td>{{ agencertf.telAgence }}</td>
+        <td>{{ agencertf.commune.nomCommune }}</td>
+        <td>
+            {{ render(controller('AppBundle:Agencertf:edit',{'id':agencertf.id})) }}
+            <button class="btn btn-danger btn-sm confirm"  onclick="deleteDep('{{ agencertf.id }}')" ><i class="fas fa-trash-alt"></i></button>
+        </td>
+    </tr>
+    {% endfor %}
+    </tbody>
+    <tfoot class = "hide-if-no-paging">
+    <td colspan="6">
 
-    <table border="1"; style="width:auto";>
-        <thead>
-            <tr>
-                <th>Id</th>
-                <th>Nom agence</th>
-                <th>Adresse agence</th>
-                <th>Tel agence</th>
-                <th>Commune</th>
-                <th>Dateenreg</th>
-                <th>Actions</th>
-            </tr>
-        </thead>
-        <tbody>
-        {% for agencertf in agencertfs %}
-            <tr>
-                <td><a href="{{ path('agencertf_show', { 'id': agencertf.id }) }}">{{ agencertf.id }}</a></td>
-                <td>{{ agencertf.nomAgence }}</td>
-                <td>{{ agencertf.adresseAgence }}</td>
-                <td>{{ agencertf.telAgence }}</td>
-                <td>{{ agencertf.commune.nomCommune }}</td>
-                <td>{% if agencertf.dateEnreg %}{{ agencertf.dateEnreg|date('Y-m-d H:i:s') }}{% endif %}</td>
-                <td>
-                    <ul>
-                        <li>
-                            <a href="{{ path('agencertf_show', { 'id': agencertf.id }) }}">show</a>
-                        </li>
-                        <li>
-                            <a href="{{ path('agencertf_edit', { 'id': agencertf.id }) }}">edit</a>
-                        </li>
-                        <li>
-                            <a href="{{ path('agencertf_delete', { 'id': agencertf.id }) }}">delete</a>
-                        </li>
-                    </ul>
-                </td>
-            </tr>
-        {% endfor %}
-        </tbody>
-    </table>
+        <div class = "pagination">
 
-    <ul>
-        <li>
-            <a href="{{ path('agencertf_new') }}">Create a new agencertf</a>
-        </li>
-    </ul>
+        </div>
+
+    </td>
+
+    </tfoot>
+</table>
+
+
+    <script type="text/javascript">
+        $(".footable").footable();
+    </script>
 {% endblock %}

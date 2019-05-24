@@ -1,50 +1,52 @@
 {% extends 'adminbase.html.twig' %}
-
+{% block title %}Diplome Coach{% endblock %}
 {% block admin %}
-    <h1>Diplome_coaches list</h1>
+    {{ render(controller('AppBundle:Diplome_coach:new')) }}
+    <br><br><br>
+    <h3>Liste des Diplome Coach</h3>
+    <div class="form-group">
+        <div class = "input-group">
+            <input type="text" id ="filter" name = "prenom" class="form-control" placeholder="Rechercher un Diplome Coach"/>
+        </div>
+    </div>
+<table  class="footable" data-page-size ="10" data-filter="#filter">
+    <thead >
+    <th data-toggle="true" style="background:#122e48">Id</th>
+    <th data-hide="phone" style="background:#122e48">Coach</th>
+    <th data-hide="phone" style="background:#122e48">Diplome</th>
+    <th data-toggle="true" style="background:#122e48">Expérience</th>
+    <th data-hide="phone" style="background:#122e48">Cours Horaire</th>
+    <th data-hide="phone" style="background:#122e48">Action</th>
+    </thead>
+    <tbody >
+    {% for diplome_coach in diplome_coaches %}
+    <tr>
+        <td>{{ diplome_coach.id }}</td>
+        <td>{{ diplome_coach.coach.nomCoach }}</td>
+        <td>{{ diplome_coach.diplome.nomDiplome }}</td>
+        <td>{{ diplome_coach.anexperienceCoach }}</td>
+        <td>{{ diplome_coach.couthoraireCoach }}</td>
+        <td>
+            {{ render(controller('AppBundle:Diplome_coach:edit',{'id':diplome_coach.id})) }}
+            <button class="btn btn-danger btn-sm confirm"  onclick="deleteDep('{{ diplome_coach.id }}')" ><i class="fas fa-trash-alt"></i></button>
+        </td>
+    </tr>
+    {% endfor %}
+    </tbody>
+    <tfoot class = "hide-if-no-paging">
+    <td colspan="6">
 
-    <table border="1"; style="width:auto";>
-        <thead>
-            <tr>
-                <th>Id</th>
-                <th>Coach</th>
-                <th>Diplome</th>
-                <th>Anexperiencecoach</th>
-                <th>Couthorairecoach</th>
-                <th>Dateenreg</th>
-                <th>Actions</th>
-            </tr>
-        </thead>
-        <tbody>
-        {% for diplome_coach in diplome_coaches %}
-            <tr>
-                <td><a href="{{ path('diplome_coach_show', { 'id': diplome_coach.id }) }}">{{ diplome_coach.id }}</a></td>
-                <td>{{ diplome_coach.coach.nomCoach }}</td>
-                <td>{{ diplome_coach.diplome.nomDiplome }}</td>
-                <td>{{ diplome_coach.anexperienceCoach }}</td>
-                <td>{{ diplome_coach.couthoraireCoach }}</td>
-                <td>{% if diplome_coach.dateEnreg %}{{ diplome_coach.dateEnreg|date('Y-m-d H:i:s') }}{% endif %}</td>
-                <td>
-                    <ul>
-                        <li>
-                            <a href="{{ path('diplome_coach_show', { 'id': diplome_coach.id }) }}">show</a>
-                        </li>
-                        <li>
-                            <a href="{{ path('diplome_coach_edit', { 'id': diplome_coach.id }) }}">edit</a>
-                        </li>
-                        <li>
-                            <a href="{{ path('diplome_coach_delete', { 'id': diplome_coach.id }) }}">delete</a>
-                        </li>
-                    </ul>
-                </td>
-            </tr>
-        {% endfor %}
-        </tbody>
-    </table>
+        <div class = "pagination">
 
-    <ul>
-        <li>
-            <a href="{{ path('diplome_coach_new') }}">Create a new diplome_coach</a>
-        </li>
-    </ul>
+        </div>
+
+    </td>
+
+    </tfoot>
+</table>
+
+
+    <script type="text/javascript">
+        $(".footable").footable();
+    </script>
 {% endblock %}

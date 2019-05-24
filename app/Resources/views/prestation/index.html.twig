@@ -1,54 +1,56 @@
 {% extends 'adminbase.html.twig' %}
-
+{% block title %}Prestation{% endblock %}
 {% block admin %}
-    <h1>Prestations list</h1>
+    {{ render(controller('AppBundle:Prestation:new')) }}
+    <br><br><br>
+    <h3>Liste des prestations</h3>
+    <div class="form-group">
+        <div class = "input-group">
+            <input type="text" id ="filter" name = "prenom" class="form-control" placeholder="Rechercher une prestation"/>
+        </div>
+    </div>
+<table  class="footable" data-page-size ="10" data-filter="#filter">
+    <thead >
+    <th data-toggle="true" style="background:#122e48">Nom</th>
+    <th data-hide="phone" style="background:#122e48">Client</th>
+    <th data-hide="phone" style="background:#122e48">Service</th>
+    <th data-hide="phone" style="background:#122e48">Durée Prestation</th>
+    <th data-hide="phone" style="background:#122e48">Date Debut</th>
+    <th data-hide="phone" style="background:#122e48">Date Fin</th>
+    <th data-hide="phone" style="background:#122e48">Coût</th>
+    <th data-hide="phone" style="background:#122e48">Actions</th>
+    </thead>
+    <tbody >
+    {% for prestation in prestations %}
+    <tr>
+        <td>{{ prestation.id }}</td>
+        <td>{{ prestation.client.nomClient }}</td>
+        <td>{{ prestation.service.nomService }}</td>
+        <td>{{ prestation.dureePrestation }}</td>
+        <td>{% if prestation.datedebutPrestation %}{{ prestation.datedebutPrestation|date('Y-m-d') }}{% endif %}</td>
+        <td>{% if prestation.datefinPrestation %}{{ prestation.datefinPrestation|date('Y-m-d') }}{% endif %}</td>
+        <td>{{ prestation.coutPrestation }}</td>
+        <td>
+            {{ render(controller('AppBundle:Prestation:edit',{'id':prestation.id})) }}
+            <button class="btn btn-danger btn-sm confirm"  onclick="deleteDep('{{ prestation.id }}')" ><i class="fas fa-trash-alt"></i></button>
+        </td>
+    </tr>
+    {% endfor %}
+    </tbody>
+    <tfoot class = "hide-if-no-paging">
+    <td colspan="8">
 
-    <table border="1"; style="width:auto";>
-        <thead>
-            <tr>
-                <th>Id</th>
-                <th>Client</th>
-                <th>Service</th>
-                <th>Dureeprestation</th>
-                <th>Datedebutprestation</th>
-                <th>Datefinprestation</th>
-                <th>Coutprestation</th>
-                <th>Dateenreg</th>
-                <th>Actions</th>
-            </tr>
-        </thead>
-        <tbody>
-        {% for prestation in prestations %}
-            <tr>
-                <td><a href="{{ path('prestation_show', { 'id': prestation.id }) }}">{{ prestation.id }}</a></td>
-                <td>{{ prestation.client.nomClient }}</td>
-                <td>{{ prestation.service.nomService }}</td>
-                <td>{{ prestation.dureePrestation }}</td>
-                <td>{% if prestation.datedebutPrestation %}{{ prestation.datedebutPrestation|date('Y-m-d') }}{% endif %}</td>
-                <td>{% if prestation.datefinPrestation %}{{ prestation.datefinPrestation|date('Y-m-d') }}{% endif %}</td>
-                <td>{{ prestation.coutPrestation }}</td>
-                <td>{% if prestation.dateEnreg %}{{ prestation.dateEnreg|date('Y-m-d H:i:s') }}{% endif %}</td>
-                <td>
-                    <ul>
-                        <li>
-                            <a href="{{ path('prestation_show', { 'id': prestation.id }) }}">show</a>
-                        </li>
-                        <li>
-                            <a href="{{ path('prestation_edit', { 'id': prestation.id }) }}">edit</a>
-                        </li>
-                        <li>
-                            <a href="{{ path('prestation_delete', { 'id': prestation.id }) }}">delete</a>
-                        </li>
-                    </ul>
-                </td>
-            </tr>
-        {% endfor %}
-        </tbody>
-    </table>
+        <div class = "pagination">
 
-    <ul>
-        <li>
-            <a href="{{ path('prestation_new') }}">Create a new prestation</a>
-        </li>
-    </ul>
+        </div>
+
+    </td>
+
+    </tfoot>
+</table>
+
+
+    <script type="text/javascript">
+        $(".footable").footable();
+    </script>
 {% endblock %}

@@ -1,60 +1,62 @@
 {% extends 'adminbase.html.twig' %}
-
+{% block title %}Client{% endblock %}
 {% block admin %}
-    <h1>Clients list</h1>
+    {{ render(controller('AppBundle:Client:new')) }}
+    <br><br><br>
+    <h3>Liste des client</h3>
+    <div class="form-group">
+        <div class = "input-group">
+            <input type="text" id ="filter" name = "prenom" class="form-control" placeholder="Rechercher un client"/>
+        </div>
+    </div>
+<table  class="footable" data-page-size ="10" data-filter="#filter">
+    <thead >
+    <th data-toggle="true" style="background:#122e48">Id</th>
+    <th data-hide="phone" style="background:#122e48">Raison Sociale</th>
+    <th data-hide="phone" style="background:#122e48">Nom</th>
+    <th data-hide="phone" style="background:#122e48">Prénom</th>
+    <th data-hide="phone" style="background:#122e48">Profession</th>
+    <th data-hide="phone" style="background:#122e48">Sexe</th>
+    <th data-hide="phone" style="background:#122e48">Adresse</th>
+    <th data-hide="phone" style="background:#122e48">Téléphone</th>
+    <th data-hide="phone" style="background:#122e48">Email</th>
+    <th data-hide="phone" style="background:#122e48">Agence RTF</th>
+    <th data-hide="phone" style="background:#122e48">Actions</th>
+    </thead>
+    <tbody >
+    {% for client in clients %}
+    <tr>
+        <td>{{ client.id }}</td>
+        <td>{{ client.raisonsocialeClient }}</td>
+        <td>{{ client.nomClient }}</td>
+        <td>{{ client.prenomClient }}</td>
+        <td>{{ client.professionClient }}</td>
+        <td>{{ client.sexeClient }}</td>
+        <td>{{ client.adresseClient }}</td>
+        <td>{{ client.telClient }}</td>
+        <td>{{ client.emailClient }}</td>
+        <td>{{ client.agencertf.nomAgence}}</td>
+        <td>
+            {{ render(controller('AppBundle:Client:edit',{'id':client.id})) }}
+            <button class="btn btn-danger btn-sm confirm"  onclick="deleteDep('{{ client.id }}')" ><i class="fas fa-trash-alt"></i></button>
+        </td>
+    </tr>
+    {% endfor %}
+    </tbody>
+    <tfoot class = "hide-if-no-paging">
+    <td colspan="11">
 
-    <table border="1"; style="width:auto";>
-        <thead>
-            <tr>
-                <th>Id</th>
-                <th>Raisonsocialeclient</th>
-                <th>Nomclient</th>
-                <th>Prenomclient</th>
-                <th>Professionclient</th>
-                <th>Sexeclient</th>
-                <th>Adresseclient</th>
-                <th>Telclient</th>
-                <th>Emailclient</th>
-                <th>Agence RTF</th>
-                <th>Dateenreg</th>
-                <th>Actions</th>
-            </tr>
-        </thead>
-        <tbody>
-        {% for client in clients %}
-            <tr>
-                <td><a href="{{ path('client_show', { 'id': client.id }) }}">{{ client.id }}</a></td>
-                <td>{{ client.raisonsocialeClient }}</td>
-                <td>{{ client.nomClient }}</td>
-                <td>{{ client.prenomClient }}</td>
-                <td>{{ client.professionClient }}</td>
-                <td>{{ client.sexeClient }}</td>
-                <td>{{ client.adresseClient }}</td>
-                <td>{{ client.telClient }}</td>
-                <td>{{ client.emailClient }}</td>
-                <td>{{ client.agencertf.nomAgence}}</td>
-                <td>{% if client.dateEnreg %}{{ client.dateEnreg|date('Y-m-d H:i:s') }}{% endif %}</td>
-                <td>
-                    <ul>
-                        <li>
-                            <a href="{{ path('client_show', { 'id': client.id }) }}">show</a>
-                        </li>
-                        <li>
-                            <a href="{{ path('client_edit', { 'id': client.id }) }}">edit</a>
-                        </li>
-                        <li>
-                            <a href="{{ path('client_delete', { 'id': client.id }) }}">delete</a>
-                        </li>
-                    </ul>
-                </td>
-            </tr>
-        {% endfor %}
-        </tbody>
-    </table>
+        <div class = "pagination">
 
-    <ul>
-        <li>
-            <a href="{{ path('client_new') }}">Create a new client</a>
-        </li>
-    </ul>
+        </div>
+
+    </td>
+
+    </tfoot>
+</table>
+
+
+    <script type="text/javascript">
+        $(".footable").footable();
+    </script>
 {% endblock %}
