@@ -144,6 +144,15 @@ class DefaultController extends Controller
         return $this->render('default/repetiteur.html.twig');
     }
 
+    /** creer par paul
+     * @Route("/Seconde_et_ses_specialites", name="link_Seconde_et_ses_specialites")
+     */
+    public function collegeliceActions(Request $request)
+    {
+        // replace this example code with whatever you need
+        return $this->render('default/Seconde_et_ses_specialites.html.twig');
+    }
+
 
     /**
      * @Route("/annuaire/college", name="link_annuaire_college")
