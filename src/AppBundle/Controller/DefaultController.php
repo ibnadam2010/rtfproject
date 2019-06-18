@@ -158,7 +158,7 @@ class DefaultController extends Controller
      * @Route("/annuaire/college", name="link_annuaire_college")
      */
     public function annuaireCollegeAction(Request $request)
-    {
+    {		//blablabla
         // replace this example code with whatever you need
         return $this->render('default/annuaire_college.html.twig');
     }
