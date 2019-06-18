@@ -53,6 +53,13 @@ class Programme
     /**
      * @var string
      *
+     * @ORM\Column(name="description", type="text")
+     */
+    private $description;
+
+    /**
+     * @var string
+     *
      * @ORM\Column(name="date_enreg", type="datetime", nullable=true, options={"default": "CURRENT_TIMESTAMP"})
      * @ Assert\GreaterThan("today")
      */
@@ -200,6 +207,30 @@ class Programme
         $this->promotions = new \Doctrine\Common\Collections\ArrayCollection();
         $this->matieres = new \Doctrine\Common\Collections\ArrayCollection();
         $this->dateEnreg = new \DateTime('now');
+    }
+
+    /**
+     * Set description.
+     *
+     * @param string $description
+     *
+     * @return Programme
+     */
+    public function setDescription($description)
+    {
+        $this->description = $description;
+
+        return $this;
+    }
+
+    /**
+     * Get description.
+     *
+     * @return string
+     */
+    public function getDescription()
+    {
+        return $this->description;
     }
 
     

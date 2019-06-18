@@ -39,8 +39,17 @@ class DefaultController extends Controller
      */
     public function sixiemeAction(Request $request)
     {
+       
+    $pro = 1;
         // replace this example code with whatever you need
-        return $this->render('default/sixieme.html.twig');
+        //return $this->render('default/troisieme.html.twig');
+    $em = $this->getDoctrine()->getManager();
+
+        //$programmes = $em->getRepository('AppBundle:Programme')->findAll();
+    $programmes = $em->getRepository('AppBundle:Programme')->findBy(array('promotion'=>$pro));
+
+    return $this->render('default/sixieme.html.twig', array('programmes' => $programmes));
+
     }
 
     /**
@@ -49,7 +58,13 @@ class DefaultController extends Controller
     public function cinqiemeAction(Request $request)
     {
         // replace this example code with whatever you need
-        return $this->render('default/cinquieme.html.twig');
+        $pro = 2;
+        
+    $em = $this->getDoctrine()->getManager();
+
+    $programmes = $em->getRepository('AppBundle:Programme')->findBy(array('promotion'=>$pro));
+
+    return $this->render('default/cinquieme.html.twig', array('programmes' => $programmes));
     }
 
 
@@ -59,7 +74,14 @@ class DefaultController extends Controller
     public function quatriemeAction(Request $request)
     {
         // replace this example code with whatever you need
-        return $this->render('default/quatrieme.html.twig');
+        $pro = 3;
+        
+    $em = $this->getDoctrine()->getManager();
+
+        
+    $programmes = $em->getRepository('AppBundle:Programme')->findBy(array('promotion'=>$pro));
+
+    return $this->render('default/quatrieme.html.twig', array('programmes' => $programmes));
     }
 
 
@@ -69,7 +91,13 @@ class DefaultController extends Controller
     public function troisiemeAction(Request $request)
     {
         // replace this example code with whatever you need
-        return $this->render('default/troisieme.html.twig');
+        $pro = 4;
+        
+    $em = $this->getDoctrine()->getManager();
+
+    $programmes = $em->getRepository('AppBundle:Programme')->findBy(array('promotion'=>$pro));
+
+    return $this->render('default/troisieme.html.twig', array('programmes' => $programmes));
     }
 
 
@@ -144,23 +172,31 @@ class DefaultController extends Controller
         return $this->render('default/repetiteur.html.twig');
     }
 
-    /** creer par paul
-     * @Route("/Seconde_et_ses_specialites", name="link_Seconde_et_ses_specialites")
-     */
-    public function collegeliceActions(Request $request)
-    {
-        // replace this example code with whatever you need
-        return $this->render('default/Seconde_et_ses_specialites.html.twig');
-    }
-
 
     /**
      * @Route("/annuaire/college", name="link_annuaire_college")
      */
     public function annuaireCollegeAction(Request $request)
-    {		//blablabla
+    {
         // replace this example code with whatever you need
         return $this->render('default/annuaire_college.html.twig');
+    }
+
+    /**
+     * @Route("/sixieme/ouvrage", name="link_sixieme_ouvrage")
+     */
+    public function sixiemeOuvrageAction(Request $request)
+    {
+        $pro=1;
+        // replace this example code with whatever you need
+        $em = $this->getDoctrine()->getManager();
+
+        $ouvrages = $em->getRepository('AppBundle:Ouvrage')->findBy(array('promotion'=>$pro));
+
+        return $this->render('ouvrage/sixieme_ouvrage.html.twig', array(
+            'ouvrages' => $ouvrages,
+        ));
+        //return $this->render('ouvrage/sixieme_ouvrage.html.twig');
     }
 	
 
