@@ -1,0 +1,119 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Sixième{% endblock %}
+{% block sideLeft %}
+
+    <div class="row">
+        <div class="card col-md-10 col-xs-12">
+            <img class="card-img-top" src="https://placeimg.com/380/230/nature" alt="Card image cap">
+            <div class="card-body">
+                <a href="#" class="btn btn-secondary">Pub tiers.</a>
+            </div>
+        </div>
+    </div>
+
+    <div class="row">
+        {% for programme in programmes %}
+        <div class="card col-md-10 col-xs-12">
+            {{programme.promotion.nomPromotion}},
+            {{programme.matiere.nomMatiere}},
+            {{programme.coef}},
+            {{programme.masseHoraire}}
+        </div>
+        {% endfor %}
+    </div>
+
+
+{% endblock %}
+
+{% block linksContent %}
+  {% for programme in programmes %}      
+
+    <div class="row">
+
+        <div class="panel panel-default">
+            <div class="bs-callout bs-callout-danger" style="   -moz-border-bottom-colors: none;
+                    -moz-border-left-colors: none;
+                    -moz-border-right-colors: none;
+                    -moz-border-top-colors: none;
+                    border-color: #eee;
+                    border-image: none;
+                    border-radius: 3px;
+                    border-style: solid;
+                    border-width: 1px 1px 1px 5px;
+                    margin-bottom: 5px;
+                    border-left-color: #122e48;
+                    padding: 20px;">
+                <h4>Collège : Qu'allez-vous apprendre en classe de 6 ième xxxx{{programme.promotion.nomPromotion}}xxxx?</h4>
+                <p class="text-justify">
+                    Vous voulez en savoir plus sur ce qui vous attend au programme, cette année, en 6e ? Suivez le
+                    guide.
+
+                    <div>
+                    <li class="nav-item">
+                    <a class="nav-link" style="color:#c92e48" href="{{ path('link_sixieme') }}">Télécharger tout le programme</a>
+                     </li>
+                    </div>
+                    
+                </p>
+
+            </div>
+        </div>
+
+    </div>
+
+
+
+    <div class="row">
+        <p>
+        <blockquote style="    font-size: 80% !important;
+                page-break-inside: avoid;
+                border: 3px solid #fff;
+                width: 100%;
+                -webkit-box-shadow: inset 5px 0px 0px 0px #f60, 8px 8px 8px 2px #888;
+                -mox-box-shadow: inset 5px 0px 0px 0px #f60, 8px 8px 8px 2px #888;
+                -ms-box-shadow: inset 5px 0px 0px 0px #f60, 8px 8px 8px 2px #888;
+                box-shadow: inset 5px 0px 0px 0px #f60, 8px 8px 8px 2px #888;
+
+                padding: 10px 20px;
+                margin: 0 0 20px;
+                font-size: 17.5px;
+                border-left: none;">
+            <b>{{programme.matiere.nomMatiere}} </b> <span style=" font-weight:700;
+                color:#c7254e;float:right;
+                font-family: Menlo, Monaco, Consolas, " Courier New", monospace"> Masse horaire: {{programme.masseHoraire}} heures</span><span></span><span></span>
+                <span style=" font-weight:700;
+                color:#c70149;
+                font-family: Menlo, Monaco, Consolas, " Courier New", monospace"> Coefficient:  {{programme.coef}} </span>
+        </blockquote>
+
+        </p>
+        <span class="text-justify">
+                         description depuis la base de données
+                    {{programme.description}}
+
+                    </span>
+
+    </div>
+    <div>
+        <li class="nav-item">
+        <a class="nav-link" style="color:#c92e48" href="{{ path('link_sixieme_ouvrage') }}">Liste des ouvrages</a>
+        </li>
+    </div>
+    <div>
+        <li class="nav-item">
+        <a class="nav-link" style="color:#c92e48" href="{{ path('link_sixieme') }}">Programme détaillé</a>
+        </li>
+    </div>
+    
+
+
+    <br/>
+    <br/>
+
+
+{% endfor %}
+{% endblock %}
+
+
+

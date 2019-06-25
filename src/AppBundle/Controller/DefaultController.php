@@ -9,6 +9,12 @@ use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\HttpFoundation\JsonResponse;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\Routing\Annotation\Route;
+use AppBundle\Entity\Promotion;
+use Symfony\Component\Form\Extension\Core\Type\ChoiceType;
+use Symfony\Bridge\Doctrine\Form\Type\EntityType;
+use Symfony\Component\Form\Extension\Core\Type\SubmitType;
+
+
 
 class DefaultController extends Controller
 {
@@ -198,6 +204,45 @@ class DefaultController extends Controller
         ));
         //return $this->render('ouvrage/sixieme_ouvrage.html.twig');
     }
-	
+
+
+	/**
+     * @Route("/college_lycee", name="link_monMenu")
+     */
+	public function monMenuCollegeAction(Request $request)
+    {
+        
+        $form = $this->createFormBuilder()
+        
+        //->add('nomPromotion',
+            //ChoiceType::class,['choices'=>['Sixieme'=> false,'Cinquieme'=> false]])
+
+        ->add('nomPromotion', EntityType::class, [
+                    'class' => 'AppBundle:Promotion',
+                    'choice_label' => function ($promotion) {
+        return $promotion->getNomPromotion();
+        //return $promotion->getId();
+        //$pro = $promotion->getId();
+    }
+        ])
+        ->add('Validez', SubmitType::class, ['attr' => ['class' => 'save'],])
+        ->getForm();
+                    $form->handleRequest($request);
+                     if ($form->isSubmitted() && $form->isValid()) {
+                     // je recuperer ici Id promotion 
+                     //$pro = $promotion->getId(); 
+                    }
+
+    ///////////////////
+    $em = $this->getDoctrine()->getManager();
+    
+    $programmes = $em->getRepository('AppBundle:Programme')
+    ->findBy(array
+        ('promotion'=>$promotion->getId())
+    );
+
+
+    return $this->render('default/lespages.html.twig', array('programmes' => $programmes));
+    }
 
 }
