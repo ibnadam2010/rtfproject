@@ -213,10 +213,7 @@ class DefaultController extends Controller
     {
         
         $form = $this->createFormBuilder()
-        
-        //->add('nomPromotion',
-            //ChoiceType::class,['choices'=>['Sixieme'=> false,'Cinquieme'=> false]])
-
+                
         ->add('nomPromotion', EntityType::class, [
                     'class' => 'AppBundle:Promotion',
                     'choice_label' => function ($promotion) {
@@ -227,22 +224,17 @@ class DefaultController extends Controller
         ])
         ->add('Validez', SubmitType::class, ['attr' => ['class' => 'save'],])
         ->getForm();
+
                     $form->handleRequest($request);
                      if ($form->isSubmitted() && $form->isValid()) {
                      // je recuperer ici Id promotion 
                      //$pro = $promotion->getId(); 
                     }
 
-    ///////////////////
-    $em = $this->getDoctrine()->getManager();
-    
-    $programmes = $em->getRepository('AppBundle:Programme')
-    ->findBy(array
-        ('promotion'=>$promotion->getId())
-    );
+     return $this->render('default/college_lycee.html.twig',[
+            'form' => $form->createView(),
+        ]);
+                
 
-
-    return $this->render('default/lespages.html.twig', array('programmes' => $programmes));
     }
-
 }
