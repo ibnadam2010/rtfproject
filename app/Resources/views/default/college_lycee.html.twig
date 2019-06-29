@@ -1,16 +1,27 @@
 {% extends 'base.html.twig' %}
 
-{% block admin %}
 {% block linksContent %}
 
-<h1>  CHOISISSEZ VOTRE CLASSE </h1>
+<h5> CLASSE  DE:</h5>
 <div>
-{{form(form)}}
+
+        <form >
+            <select id="promotion" class="form-control">
+                <option value="">Choisissez votre promotion</option>
+                {% for promotion in promotions %}
+                    <option value="{{ promotion.id }}">{{ promotion }}</option>
+                {% endfor %}
+            </select>
+        </form>
+
+
+
+
+    <div id ="viewprogramme"></div>
+
+    <br><br>
 </div>
 
-
-
-{% endblock %}
 {% endblock %}
 
 

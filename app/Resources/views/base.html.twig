@@ -1432,6 +1432,22 @@ article.style2 .info p {
 	
             
         });
+
+        $('#promotion').change(function() {
+            var promotion = $('#promotion').val();
+            afficher_programme(promotion)
+        });
+
+        function afficher_programme(id){
+            $.ajax({
+                type: "GET",
+                url:"{{ absolute_url(asset('vendor/getprogramme.php' ) ) }}",
+				data: {id:id}
+            }).done(function(data){
+                $('#viewprogramme').html(data);
+            });
+        }
+
     </script>
 </div>
 

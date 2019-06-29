@@ -211,30 +211,15 @@ class DefaultController extends Controller
      */
 	public function monMenuCollegeAction(Request $request)
     {
-        
-        $form = $this->createFormBuilder()
-                
-        ->add('nomPromotion', EntityType::class, [
-                    'class' => 'AppBundle:Promotion',
-                    'choice_label' => function ($promotion) {
-        return $promotion->getNomPromotion();
-        //return $promotion->getId();
-        //$pro = $promotion->getId();
-    }
-        ])
-        ->add('Validez', SubmitType::class, ['attr' => ['class' => 'save'],])
-        ->getForm();
-
-                    $form->handleRequest($request);
-                     if ($form->isSubmitted() && $form->isValid()) {
-                     // je recuperer ici Id promotion 
-                     //$pro = $promotion->getId(); 
-                    }
-
+        $em = $this->getDoctrine()->getManager();
+        $promotions = $em->getRepository('AppBundle:Promotion')->findAll();
      return $this->render('default/college_lycee.html.twig',[
-            'form' => $form->createView(),
+            'promotions'=>$promotions,
+
         ]);
-                
 
     }
+
 }
+
+
