@@ -37,13 +37,13 @@ if(isset($_GET['id'])){
                 <p class="text-justify">
                     Vous voulez en savoir plus sur ce qui vous attend au programme, cette année, en <?php echo $nomPromo; ?> ? Suivez le
                     guide.
-
+<!--
                 <div>
                     <li class="nav-item">
                         <a class="nav-link" style="color:#c92e48" href="{{ path('link_sixieme') }}">Télécharger tout le programme</a>
                     </li>
                 </div>
-
+-->
                 </p>
 
             </div>
@@ -83,10 +83,24 @@ if(isset($_GET['id'])){
                 margin: 0 0 20px;
                 font-size: 17.5px;
                 border-left: none;">
-                <b><?php echo $nomMat; ?>:-COEF-> <?php echo$coef; ?> </b> <span style=" font-weight:700;
-                color:#c7254e;float:right;
+                <h3><?php echo $nomMat; ?> <span style="float:right;">Coef: <?php echo$coef; ?></span> </h3> <span style=" font-weight:700;
+                color:#c7254e;float: right;
                 font-family: Menlo, Monaco, Consolas, " Courier New", monospace">4h 30 hebdomadaire</span>
             </blockquote>
+
+            <p class="center">
+                <a class="btn btn-info" href="#">Telecharger le guide</a>
+                <a class="btn btn-success" data-toggle="collapse" href="#collapseExample" aria-expanded="false" aria-controls="collapseExample">Ouvrages au programme</a>
+                </p>
+                <div class="collapse" id="collapseExample">
+                  <div class="card card-body">
+                    C'est ici que nous allons afficher les ouvrages en fonction de la matière er de la promotion selectionnée
+                  </div>
+                </div>
+
+
+
+            
 
             </p>
             <span class="text-justify">
@@ -103,6 +117,12 @@ if(isset($_GET['id'])){
 
 
     }
+?>
+
+            <p style="text-align: center;">
+                <a href="" ="#" class="btn btn-info">Telecharger la liste des matières au programme</a>
+            </p>
+<?php
 }
 
 ?>
